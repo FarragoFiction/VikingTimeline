@@ -692,22 +692,22 @@ function getQuipAboutSession(sessionSummary){
 	}
 
 	if(sessionSummary.crashedFromSessionBug){
-		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.  Also, shout out to star.eyes: 'His palms are sweaty, knees weak, arms are heavy. There's vomit on his sweater already, mom's spaghetti'");
+		quip += Zalgo.generate("Fuck. Shit crashed hardcore. Paladyn, I TOLD you that would happen!");
 	}else if(sessionSummary.crashedFromPlayerActions){
-		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
+		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.  At least that fake-adjacent GrimDark looking Palaydn doesn't crash things.");
 	}else if(sessionSummary.frogStatus == "Purple Frog" && sessionSummary.blackKingDead){
-	    quip += "Oh my fucking god is THAT what the Grim Dark players have been trying to do. Are organics really so dumb as to not realize how very little that benefits them?"
+	    quip += "You know, in retrospect I'm surprised that Paladyn wasn't somehow trying to cause this. I guess Nidhogg has other things going on?"
 	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ; //???
 	}else if(sessionSummary.yellowYard == true){
-		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
+		quip += "Welp. JR isn't involved here and I don't think Paladyn knows how this works... Sucks to be them, I guess. " ;
 	}else if(living == 0){
-		quip += "Shit, you do not even want to KNOW how everybody died." ;
+		quip += "Seriously, I keep telling Paladyn that death in 'glorious combat' is not a life goal." ;
 	}else  if(strongest.power > 3000){
 		//alert([!sessionSummary.scratched,dead == 0,sessionSummary.frogStatus == "Full Frog",sessionSummary.ectoBiologyStarted,!sessionSummary.crashedFromCorruption,!sessionSummary.crashedFromPlayerActions ].join(","))
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(sessionSummary.frogStatus == "No Frog" ){
-		quip += "Man, why is it always the frogs? " ;
+		quip += "Did Paladyn remember to keep session winnable? " ;
 		if(sessionSummary.parentSession){
 			quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. "
 		}
@@ -716,16 +716,16 @@ function getQuipAboutSession(sessionSummary){
 	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
 	}else  if(sessionSummary.num_scenes > 200){
-		quip += "God, this session just would not END." ;
+		quip += "God, this session just would not END. So many strifes... And you can't even skip them like you can in the future." ;
 		if(!sessionSummary.parentSession){
 			quip += " It didn't even have the excuse of being a combo session. "
 		}
 	}else  if(sessionSummary.murderMode == true){
-		quip += "It always sucks when the players start trying to kill each other." ;
+		quip += "Something, something, glorious combat." ;
 	}else  if(sessionSummary.num_scenes < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
 	}else  if(sessionSummary.scratchAvailable == true){
-		quip += "Maybe the scratch would fix things? Now that JR has upgraded me, I guess I'll go find out." ;
+		quip += "Better not tell Paladyn that scratches use ectoclones..." ;
 	}else{
 		quip += "It was slightly less boring than calculating pi." ;
 	}
