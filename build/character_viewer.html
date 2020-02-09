@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118163395-1"></script>
+		<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118163395-1');
+</script>
+	<meta charset="utf-8">
+	<style>
+		@font-face {
+				font-family: horrorterror;
+				src: url(MISTERTWIGGY.TTF);
+		}
+	</style>
+		<link rel="stylesheet" href="css/oc.css">
+		<link rel="stylesheet" href="css/navbar.css">
+		<script type="text/javascript" src="scripts/includes/lz-string.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/stacktrace.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/tracer.js"></script>
+		<script defer type="application/javascript" src="scripts/Controllers/Misc/CharViewerController.dart.js"></script>
+
+		<title>
+			Character Viewer
+		</title>
+	</head>
+	<body>
+		<div id = "navbar"></div><Br>
+
+		<h3 id = "seedText"></h3>
+		<br>
+
+		<div id = "debug"><div id = "loading_stats"></div>
+
+		<Br>
+		</div>
+
+		<div id = "character_creator">
+			<div class = "fanLinks">
+				<a class = 'navbarLink' href = "character_viewer.html">All Fans</a>
+				<a class = 'navbarLink' href = "character_viewer.html?reddit=true">reddit</a>
+				<a class = 'navbarLink' href = "character_viewer.html?tumblr=true">Tumblr</a>
+				<a class = 'navbarLink' href = "character_viewer.html?discord=true">Discord</a>
+				<a class = 'navbarLink' href = "character_viewer.html?creditsBuckaroos=true">creditsBuckaroos</a>
+				<a class = 'navbarLink' href = "character_viewer.html?patrons=true">Patrons1</a>
+				<a class = 'navbarLink' href = "character_viewer.html?patrons2=true">P2</a>
+				<a class = 'navbarLink' href = "character_viewer.html?patrons3=true">P3</a>
+				<a class = 'navbarLink' href = "character_viewer.html?ideasWranglers=true">ideasWranglers</a>
+				<a class = 'navbarLink' href = "character_viewer.html?creators=true">Creators</a>
+				<a class = 'navbarLink' href = "character_viewer.html?canon=true">Canon</a>
+				<a class = 'navbarLink' href = "character_viewer.html?otherFandoms=true">OtherFandoms</a>
+				<a class = 'navbarLink' href = "character_viewer.html?bards=true">Our Saviors</a>
+			</div>
+			<div id = "header">Characters from All Categories (In a Big Stupid Pile)</div>
+
+		</div>
+
+
+
+		<div class ='whiteCenterThingy'>
+			<button id='draw12Button'>Render 12 more players?</button>
+		<br>
+		<div id = "story" style="width:1000px;">
+
+		</div>
+		<canvas id="echeladder_template" width="202" height="300">  </canvas>
+		<canvas id="sprite_template" width="400" height="300">  </canvas>
+		<canvas id="canvas_template" width="1000" height="300">  </canvas>
+		<canvas id="rainbow_template" width="1" height="300">  </canvas>
+		<canvas id="chat_text_template" width="472" height="239">  </canvas>
+		<canvas id="godtierlevelup_template" width="1000" height="572">  </canvas>
+		<img id="loading.png" src = "images/loading.png" style="display:none">
+		<div id = "image_staging">  </div>
+		<div id = "loading_image_staging">  </div>
+		<div id = "playerSprites"></div>
+	</body>
+</html>

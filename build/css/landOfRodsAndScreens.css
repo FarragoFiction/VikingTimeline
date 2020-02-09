@@ -1,0 +1,110 @@
+.screen{
+	display: inline-block;
+	background-color: black;
+	padding: 0px;
+	vertical-align: bottom;
+}
+
+body{
+	background: url(../images/LORAS/LORAS-background.gif);
+	background-position: top;
+	background-repeat:no-repeat;
+	background-color: black;
+}
+
+#loading_stats{
+	color: white;
+}
+
+a{
+	color: #06edbd;
+}
+
+#quip{
+	color: #3da35a;
+	background-color: white;
+	border-radius: 25px;
+	padding: 10px;
+}
+
+#slider{
+	padding: 10px;
+}
+
+#spiel{
+	color:white;
+}
+
+.cpButton{
+	width: 100%;
+	vertical-align: bottom;
+}
+
+#controlPanel{
+	padding:0;
+	margin:0;
+	border-collapse: collapse;
+}
+
+#controlPanel td{
+	padding:0;
+	margin:0;
+}
+
+#controlPanel tr{
+	padding:0;
+	margin:0;
+}
+
+#debug{
+	color:white;
+}
+
+@font-face {
+    font-family: land;
+    src: url(../images/LORAS/CARIMA.TTF);
+}
+
+#headerSpace{
+	height: 512px;
+	width: 1200px;
+	position: relative;
+	vertical-align: bottom;
+}
+
+#headerSpace a{
+	font-size: 100px;
+	text-decoration: none;
+	position: absolute;
+	font-family: land;
+  bottom: 50%;
+	left: 100px;
+	text-shadow: -1px -1px black, 1px -1px black, -1px 1px black, 1px 1px black, -1px 0px black, 1px 0px black, 0px -1px black, 0px 1px black, 0px 0px 5px black, 0px 0px 8px black;
+}
+
+#container{
+	background-color: black;
+	width: 1200px;
+}
+
+#mindButton{
+	display: none;
+}
+
+#mindPowers{
+	display: none;
+	color: white;
+}
+
+#buttons{
+	display: inline-block;
+	width: 400px;
+	vertical-align: top;
+}
+
+
+#landScreens{
+	width: 725px;
+	height: 725px;
+	display: inline-block;
+}

@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118163395-1"></script>
+		<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118163395-1');
+</script>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/oc.css">
+		<script type="text/javascript" src="scripts/includes/lz-string.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/stacktrace.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/tracer.js"></script>
+		<script defer type="application/javascript" src="scripts/Controllers/Story/AfterlifeController.dart.js"></script>
+
+		<title>
+			Afterlife
+		</title>
+	</head>
+
+	<body style = "background: url(images/bubbles.png); background-attachment:fixed;  background-repeat: repeat;">
+			<div id  = "navbar"></div>
+			<div id = "loading_stats"></div>
+			
+			<div id = "debug"></div>
+			<div id = "afterlifeViewer">
+			<canvas id="loading" width="1000" height="354">  </canvas>
+			<Br>
+			Here wander the dead Players.  Each corpse created generates a ghost, even if player "revives" using a back up body. Dead dream Jade was a separate ghost from regular dead Jade, after all.<br>
+						
+			</div>
+			
+			
+
+			<canvas id="sprite_template" width="400" height="300">  </canvas>
+
+			
+			<div id = "image_staging">  </div>
+			<canvas id="rainbow_template" width="1" height="300">  </canvas>
+			<div id = "loading_image_staging">  </div>
+			
+			<img id="loading.png" src = "images/loading.png" style="display:none">
+			<div id="playerSprites"></div>
+</html>

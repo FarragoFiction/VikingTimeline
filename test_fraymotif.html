@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fraymotif Tester</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/fraymotifs.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	<script type="text/javascript" src="javascripts/quirk.js"></script>
+	<script type="text/javascript" src="javascripts/relationship.js"></script>
+	<script type="text/javascript" src="javascripts/AfterLife.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
+	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script type="text/javascript" src="javascripts/player.js"></script>
+	<script type="text/javascript" src="javascripts/session.js"></script>
+	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/testFraymotifController.js"></script>
+	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
+
+
+
+</head>
+<body>
+<div id = "navbar"></div>
+<div id = "story">
+<div id = "test">
+Tier:
+<select name = "tier" id = "tier">
+<option selected>1 </option>
+<option>2 </option>
+<option>3 </option>
+</select>
+
+Aspect1:
+<select size = "12" name = "aspects" multiple id = "aspects">
+<option >Blood</option>
+<option selected>Mind</option>
+<option >Rage</option>
+<option selected>Time</option>
+<option >Void</option>
+<option selected>Heart</option>
+<option >Breath</option>
+<option >Light</option>
+<option >Space</option>
+<option >Hope</option>
+<option >Life</option>
+<option >Doom</option>
+
+</select>
+
+<br><br><Br>
+<button onclick="makeFraymotif()">Make Fraymotif</button><Br>
+<div id = "fraymotifs"></div>
+<div id = "playerStats"></div>
+
+<div id = "playerSprites"></div>
+
+
+</div>
+
+</div>
+</body>
+</html>

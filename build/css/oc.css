@@ -1,0 +1,642 @@
+.loadedimg {
+    display: none;
+}
+
+.FAQ{
+    background-color: white;
+    position:fixed;
+    white-space: pre-wrap;
+    width: 1000px;
+    height: 50%;
+    top: 15%;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Courier New", Courier, monospace;
+    z-index: 998;
+    border 1px solid grey;
+    box-shadow: 0 0 5px #88CE21, 0 0 3px #88CE21, 0 0 3px #88CE21, 0 0 9px black, 0 0 7px black, 0 0 7px black;
+}
+
+.aiScene{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    background-color: #888888;
+    border-radius: 15px;
+}
+
+.textSection{
+    border: 1px solid black;
+    padding: 15px;
+}
+
+
+
+.aiButton{
+    margin: 5px;
+    padding: 5px;
+    border: 3px solid #000000;
+    border-radius: 3px;
+    background-color: #3b3b3b;
+    color: #00ff00;
+}
+
+.aiElement{
+    margin: 5px;
+    display: inline-block;
+    padding: 15px;
+    border: 13px solid #3b3b3b;
+    border-radius: 15px;
+    background-color: #616161;
+    color: #00ff00;
+}
+
+.strifeButton{
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.innerFAQ{
+    overflow-y: scroll;
+    width: 1000px;
+    height: 100%;
+}
+
+.red_x{
+    background-color: red;
+    color: white;
+    position: absolute;
+    font-size: 30px;
+    top: 0px;
+    right: 0px;
+    z-index: 999;
+}
+
+.sbahj{
+    background-color: #00ff00;
+    font-family: Comic Sans MS, cursive, sans-serif;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #ffffff;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #0B1030;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.toolTipSection{
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.ascii{
+ font-size: 10px;
+}
+#story{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+.navbarLink{
+	padding-left: 10px;
+	padding-right:10px;
+}
+
+.jake{
+    font-size: 72px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.pesterlog{
+    padding: 10px;
+    margin: 10px;
+    background-color: lightgrey;
+    border 1px solid grey;
+}
+
+.standAloneSummary{
+	display: inline-block;
+}
+
+.charSheet{
+	display: inline-block;
+	padding-bottom: 10px;
+}
+
+#header{
+	font-size: 25px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.score{
+	float:right;
+}
+
+.watermark{
+	position: fixed;
+	bottom: 0px;
+	left:0px;
+	z-index: -1;
+}
+.sickFiresCentered{
+	margin-left: 230px;
+	margin-right: auto;
+}
+.scene{
+	width: 1000px;
+	position: relative;
+}
+
+.whiteCenterThingy{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#character_creator{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#debug{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+.credits{
+	padding: 10px;
+	border: 3px solid black;
+}
+
+.pen15{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+
+
+.void{
+	display: none;
+	background-color: #000066;
+	color: #ffffff;
+}
+
+.rage{
+}
+
+.light{
+}
+
+.credits_text{
+}
+
+#afterlifeViewer{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+
+
+
+#spiel{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+    margin-right: auto;
+	padding: 10px;
+}
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+
+#container {
+    float:left;
+    width:100%;
+    background: white;
+}
+#player1 {
+    float:left;
+    width:50%;
+}
+#player2 {
+    float:left;
+    width:50%;
+}
+#player3 {
+
+    width:50%;
+}
+#player3 {
+    float:left;
+    width:50%;
+}
+
+#classList{
+  float:left;
+}
+.multiSessionSummary{
+  width: 250px;
+  border: 3px solid black;
+  padding: 10px;
+  display: inline-block;
+}
+
+.topAligned{
+	vertical-align: top;
+}
+
+.bottomAligned{
+	vertical-align: bottom;
+}
+
+.sessionSummary{
+	width: 500px;
+	display: inline-block;
+}
+
+#colorList{
+  float:left;
+}
+#speciesList{
+  float:left;
+}
+
+.custom-radio{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    top: 3px;
+    background: url("../images/mind_radio.png") no-repeat;
+}
+.custom-radio:hover{
+    background: url("../images/mind_radio_hover.png") no-repeat;
+}
+.custom-radio.selected{
+    background: url("../images/mind_radio_checked.png") no-repeat;
+}
+.custom-radio input[type="radio"]{
+    margin: 1px;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    /* CSS hacks for older browsers */
+    _noFocusLine: expression(this.hideFocus=true);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+}
+
+#aspectList{
+  float:left;
+}
+#horrorterror{
+  font-family: horrorterror;
+}
+
+.tierTitle{
+	font-size: 25px;
+}
+.vsName{
+	font-size: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.eulogy{
+  display: inline-block;
+  padding: 10px;
+  width:400px;
+}
+
+.eulogy_text{
+}
+
+@font-face {
+    font-family: horrorterror;
+    src: url(MISTERTWIGGY.TTF);
+}
+
+.createdCharacter{
+  width: 1000px;
+  padding: 1px;
+
+}
+
+.createdCharacterCanvas{
+  width: 400px;
+	height: 300px;
+	display: inline-block;
+}
+
+.optionTab{
+	width:100px;
+	text-align: center;
+	background-color: #bdb968;
+	height: 20px;
+	display: inline-block;
+	padding: 2px;
+	padding-top: 0px;
+	vertical-align: middle;
+	border: 3px solid #9630bf;
+	border-right: none;
+}
+
+.deleteTab{
+	width:25px;
+	text-align: center;
+	background-color: white;
+	color: red;
+	display: inline-block;
+	height: 20px;
+	padding: 2px;
+	padding-top: 0px;
+	vertical-align: middle;
+	border: 2px solid #9630bf;
+}
+
+.optionTabSelected{
+	width:100px;
+	padding: 2px;
+	display: inline-block;
+	padding-top: 0px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	border: 3px solid #9630bf;
+	border-bottom: none;
+	border-right: none;
+	background-color: #fcf9bd;
+}
+
+.helpText{
+	padding: 10px;
+
+}
+
+.formSection{
+	padding:5px;
+}
+.charOptions select{
+   -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	border: 1px solid #9630bf;
+	background-color: #cc87e8;
+	color: #9630bf;
+	border-radius: 4px;
+}
+
+.charOptions input[type="text"]{
+	width: 100px;
+}
+
+.dataInputSmall{
+	width: 300px;
+	height: 200px;
+	resize: none;
+	background-color: white;
+	color: black;
+}
+
+.dataInput{
+	width: 550px;
+	height: 200px;
+	resize: none;
+	background-color: #cc87e8;
+	color: #9630bf;
+}
+
+.folderDealy{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.charCreatorButton{
+	background-color: #9630bf;
+	color: #cc87e8;
+	padding: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.optionBox{
+	display: none;
+}
+
+
+.formElementLeft{
+	width: 75px;
+	padding-bottom: none;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	display: inline-block;
+}
+
+.formElementRight{
+	width: 75px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: none;
+	padding-left: 100px;
+	display: inline-block;
+}
+
+.optionTabs{
+	width:575px;
+	height: 26px;
+	display: block;
+}
+
+.charOptions input, .charOptions option{
+	border: 1px solid #9630bf;
+	background-color: #cc87e8;
+	color: #9630bf;
+	width: 100px;
+	border-radius: 4px;
+}
+
+#teams{
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#roundTitle{
+	width: 400px;
+	display: none;
+	text-align: center;
+}
+
+#descriptions{
+	display: inline-block;
+	vertical-align: top;
+	text-align: top;
+}
+
+.descriptionBox{
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid lightgrey;
+}
+
+.loser{
+	background-color: grey;
+	text-decoration: line-through;
+}
+#tournament{
+	width:790px;
+	display: inline-block;
+}
+
+
+.tournamentResults{
+	width: 950px;
+	height: auto;
+}
+
+.tournamentCell{
+	border: 2px solid black;
+}
+
+.mvp{
+	width: 150px;
+}
+
+
+
+.twoTeams{
+	border: 1px solid grey;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.teamDescription{
+	width:180px;
+	margin: 2px;
+}
+
+#team1{
+	display: none;
+	width: 250px;
+	vertical-align: top;
+	text-align: top;
+}
+
+
+#ab{
+	display: none;
+	width: 200px;
+}
+
+
+#team2{
+	display: none;
+	width: 250px;
+	vertical-align: top;
+	text-align: top;
+}
+
+
+#teams select{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#tournamentButtonDiv{
+	vertical-align: middle;
+	display: none;
+	position: absolute;
+	top: 0%;
+	padding: 50px;
+}
+
+#setup{
+	position: relative;
+}
+
+
+.charOptions{
+	position: relative;
+	vertical-align: top;
+	border: 3px solid #9630bf;
+	border-top: none;
+	width:570px;
+	height: 300px;
+	color: #9630bf;
+	background-color: #fcf9bd;
+	display: inline-block;
+}
+
+.charOptionsForms{
+	vertical-align: top;
+	padding: 10px;
+	width:550px;
+	height: 270px;
+	display: inline-block;
+}
+
+.stats{
+}
+
+div.renderJobPlaceholder {
+    background:url("../../images/spirograph_spin.svg") no-repeat center;
+    background-color:#FFFFFF;
+    background-size:contain;
+    background-origin: content-box;
+    padding:6%;
+    box-sizing: border-box;
+    box-shadow:0 0 30px #EEEEEE inset;
+}
+
+.voidbody {
+    background-color:#f8c858;
+    background-image:url("../images/pen15_bg1.png");
+}

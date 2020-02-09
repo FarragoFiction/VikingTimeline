@@ -1,0 +1,19 @@
+#form{
+	   display: inline-block;
+}
+
+.ocElement{
+    padding: 10px;
+     display: inline-block;
+}
+
+.ocElement{
+    padding-right: 10px;
+     display: inline-block;
+}
+
+@font-face {
+    font-family: land;
+    src: url(../images/LORAS/CARIMA.TTF);
+}
+

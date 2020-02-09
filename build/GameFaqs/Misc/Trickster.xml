@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faq>
+    <ascii>
+                                             ```                                                       
+                                               ```````..............                                              
+                                          ```````.......................                                          
+                                       `````......,,,,,,,,,,,,,,,,,,,,,,,,,,                                      
+                                    `````....,,,,,:::::::::::::::::,,,,,,,,,,,                                    
+                                  ````...,,,,:::::;;;;;;;;;;;;;;;;;::::::,,,,,,,,                                 
+                                ````..,,,::::;;;;;;'''''''''''''';;;;;;;:::::,,,,,,                               
+                              ```...,,:::;;;;;''';;;;;;;'''''''''''''';;;;;::::::::::                             
+                            ```...,,::;;';;;;;;;;;;;;;;;;;;;;;;''''''''''';;;;::::::::                            
+                           ``...,,::;:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''';;;;:::::::                          
+                         ```..,,::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''';;;;:::::::                        
+                        ``..,,::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''';;;;;:::::                       
+                      ``...,,:::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''';;;;;:::;                      
+                     ``..,,,::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''';;;;;;;;;                    
+                    `...,,:::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''';;;;;;;;                   
+                   `..,,,::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''';;;;;;;;                  
+                  ...,,,::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''';;;;;;;                 
+                 ....,,::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''';;;;;;'                
+                ....,::;;;;;;;;;;;;;;;;;;;;;'''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;'''''''';;;;''               
+               ....,::;;;;;;;;;;;;;;;;;;'''''''''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;'''''''';;;'''              
+              ....,::;;;;;;;;;;;;;;;;'''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;;;;;''''''''''''''             
+             ....,::;;;;;;;;;;;;;;;''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;;;'''''''''''''             
+            ....,::;;;;;;;;;;;;;;''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;;'''''''''''''            
+            ...,::;;;;;;;;;;;;;''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;'''''''''''''           
+           ...,,:;;;;;;;;;;;;''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;'''''''''''''          
+          ...,,::;;;;;;;;;;;''''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;''''''''''''          
+          ..,,::;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;''''''''''''         
+         ..,,::;;;;;;;;;;''''''''''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;''''''''''''+        
+        ,..,,:;;;;;;;;;''''''''''''''''''''''''';;;;;;;;;'''''''''''''''''''''''';;;;;;;;;;;;;'''''''''''+        
+        ,.,,::;;;;;;;;''''''''''''''''''''';;;;;;;;;;;;;;;;;;;'''''''''''''''''''';;;;;;;;;;;;;''''''''''++       
+       ,.,,::;;;;;;;;''''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''''''';;;;;;;;;;;;'''''''''''+       
+       .,,,:;;;;;;;;''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''''''';;;;;;;;;;;;''''''''''++      
+      ,,,,::;;;;;;;''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''''';;;;;;;;;;;;'''''''''++      
+      ,,,::;;;;;;;'''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''''';;;;;;;;;;;;'''''''''+++     
+     ,,,,::;;;;;;''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''''';;;;;;;;;;;;'''''''''++     
+     ,,,::;;;;;;''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;'''''''''+++    
+    :,,,::;;;;;;'''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;;;''''''''+++    
+    ,,,::;;;;;;'''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;;'''''''''+++   
+    ,,,::;;;;;;''''''''''''';;;;;;;;;;;;;;;;;;;;;;;';;;;;;;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;''''''''+++   
+   ,,,::;;;;;;''''''''''''';;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;;''''''''+++   
+   ,,,::;;;;;''''''''''''';;;;;;;;;;;;;;;;''''''''''''''''''';;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;''''''''++++  
+   ,,:::;;;;;'''''''''''';;;;;;;;;;;;;;;''''''''''''''''''''''';;;;;;;;;;;;;;;'''''''''''';;;;;;;;;;;''''''''+++  
+   ,,::;;;;;''''''''''''';;;;;;;;;;;;;''''''''''''''''''''''''''';;;;;;;;;;;;;'''''''''''';;;;;;;;;;;''''''''+++  
+  ,,:::;;;;;'''''''''''';;;;;;;;;;;;;'''''''''''''''''''''''''''''';;;;;;;;;;;;'''''''''''';;;;;;;;;;;'''''''+++# 
+  :::::;;;;;''''''''''';;;;;;;;;;;;;'''''''''''''''''''''''''''''''';;;;;;;;;;;'''''''''''';;;;;;;;;;;'''''''++++ 
+  ::::;;;;;'''''''''''';;;;;;;;;;;;'''''''''''''''''''''''''''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;'''''''+++# 
+  ::::;;;;;''''''''''';;;;;;;;;;;;'''''''''''''''''''''''''''''''''''';;;;;;;;;;'''''''''''';;;;;;;;;;;''''''+++# 
+ :::::;;;;'''''''''''';;;;;;;;;;;''''''''''''''''''''''''''''''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;'''''''++# 
+ ::::;;;;;''''''''''';;;;;;;;;;;''''''''''''''''''''''''''''''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;'''''''++##
+ ::::;;;;;''''''''''';;;;;;;;;;;''''''''''''''';;;;;;;;;;'''''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;'''''''++##
+ ::::;;;;''''''''''';;;;;;;;;;;'''''''''''''';;;;;;;;;;;;;;''''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;'''''''++##
+ ::::;;;;''''''''''';;;;;;;;;;;''''''''''''';;;;;;;;;;;;;;;;;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;''''''++##
+ :::;;;;;'''''''''';;;;;;;;;;;''''''''''''';;;;;;;;;;;;;;;;;;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;''''''++##
+ :::;;;;;'''''''''';;;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;::;;;;''''''''''';;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;;''''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;;'''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;;;;;;;;;;;;;'''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;;'''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;;;;;;;;;;;;;'''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+;;;;;;;;'''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;;;;';;;;;;;;;'''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;;'''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;;'''';;;;;;;;'''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;'''''';;;;;;;'''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;''''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''';;;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;''''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''';;;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;'''''''''';;;;;;;;;;''''''''''';;;;;;;;;;'''''''';;;;;''''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++##
+ ;;;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;'''''''';;;;'''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;'''''+++##
+ ;;;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;'''''''''''''''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;''''''++###
+ ';;;;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;''''''''''''''''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++###
+ '';;;;''''''''''';;;;;;;;;;'''''''''';;;;;;;;;;''''''''''''''''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;''''''++## 
+ '';;;;''''''''''';;;;;;;;;;'''''''''';;;;;;;;;;;''''''''''''''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;''''''++## 
+  '';;;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;'''''''''''''''''''';;;;;;;;;;;;''''''''''';;;;;;;;;;;'''''+++## 
+  '';;;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;'''''''''''''''''';;;;;;;;;;;;'''''''''''';;;;;;;;;;''''''++### 
+  ''';;;'''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;''''''''''''''''';;;;;;;;;;;;;''''''''''';;;;;;;;;;;''''''++### 
+  ''';;;'''''''''';;;;;;;;;;;'''''''''';;;;;;;;;;;;;''''''''''''';;;;;;;;;;;;;;'''''''''''';;;;;;;;;;;''''''++##  
+   ''';;'''''''''';;;;;;;;;;;''''''''''';;;;;;;;;;;;;;''''''''';;;;;;;;;;;;;;;;'''''''''''';;;;;;;;;;;'''''++###  
+   ''';;''''''''''';;;;;;;;;;''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''';;;;;;;;;;;''''''++###  
+   '''';''''''''''';;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;;''''''++###  
+    ''';;'''''''''';;;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''';;;;;;;;;;;;'''''++###   
+    '''';'''''''''';;;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;''''''++###   
+    +''';''''''''''';;;;;;;;;;;'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;;'''''+++###   
+     +'''''''''''''';;;;;;;;;;;''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''';;;;;;;;;;;;''''''++###    
+     +''';''''''''''';;;;;;;;;;;'''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''''''';;;;;;;;;;;;''''''++###    
+     ++'''''''''''''';;;;;;;;;;;''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;'''''''''''''''';;;;;;;;;;;;''''''++###     
+      ++''''''''''''';;;;;;;;;;;;'''''''''''''''';;;;;;;;;;;;;;;;;;;''''''''''''''''';;;;;;;;;;;;;''''''++###     
+      ++'''''''''''''';;;;;;;;;;;;'''''''''''''''''';;;;;;;;;;;;;''''''''''''''''''';;;;;;;;;;;;;''''''++###      
+       ++''''''''''''';;;;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;''''''+++###      
+       +++''''''''''''';;;;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;''''''++###       
+        +++''''''''''''';;;;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;''''''+++###       
+         ++''''''''''''';;;;;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;''''''+++###        
+         +++'+''''''''''';;;;;;;;;;;;;;'''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;'''''''++###         
+          #++'+''''''''''';;;;;;;;;;;;;;''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;'''''''+++###         
+           #+++'''''''''''';;;;;;;;;;;;;;;'''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;'''''''+++###          
+           ##+++'''''''''''';;;;;;;;;;;;;;;;'''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;'''''''+++###           
+            ##+++'''''''''''';;;;;;;;;;;;;;;;;''''''''''''''''''''''''';;;;;;;;;;;;;;;;;;''''''''++####           
+             ##+++'''''''''''';;;;;;;;;;;;;;;;;;;''''''''''''''''''';;;;;;;;;;;;;;;;;;;;''''''''++####            
+              ##+++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;''''''''';;;;;;;;;;;;;;;;;;;;;;;;''''''''++####             
+              ###+++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''+++###              
+               ###+++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''+++###               
+                ###+++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''+++####               
+                 ###++++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''+++#####                
+                  ###++++'''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''+++#####                 
+                   ####+++''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;''''''''''+++####                   
+                    ####++++''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''++++####                    
+                      ####+++'''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;'''''''''''''+++#####                     
+                       ####++++''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;''''''''''''''++++#####                      
+                        #####++++''''''''''''''''';;;;;;;;;;;;;''''''''''''''''''++++#####                        
+                          ####+++++''''''''''''''''''''''''''''''''''''''''''''+++++#####                         
+                           #####+++++''''''''''''''''''''''''''''''''''''''''+++++######                          
+                             ######+++++''''''''''''''''''''''''''''''''''+++++#######                            
+                               ######+++++++'''''''''''''''''''''''''''++++++#######                              
+                                 #######++++++++''''''''''''''''''++++++++########                                
+                                   ########++++++++++++++++++++++++++++#########                                  
+                                     ###########++++++++++++++++++############                                    
+                                        ###################################                                       
+                                            ###########################                                           
+                                                ##################        
+    </ascii>
+    <section>
+        <header>
+            Question: How bullshit is MURDER???????????
+        </header>
+        <body>
+            Not at all!!!!!!!!!!!
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: I FEEL PEACHY!!!!!!!!!!!
+        </header>
+        <body>
+            I told you to put it down,i told you
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Tricksters
+        </header>
+        <body>
+            So, I'm going to preface this by saying that the fact that you need to read this faq means a decent chance that you're screwed. I'm sorry, it's just a fact of life. This guide will help you to either maximize what little time you have left, or learn about preventing tricksters from attacking.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            So what is a trickster?
+        </header>
+        <body>
+            Tricksters are probably the single most chaotic and malevolent entity that sburb can possibly produce. Seriously. A trickster can tank the black king, the black queen, hell, it could probably kill a debug NPC if it felt like it.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Why wouldn't I want to be a Trickster, if they’re so powerful?
+        </header>
+        <body>
+            Imagine if you will looking out in horror as your skin turns to sugar and your brains into candy, as even as you speak your words become saccharine and your thoughts go mad, and you want it off but you can't resist it. If the answer to any of these questions was a yes, then get some help. If you are a trickster, you are not you. Tricksters care only about candy, "fun", and reproduction. If you manage to become one, any goals or relationships you had before you did are screwed.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            How do you become a Trickster?
+        </header>
+        <body>
+            This is one that I really, really hesitate to answer. For the sake of avoidance, however, I will. In order to become a trickster, you need something with a certain intrinsic quality. We don't really know what it is, or what this quality is, only that it exists. My guess is that it's always candy, but I may be wrong. Ours was a massive jawbreaker. It had this sort of red and green swirl pattern, and the temptation of eating it was irresistible. You just have to eat it, or do whatever your body instinctively does when it touches the item. Other than that, just let yourself get kissed, kicked in the genitals, or something else weird by the trickster(s).
+
+        </body>
+    </section>
+    <section>
+        <header>
+            What can a trickster do?
+        </header>
+        <body>
+            Tricksters can do essentially anything. They can fly, create life, alchemize without grist, create grist, are basically invulnerable, have pretty much infinite strength and endurance, massive speed, know exactly what to say to hurt you, and are completely insane. They can do other stuff if they feel like it. One guy got trapped in a sort of infinite loop within a santa doll. He eventually went trickster, and the rest is history.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            How do you stop Tricksters?
+        </header>
+        <body>
+            There are pretty much two ways to stop a trickster from attacking you. Death doesn't work, they'll just resurrect you, and god tiers can only hold them off for so long. No, the only ways to stop them are with a) a Zillyweapon, or b) outside interference. The first can be very rarely found through temporal shenanigans or normal quests, or through usage of the grist that tricksters secrete(?) called Zillium. Zillium can make Zillyweapons and some other weird stuff, which is all insanely strong. The weapons won't corrupt you, but too much zillium can, and it can be used to make a trickster item. Be on your toes if you ever find any. The outside interference part I've only heard about. Supposedly, some sort of outside force can end trickster corruption for good through time travel (not loops) or cleansing or something. Don't bet on that happening, though.
+
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Recognizing a trickster
+        </header>
+        <body>
+            Tricksters have bright, neon hair and clothes, are covered in candy, weird skin (it disobeys the laws of reality somehow), and talk in a voice that can't be replicated. They will talk in a sugary sweet, sexually perverse, creepy as hell way. If you can see it, it can probably see you. Say your prayers.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Tricksters: In conclusion
+        </header>
+        <body>
+            Tricksters are undoubtedly a huge threat. Luckily, they're very rare and don't focus at all on finishing the game. If either of those were to be false, we'd be screwed. If you suspect someone of being a trickster, stay away, tell your friends to stay away, as well as any pets you may have. Try to get a Zillyweapon. Other than that, just pray that you don't get found.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            So, What's a peach?
+        </header>
+        <body>
+            Peaches of course In this case is a reference to the phrase "I feel peachy" uttered by anyone under the influence of the cherub JuJu, not the fruit. The first instance of tricksters recorded in my session was January 11th 20XX, They appeared during the celebration of my friends birthday. They looked like my other three friends but did not at the same time. They wore neon and candy colours, had brightly coloured hair and a peachy tone to their skin. They acted like maniacs, obsessing over marrying everyone and having zillions of babies. It was weird and creepy and unfortunately I was the only one of the three of us left who escaped. I monitored them from afar for months on end, and I do believe I have compiled a list of various forms of infection, behaviours and causes. Trickster Infection Methods A kick o the nuts A Kiss Licking the juju in any way A punch of love Being hit with a special summoned item (I.e. Pumpkin) Trickster Mode Behaviours Sometimes you will be lucky and trickster mode will not affect you emotionally (physical affects still present). You will remain with the same personality and possibly be able to slow down the shenanigans enough to 'cure' them. Most tricksters will be obnoxiously loud, talk about how great they feel, be extremely overzealous, overshare everything, talk about how they want to marry you and have zillions of babies. This will continue on for however long the effects of the juju persist. Trickster Causes The only known cause for trickster mode is the lollipop JuJu. It is red and green with a swirling pattern, and when tasted launches you into the peachy deep end. Cures The only discovered cures for trickster mode thus far are waiting a while and killing the infected. Unfortunately sometimes this is necessary to protect yourself.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Oh god why is everybody "peachy"?
+        </header>
+        <body>
+            Alright, I'm gonna assume you're a heart or doom player and are thus immune.
+
+            Basically, there's two ways you're gonna see a jolly bright infestation in a session.   Either your Life player got WAY too much power for their own good, or a HorrorTerror got the bright idea to start passing out candy.  (Seriously why would you take candy from a stranger with that many appendages?).
+
+            I've heard rumors that something called a "juju" can cause it, too, but I've never seen evidence that they exist.
+        </body>
+    </section>
+    <section>
+        <header>
+            H11111111111LOOOOOOOOOOO!!!!!!!!!!!   WHY IS MISTER GRUMPY PANTS SOOOOOOOOOOO GRUMPY???????????
+        </header>
+        <body>
+            Gonna assume that they are a heart player, and immune to the personality effects, or a Doom player and immune to all of the effects.  Just ignore them. They DESPERATELY want to ignore you.
+        </body>
+    </section>
+    <section>
+        <header>
+            HOW MANY BABIES SHOULD I MAKE???????????
+        </header>
+        <body>
+            A ZILLLION SILLY!!!!!!!!!!!
+        </body>
+    </section>
+
+</faq>

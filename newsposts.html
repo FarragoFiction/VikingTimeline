@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/newspost.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<title>Newsposts by jadedResearcher</title>
+	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="javascripts/bytebuilder.js"></script>
+	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
+	<script type="text/javascript" src="javascripts/lz-string.min.js"></script>
+	<script type="text/javascript" src="javascripts/scene_controller.js"></script>
+	<script type="text/javascript" src="javascripts/AfterLife.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/char_creator_helper.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
+	<script type="text/javascript" src="javascripts/newsposts.js"></script>
+	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script type="text/javascript" src="javascripts/loading.js"></script>
+	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
+	<script type="text/javascript" src="javascripts/sessionSummary.js"></script>
+	<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/FreeWillStuff.js"></script>
+	<script type="text/javascript" src="javascripts/session.js"></script>
+	<script type="text/javascript" src="javascripts/player.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/GrimDarkQuests.js"></script>
+	<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
+	<script type="text/javascript" src="javascripts/quirk.js"></script>
+	<script type="text/javascript" src="javascripts/debugScenarios.js"></script>
+	<script type="text/javascript" src="javascripts/relationship.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/Breakup.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/LifeStuff.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/UpdateShippingGrid.js"></script>
+	<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/Intro.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/Reckoning.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/Aftermath.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/KingPowerful.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/QueenRejectRing.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/PrepareToExileQueen.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/PlanToExileJack.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/GiveJackBullshitWeapon.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/YellowYard.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/PrepareToExileJack.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/ExileQueen.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/ExileJack.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/JackBeginScheming.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/levelthehellup.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/JackRampage.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/JackPromotion.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/SolvePuzzles.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/ExploreMoon.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/GetTiger.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/GodTierRevival.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/CorpseSmooch.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/GoGrimDark.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/EngageMurderMode.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/BeTriggered.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/DisengageMurderMode.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/MurderPlayers.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/FightQueen.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/ImportantEvents.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/FightKing.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/VoidyStuff.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/DoLandQuest.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/FaceDenizen.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/DoEctobiology.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/RelationshipDrama.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/SaveDoomedTimeline.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/StartDemocracy.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
+
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	<script>
+	window.onload = function() {
+			junior = false;
+			loadNavbar();
+			reFormatForTinyScreens();
+			simulateASession();
+			newsposts("");
+			roboNewsposts();
+			//reFormatForTinyScreens();
+	}
+	</script>
+</head>
+<body style = "background: url(images/copypasta_blend.png); background-position: center">
+
+<div id = "navbar"></div>
+<img src = "images/guide_bot.png" style="float:left;filter:FlipH">
+<img src = "images/author_turnways.png" style="float:right;">
+<div id = "container">
+	<div id = "robo_newsposts"> </div>
+	<div id = "newsposts"> </div>
+
+</div>
+
+<canvas id="echeladder_template" width="202" height="300">  </canvas>
+<canvas id="sprite_template" width="400" height="300">  </canvas>
+<canvas id="canvas_template" width="1000" height="300">  </canvas>
+<canvas id="chat_text_template" width="472" height="239">  </canvas>
+<canvas id="godtierlevelup_template" width="650" height="151">  </canvas>
+<img id="loading.png" src = "images/loading.png" style="display:none">
+<div id = "image_staging">  </div>
+<div id = "loading_image_staging">  </div>
+<canvas id="loading" width="500" height="354">  </canvas>
+<div id = "story"></div>
+<div id = "playerSprites"></div>
+</body>
+</html>

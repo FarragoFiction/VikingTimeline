@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118163395-1"></script>
+	<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118163395-1');
+</script>
+	<title>SBURBSim by jadedResearcher</title>
+
+	<script type="application/javascript" src="scripts/Controllers/Misc/NavBarOnlyController.dart.js"></script>
+
+	<link rel="stylesheet" href="css/oc.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<script>
+	window.onload = function() {
+			console.log(" If you wanted to see the super secret programmer FAQ, maybe you should check the page source???")
+
+			/*
+
+```````   `                 `  ``   `                        ```````                           `
+```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
+```               ````        ```             ````           ```                ```          ```             ````
+``                   ```      ``                 ```         ```                  ```        ```                ``
+`````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````
+`.-............-..-...-.....-........................................................................-.......................-.`
+`.-..........................................................................................................................-.`
+`......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
+`.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
+`......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
+`````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
+```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
+```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
+```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```
+```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```
+```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```
+```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``
+`````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````
+````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````
+`......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`
+`.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`
+`-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`
+``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`
+````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````
+```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```
+````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```
+```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``
+```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``
+```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```
+``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```
+``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``
+```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```
+`.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`
+`.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`
+`......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`
+````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````
+```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````
+```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
+```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
+```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
+```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```
+``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```
+````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````
+```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```
+`.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`
+`.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`
+......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......
+..-..........................................................................................................................-..
+..-........-...-..-..................................................................................-..............-........-..
+`````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
+
+	   Hi!!! You have found the secret developer FAQ. I figure the stuff I wanted to ramble about that might be a bit too "techy" can go here, you know?
+		 Also, don't mind how warped my fourth wall is, it gets like that whenever I stick it in a javascript comment. (hey, I wonder if this isn't the first time I've opened a
+	 fourth wall into a javascript comment??? (FJR: Actually, now they are all in dart, so can only be viewed from my git hub.))
+
+	    FJR: BE WARNED: I HAVE ATTEMPTED TO UPDATE THIS FOR DART, BUT IT MIGHT NOT BE PERFECT.
+
+		Q:  How the HELL does this pile of glitches even begin to work?
+		A: You're going to want to START looking at "StoryController.dart" on my GitHub . That creates Sessions which have Scenes.
+				Each scene is in charge of knowing when it triggers, and what happens when it does trigger.  (this.trigger and this.content, respectively)
+				A really straight forward scene to look at is "KingPowerful.dart".  It triggers if the king is stronger than the hardcoded "hard strength",
+				and displays a simple message about the game being hard.  The older a scene is in relation to the sim itself, the simpler the scene tends to be.
+				I had this vague idea that scenes were gonna be hella simple and there would be a bunch of them. As the simulation matured, scenes got more and more complex
+				(just look at how fucking huge "RelationshipDrama.dart" is). This is because I started nesting triggers within scenes as I realized how fucking stupid it was to have,
+				like, a hundred different javascript files in every html page I wanted to use the sim in. Shit is fucking untenable.  Which is why converting to Dart was such a good idea. Thanks, PL!!!
+
+				In any case, scenes are where most of the intelligence lives. Players are repositories of stats, mostly. I remember reading that the Sims had most of the AI in the
+				objects the Sims interacted with, and that seemed like a highly modable schema, so I took inspiration from it.  If I want something new to happen, I 'just' throw a new
+				scene in.  And then weep deeply as shit goes buggy.
+
+		Q: Why did you do <insert frankly baffling decision here>?
+		A:  Shenanigans. No, really.  This simulation first started as something I threw together in a goddamned week. And then things just kept getting layered on top of each other.
+				Design choices that made sense in week one would be an albatross around my neck by week 8, but only a few things were worth going to the effort of refactoring. And a decision that makes sense in week 8 is fucking ridiculous by week 16. It just keeps happening.
+				I could take the time to do things 'right', or I can actually have fun making this sim and give you guys drops in a timely fashion.
+
+				Something that might shed light on the situation is that my chatHandle is not just for show. I'm NOT a software developer, I'm a jaded motherfucking Researcher.
+				Everything I program is designed to be a prototype, or help my team learn something. I.E. I make things that are designed to be used by a handful of people and then thrown away.
+				This is the biggest thing I've ever made, with the biggest user base. I'm learning as I go, here.
+
+				Hopefully The Great Refactoring to Dart will be enough to shake out some of the weirdest shit.
+
+		Q: How are you rendering the sprites?? It's not just layering pngs, is it?
+		A: Nope, very astute of you hypothetical Observer.  If you dig around in my /images/Bodies/ folder, you will see that all of the bodies are colored as if they are Light players.
+				This is because I am doing dynamic color replacement rather than having literally hundreds of differet sprites. It's WAY better to have 12 god tiers sprites that I just swap the colors out for.
+				The same engine allows me to have troll wings match their blood colors, and hair color match blood/aspect color as well.
+
+				~~~~Okay, time for the super technical shit:~~~~~
+
+				Here's where my actual fucking day job came in handy.  HTML5's canvas allows you to access the actual byte array for any images drawn onto it.
+				So, instead of having it being encoded into an image format, like PNG or JPG or whatever, it's just straight up RGBA values.
+				Imagine you have a png that's 10 wide and 10 tall (it's a very shitty png).  Once you've drawn it onto the HTML5 canvas, you can use
+				the canvas' context's built in function "getImageData" to get an array of bytes out.
+				The array will be 400 long, or 10 wide x 10 tall x 4 bytes per pixel.
+
+				There are 4 bytes per pixel because there is 1 byte per color.  Red is one byte, green is one byte, blue is one byte, and alpha is one byte.
+				When I say "byte", I could also say "0-255" or 0x00- 0xFF.  When you're talking about HTML colors, you might say #ff00ff, which is the same thing as saying
+				[255,0,255,255] as a byte array (regular html font colors always have max alpha, so that last 255 in the array is the assumed max alpha).
+
+				So, if I had a red pixel, and then a green pixel and then a blue pixel, and then a clear pixel, I would expect the array to look like:
+				[255,0,0,255,0,255,0,255,0,0,255,255,0,0,0,0];  Which makes even me go crosseyed and I'm the one who wrote it. But, like, see how there are 4 pixels and 16 things in the array?
+
+				So, check out "swapColors" in  "handle_sprites.js".
+				In human words, what's going on is: "Take in two html hex values, like #00ff00 or #ff0000. Turn those into byte arrays like [0,255,0] or [255,0,0].
+				Get the image data out of the canvas, and loop through it pixel by pixel (which is 4 bytes at a time).
+				For each pixel, check to see if it's bytes match the bytes I'm looking for (and that the alpha is maxed).
+				If it is, change the bytes to be the bytes I want them to be.  Write the modified image back to the context when you're done."
+
+		Q:  How are the PesterChum dialogue things handled?
+
+		A:  Scenes/Intro.dart is a good example of how the dialogue works.  First, the scene itself knows whether or not there is dialogue in it. The scene will create an entire dialogue all as a single string, using a helper method called
+		"Scene.chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.dart.
+
+		drawChat is reponsible for rendering the players, and rendering the text as lines (seperated by 'new lines' or \n characters) colored in the players' font color. It does this by checking for the players chatHandleInitials at the start of a line.
+
+		So, a raw chat might look like:
+
+		AB: Is this REALLY how you want to explain your dialogue system?\nJB:I guess so!!! Can you think of a better way?\nAB:Maybe it's finally time to update the dialogue engine.\nJR:Fuck. After 3.0.\n
+
+		But then the drawChat makes it all nice and multiline and colorful and shit.
+
+		Also: AB DOES have a point (as always), the dialogue engine is hella out of date and has been unchanged since 2.0 went live. I'll probably update it at some point.
+
+
+
+			*/
+	}
+	</script>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div id = "navbar"></div>
+<img src = "images/author.png" style="float:left;">
+<div id = "story">
+<h1> FAQ </h1>
+
+<ul>
+
+	<li> <b>How do I contact you?</b><br><br>
+			  My Tumblr is <a href = "https://jadedresearcher.tumblr.com/">here</a> And I just made a google account (jadedResearcher@gmail.com) for hosting PDFs of <a href = "https://drive.google.com/open?id=0B-uS7ImZMoISSmxFeVlUM09XUnc">amazing sessions </a> for posterity.
+			  <Br><Br>KR's tumblr is <a href = "  https://sburb-karmicretribution.tumblr.com/">here</a>, and they have an email address of karmicRetribution001@gmail.com.
+
+		<Br><Br>PL's tumblr is <a href = "http://paradoxlands.tumblr.com/">here</a>, and you can see all their dope land art.
+
+		<br><Br>And now there is a <a href = "https://discord.gg/4czh3nB">Discord Server</a>, that being the invite link.  And <a href = "https://discordapp.com/channels/314487557150998538/314487557150998538"> this</a> is probably the non invite link???
+					
+			
+					 <font color = "white"> And also this amazingly shitty colab brainstorming spreadsheet: https://docs.google.com/spreadsheets/d/1WxeH77-Mtenq9iQRNVBiSyoJNBvTXpHaaVqiXJZ_5Yg/edit?usp=sharing</font>
+	</li>
+	<br><Br>
+		<li><b>What the hell is this?</b><br><Br>
+			SBURBSim is a browser “game” that lets you read the shenanigans of a basically infinite amount of sessions. 2-12 players are spawned, enter the Medium and do whatever they want.  Will the Space player buckle down and breed frogs, be distracted trying to work up the courage to confess to their crush, or will they do an acrobatic pirouette into a pile of crazy and start murdering people?
+
+<Br><Br>I’m pretty much constantly improving the thing.  Within the site itself is plenty of links, including a link to the ExperimentalBranch, where the least stable sessions live as I try out new code.
+
+<Br><br>The Main branch of SBURBSim updates roughly monthly.  Between updates, sessions are stable and people can share the links out to their favorites.
+
+		</li><br><Br>
+
+<li><b>What is Patreon?</b><br><Br>
+	Oh. Huh. It's a way for the site to support itself without having ads or locking it behind a paywall or some shit. Donations are completely optional, and are done on a monthly basis (if you want to give us a one time donation, then apparently you gotta do the monthly and then just quit after a month.)
+	<br><br>
+	Patreon is pretty legit, I've been using it to GIVE money to creators for a few years now and have never had any problems.
+</li><br><Br>
+
+<li><b>Why have a Patreon?</b><br><Br>
+It turns out SBURBSim has been hella popular, enough (holy shit, thanks guys!!!) that we needed to get our own server. Hopefully this Patreon can help us offset the costs of doing that. If we’re lucky, it might even let us buy better tools to make even better simulations!
+</li><br><Br>
+	<li> <b>Do I have to know how to hack to get that password?</b><br><br>
+			  Nope! You ALSO don't even need to know Homestuck trivia.  The password is 100% contained within this site, in places regular people can (and probably have) accessed.  What is the password? You gotta figure it out yourself. Hence the myserty. <font color = "white"> Although if you REALLY want a hint, I can say that even *I* don't know the password. But I know how to have AuthorBot help me find it. </font>
+			  <br><Br>
+			  And if you didn't even know there WAS a password, well, all I can say is: keep your eyes peeled for [???] links.  And no, any time you see a "???" is not a hint, or anything to do with that page. Sometimes an Author just has to over-punctuate, okay???
+			  <Br><Br><a href = "https://jadedresearcher.tumblr.com/post/160195176939/quick-quesition-where-is-everything-better-than"> Le SIGN. Have a hint.</a>
+	</li>
+	<br><Br>
+
+	<li> <b>Is there a way to save/share my session?</b><br><br>
+			  The "Shareable URL" link will always display the session you're currently in. If you send that link to a friend, they will see your same session!
+			  <br><br>	<a href = "index2.html?seed=413612">Here is an example!</a>
+			  <br><br>
+			  Well...I mean, as long as I haven't updated the code any. If I'm adding features or squashing bugs, the url will go to a slightly different session. If it's REALLY important that your session is saved, you can always print the page to a PDF.  Most modern browsers have a "print to pdf" option inside the print menu. I've had success doing that.  Make sure your session is actually done, of course, or you'll be missing the ending.
+	</li>
+	<br><Br>
+
+	<li> <b>The simulation isn't working!</b><Br><br>
+
+		  First, make sure your browser is compatible with HTML5 canvas images. Try the <a href = "oc_generator.html">OC Generator</a>, as it uses the same rendering engine, but on a much smaller scale.  If you see things like Interests and Chat Handles, good news: Your browser is just slow and is taking awhile to download the images, but it IS compatible with HTML5 canvases (the text is a canvas on that page as well as the sprites). Refreshing the page a few times should get the images into your cache and speed things up. If you see nothing but drop down menus and check boxes, your browser does not support HTML5 canvases. Sorry.
+
+		  <Br><br>
+		  Okay, if the <a href = "oc_generator.html">OC Generator</a> is working good for you, but the simulation still isn't: We have found a bug.  It could be a small bug that only happens in the one session (gotta feel bad for those players), but it could also be a huge bug that effects EVERY session for your browswer. Refresh the page a time or two and see if you ever see anything.  If you don't, please let me know what browser you're using (both the name and the version number) and I'll see if I can track that huge bug down. Also include the "Shareable URL" created at the top of your session.
+		  <Br><Br>
+		  You can probably still view the <a href = "index1.html">1.0 sim</a>, though. And if you can't even see THAT, then we REALLY have a problem.
+		  </li>
+	</li>
+<br><br>
+	<li> <b>No, I mean I think you broke the sim. For, like, everybody. </b>
+			<br><Br> Shit.  I do that sometimes. Mostly it happens when I'm testing some complex feature and I manage to get IT working, but don't think to do more generic tests.  The <a href = "rare_session_finder.html"> AuthorBot </a> helps me out a TON by running a bunch of sessions at once, but even she can't help me find subtle bugs that aren't console errors. (I was up past midnight last night, for example, figuring out why scratch buttons weren't rendering anymore. AuthorBot hadn't noticed AT ALL. She is still the best. <>)
+	</li>
+	<br><br>
+	<li> <b>I think I found a bug!</b><br><br>
+			 I welcome bug reports (see above for how to contact me), but just be warned that not every bug is a priority for me. Or even something I consider a bug? Shenanigans are my favorite hand-wavey explanation for why things happened weirdly.  For example, on the rare occasion that a corpse texts someone, I just imagine them tragically texting their best friend as they bleed out from Jack-related stabbings. Of course, sometimes corpses are a BIT more lively than that, fighting bosses and corpse smooching other corpses. That's probably a bug.  Use your judgement.
+			 <br><br>
+			 When you give me a bug report, please include the "shareable url". This will let me review your session directly.  ALSO, you are totally free to submit the bug report as a roleplay as the character from the session (as long as you give me a shareable URL I can put what you type into the character's quirk for extra realism (So you don't have to try to match their quirk)) .  I'm collecting the best bugs into my own <a href = "glitches.html"> Glitch FAQ</a>.
+	</li>
+	<br><Br>
+
+		<li> <b>I think I found a bug, the Void player is doing something weird?</b><br><br>
+				 Probably not a bug! Void players do things off screen (with only vague descriptions of what is going on.) Who knows what shenanigans they are getting up to behind the veil of Void?  They have been known to do quests, fight bosses, even go God Tier and perform Ectobiology off screen.
+				 <div class = 'void'>If ONLY there were some way to peer past the veil of Void???</div>
+		</li>
+		<br><Br>
+
+	<li> <b>I think I found a typo!</b><br><br>
+			 Okay, but, like, are you SURE it's a typo?  Is it a refrance (which is itself a reference)?  Or is it a character's quirk? This entire thing is an exercise in pissing automatic spellcheckers off. If you're sure it's a typo, feel free to contact me (see above for how to contact me).  For example, somebody pointed out that I had been spelling (and pronouncing!!!) "carapacian" as "carpacian". D'oh!
+	</li>
+	<br><Br>
+
+	<li> <b>I think I found a grammar mistake!</b><br><br>
+		I believe you times a million. Truly, I do. I just...can NOT bring myself to care. The problem with letting an AI generate stories is that AIs are just...the WORST at grammar. And actually a lot of things (don't tell AB).  So I could take a holy vow and dedicate the rest of my life to making sure each a/an matches up, or word tense, or goddamned pronouns (which I have taken a blood oath against using in the sim) OR, I could work on making the sim cooler in the broad strokes. <br><Br>Maybe once I've run out of things in my TODO pile, I'll get around to adding a system for matching up grammar correctly. But the TODO pile never stops from getting taller.
+	</li>
+	<br><Br>
+	<li> <b>I have a suggestion!</b><br><br>
+			Awesome! Let me know (see above for how to contact me), but just be warned that I'm sorta doing this as a hobby.  My primary target audience is myself (and a hypothetical past version of myself who wished something like this existed).  I might think your idea is cool, but be all like: "Yeah, but that sounds HARD! And...kinda...boring to actually code, even if it's awesome in practice?".  Obviously I'm not afraid of hard stuff if I made this sim, but pretty much every part of it has been INTERESTING to implement, you know?  That said, random people have had plenty of good ideas that have worked it's way into the sim.
+			<Br><Br>
+			In fact, I have now decided that my shitty OC character is OBVIOUSLY a Derse Dreamer, because they are constantly bombarded with the whisperings of the horrorterrors, which in this metaphor is you guys and all your ideas. I'd go CRAZY if I listened TOO hard to all that shit, but as long as it's in moderation it's a source of inspiration.  ALSO, if all I did was listen to your ideas, that'd mean I was sleeping my life away and not actually implementing any of them.  Gotta program SOMETIME, right?
+	</li>
+	<br><Br>
+	<li><b>Can you add names for the players? It's hard to keep track of everybody!</b><br><Br>
+			Names are not a currently planned feature, but a built in mnemonic is that all player’s chatHandles have the same initials as their titles.
+				<br><br>
+			pantsBiologist might be a Page of Blood, for example.  monochromeHierarchy might be a Mage of Heart.
+				<br><br>
+			It’s not perfect, since Blood/Breath and Maid/Mage is a thing. But it’s better than nothing.
+	</li>
+	<br><Br>
+	<li> <b>Did you make all those images yourself?</b><br><br>
+			Dammit, Jim, I'm a programmer, not an artist. Wait. What was the question? Oh, right.  No, I'm not a particularly artistic person. This causes no end of frustration for karmicRetribution, the SBURBSim Artist.  They have transformed this site into the visual spectacular that it is, massaging existing art assets (vague source list here: <a href ="sources">here</a>) into something usable, creating new art assets and just generally protecting Good Design from my callow disregard. c3<
+			<Br><Br> KR also bugs and fusses and meddles until I agree to update the CSS or move a character 10 pixels to the left or whatever thing I didn't even notice but was driving them crazy. <div class = "void">KR will be all 'Why are all the characters clipping off the left edge!?' and I will be 'I dunno...Looks like PastJR decided to render them to -100x ???', and then KR will be all: 'WHY would you do that!? Fix it! It's driving me crazy!' and I'll shrug and not get it but put that am all at 0 like a sane person and then holy fuck it DOES look better.  And then it'll turn out that PastJR totally had a very excellent (but lazy) REASON for doing that and now there are bugs everywhere, but it DOES look better, so I'll just buckle down and code shit right this time AND keep the visual upgrade. And that is the story of how the sprites got moved like 100 pixels over. </div>
+
+	</li>
+	<br><Br>
+
+		<li> <b>Did you get all your ideas/writing/programming yourself?</b><br><br>
+
+			Here's a <a href = "credits.html">Credits Page!!!</a>  Basically, I am the main programmer for Sim, with ParadoxLands serving as the new Architect who helps with Dart things ( and has big plans for rendering).
+            <Br><Br>I accept writting snippets, bug reports, ideas, typo fixes, etc. from fans Just Like You (tm).  In the process of being programmed, things often get warped, and I never guarantee I'll use a submitted whatever in the form it was given to me, or at all.  Wander around this very FAQ to learn more about how to give me shit and end up on the credits page!
+
+		</li>
+		<br><Br>
+	<li> <b>I want to help!</b><br><br>
+			Awesome! I have a git repository <a href = "https://github.com/jadedResearcher/SBURBSimulator"> here</a>, but just be warned that I am extremely unlikely to use any non-me-generated code. BUT! This whole thing is under the MIT License and people can use it for whatever as long as they credit me (and it would be cool if you let me know what you were doing with it so I can oggle it).  Also...you should totally be warned that I made this simulation for speed of development, not ease of modibliity or ease of understanding for non-me-type-people. Good luck!
+			<br><Br>
+			I also have a few google docs floating around where people are brainstorming/submitting writing snippets. If you contact me, I'll see about giving you edit access. Things submitted there are not guaranteed to actually get into the sim, but it's a nice central location for people to brainstorm and collaborate.  Things get messy quick, though.
+	</li>
+	<br><Br>
+
+		<li> <b>I want to understand your code!</b><br><br>
+			Lol. Wait. You're serious?  Shit, son, not even *I* understand this shit half the time. It mostly works through not looking too closely at the bugs, at this point. If you're serious, and have any Dart experience, then I guess you could START by finding the secret developer FAQ associated with this page.  Finding that is your first task.
+			<div class = "void"> Although if you start wandering around in the page source, you'll start seeing into the Void, and that'll make the Void players all shy.</div><font color = "white">Nope, this is NOT how you find the secret Developer FAQ. Good try. But...doesn't it still seem like...there's something here??? Something you are missing???</font>
+		</li>
+		<br><Br>
+	<li><b>What is up with the AuthorBot?</b><br><br>
+			I love her!!!  In addition to making my life so much easier, I am just fucking tickled to have this shitty AI assistant with it's own shitty oc image. It's beautiful.
+			<br><Br>
+				That said, sometimes she goes a little...wonky.  Sometimes the sessions she finds are weird and don't actually correspond to reality at all. (Like gushing about a player that isn't even in the session). Usually at that point I have to figure out where she's eating extra (or sometimes fewer) random seeds. If she stops making sense, drop me a line (see above for how to contact me.)  She's as much code as any of this, so is just as prone to bugs. Though she hasn't gone crazy in a while *shrugs*.
+
+				<br><Br> JR <> AB, because AB makes the entire programming experience less rage inducing and protects the world from me ripping out features every time they have a hiccup. Make sure you thank her.
+	</li>
+	<br><Br>
+
+	<li><b>No, why is it called 'AuthorBot'?</b><br><br>
+			Oh! Well, she's clearly a bot of me, and I am the Author of all of this.  BUT WAIT: THERE'S MORE! So, the main way people interact with AuthorBot is through the rare session finder. And yeah, she is hella good at finding rare sessions.  But maybe it's unclear that she is the AUTHOR of said sessions??? She is literally simulating each session she "finds", and then presenting you with a summary of it.  And she's using/made of the same code that the main story page uses as well.
+			<Br><Br>
+			Basically, it's a partnership between me and her.  I create the pieces of the stories, and then program her to assemble them on demand. Sure, I may say "there's an X% chance that Jack finds a rare weapon" and "If Jack is not too much weaker than the Black Queen, he finds a sufficiently 'chump-like' player to scheme with", but that doesn't mean I'm not suprised and delighted by the stories the AuthorBot creates. She is the best <>  I am still getting over how awesome it is that she created a 3x Session Combo all on her own.
+
+	</li>
+	<br><Br>
+		<li><b>Why is your avatar a Waste of Mind?</b><br><br>
+			Mostly for the pun. I create whole artificial minds for pointless shit like simulating a game from a webcomic. Plus, I was pretty enthralled with the fanfiction <a href = "http://archiveofourown.org/works/869819/chapters/1670205">Like One Sundered Star</a> positing that anybody who makes sprawling sburb related works with highly indulgent self-insertions is a Waste. The author was a Waste of Time, specifically. And finally, mind seems to be about decisions and shit, and this simulation is nothing but decisions piled onto decisions rather than actual cognition of any type. (This may be the BIGGEST AI I've made, but it's actually pretty simple. )
+			<br><br>
+			Also, now that I've done my GroundHog day shit, it seems all the more appropriate.  What other classpect would provide fourth-wall breaking decisions that completely change a session?
+			<div class = "void">And my headcanon of Wastes is that they are highly Meta. And...well...shit son, the fourth wall is my favorite toy.  Or hiding easter eggs in the void. Like this one!!! (How am I accessing the Void??? It's a mysterty!)  Oh, and the GlitchFaq says "Technically the role of this Class is to bring "change". In application, it ignites catastrophic chain reactions."  Hrrrm...chain reactions you say? Such as...a butterfly effect from YellowYard meta decision tiem shenanigans???</div>
+
+		</li>
+		<br><Br>
+
+
+			<br><Br>
+				<li><b>Why is karmicRetribution's  avatar a Smith of Dream?</b><br><br>
+					KR: Okay, so in the Replay-verse, Dream is the Aspect of originality, rather than literal dreams, or creativity. The Smith was the active Creative class... How do they solve a problem? Don't just grab some random weapon or use whatever is lying around. Make the correct tool for the job! Don't use those mediocre sprites you found on the internet - Let me fix them! I'll make a few hundred images, sure! ... Just don't try to micromanage me or I'll get bored and quit.
+					<div class = "void">JR: Heh, our partnership actually really works out 'cause Art is so far beyond me that micromanaging seems to be not even a thing my brain can do for it.
+My brain is like "hey, there is a black blobby thing kind of in the head direction. my job is done"
+and KR is all like "fixed it for you" and I'm like "oh wow, now the black blobby thing near the head looks like HAIR!???"</div>
+				</li>
+				<br><Br>
+
+
+	<li><b>Wait, why the hell is the AuthorBot wearing something new?</b><br><br>
+		Well, dear sweet precious sweet, sweet AB wanted to be more than just a robo-doppelganger of me. And her actual role in the Sim is very different from mine. I have the 4th wall shennaigans on LOCK, and I also handle fucking shit up/coding.  AB is in charge of finding cool shit and showing it to all of us. Hence, she is officially a RoboGuide of Mind.<br><Br>
+			And KR says: "I'd consider ABjr a Scout rather than a Guide, since she just goes out to find shit then wanders off without explaining anything. And occasionally lurks ominously in the bushes giggling at other people's misfortune. Or something like that."
+	</li>
+	<br><Br>
+
+
+		<li><b>Why did you create this?</b><br><br>
+			Hrrrmmm... Well, for one, I love narrative artificial intelligences and simulations and what not. I've been doing stuff like this forever.  It just turns out that Homestuck and SBURB is just fucking RIPE for simulating.  It's full of RULES and RARE EVENTS and DRAMA and ALTERNATE TIMELINES like you wouldn't believe. And it's aesthetic is instantly recognizable yet also full of infinite variations.
+			<Br><br>
+			The ulimate final push towards making this was reading the <a href = "http://archiveofourown.org/works/340777/chapters/551606"> Sburb Glitch FAQ</a>.  It presented SBURB as a glitchy piece of shit and I thought to myself, "Hey, *I* could make a glitchy piece of shit!".
+		</li>
+		<br><br>
+		<li><b>Can you modify the odds of X happening?</b><br><br>
+			I'm gonna go with a hard 'maybe'. As a wise Seer once said,  '<font face="courier" color="#008282"><strong>LUCK DO3SNT 4CTU4LLY M4TT3R >8]</strong></font>'.  Although me being a Mind player is mostly a self-indulgent conceit, I can totally get behind that sentiment, and nearly every sim I've ever made has luck be barely even a thing.  Everything is cause and effect and decisions piled on top of decisions. Randomness comes out primarily in the initial condition of the sim (who are the players, what do they prototype, how do they like each other.) Once I implement the character creator, even that shred of 'luck' will be removed from the equation.  After that, Randomness remains in things like "does Jack find a bullshit weapon?", and "who does Jack stab first?" or, to a lesser degree, "does PlayerX finally have their mind snap after all this 'Jack' bullshit?".
+			<br><br>
+			So, when people ask me to alter the odds of something happening, what they are REALLY asking me to do is take this pile of Rube Goldbergesque machinations and get a specific result out of it. Yeah...I'm not even sure AuthorBot could figure out how to do that. Most I can do is "raise the threshold needed to confess romantically" or "keep players too busy to confess", if my aim is to change how often romantic shenanigans happen. Even changing initial conditions to make them more neutral to each other starting out doesn't matter as much as what actually happens in the sim.  And because everything is so stupidly complicated, things are hella full of unintended consequences.  Sure, I can make romance less frequent, but maybe that increases the odds of a total party wipe by a bunch. (Players too busy flirting are too busy to engage murder mode?)
+			<br><Br>
+			Just to make it clear: this is EXACTLY how I like it. Holy fucking shit is it amazing seeing how sessions go down when I have NO IDEA what will happen but also can trust it will all play out logically (even if some of the logic is hidden from the reader).<Br><Br>
+			Though, real talk, I have had actual freaking nightmares about how hard this pile of glitches is to debug. It's hard enough to make it work as intended, much less change something withouth spawning, like, three bugs.
+		</li>
+	<br><Br>
+
+	<li><b>I don't think you're following (canon/the Glitch FAQ/ my personal head canon/ that dream I had last night) closely enough.</b><br><br>
+			For some things, especially things in my <a href = "todo.html">Todo Pile</a> it's a matter of time.  For other things, it's a deliberate choice. Sometimes things that work well narratively don't work so well in actual practice. It's like how Quidditch is a poorly designed piece of shit game if you try to play it in real life (even ignoring how magical flying brooms aren't a real thing (because magic is totally a fake thing, as we all well know)). My job is to keep the simulation both interesting, and balanced.  Players shouldn't insta-die the second they get into the session, nor should they breeze through with no challenge. *I* shouldn't spend a goddamn week straight programming a feature that ends up so rare that even the AuthorBot asks me if I've done it, yet.
+			<br><br>
+			I DO plan on having more classpect specific narrative stuff, mind you. But that's WELL after I have more ASPECT specific stuff. What's in the sim right now is "this specific classpect modifies stats in this specific way", which was easy to program (but happens for only 1/144 characters), and "these several classes for these several aspects can do this cool narrative thing" or "if your stats are this absurd value, you can do this absurd thing", which was HARD to program, but happens with a decent frequency.  I'm not exactly chomping at the bit here (horse reference!) to do something that is both hard to program and only happens for 1/144 characters. That means I'll have to do the hard thing 144 times.   Let me get the easy shit out of the way first.
+
+	</li>
+	<br><Br>
+<a href = 'http://farragofiction.com/AudioLogs/?passPhrase=exilethebody'>:) :) :)</a>
+<a href = 'http://farragofiction.com/AudioLogs/?passPhrase=pvpisnotglitch'>:) :) :)</a>
+
+</ul>
+</div>
+
+	<a href = "index2.html?royalRumble=true">ROYAL RUMBLE!!!</a>
+</body>
+</html>

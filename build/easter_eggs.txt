@@ -1,0 +1,463 @@
+<img id = "avatar" src = "images/jrsprite.png">
+<div id = "story">
+
+<h1> Definitely well-hidden Easter Eggs. (Mini-Update for 4/13/17)</h1>
+<p> Easter eggs can be combined as such: 'index2.html?seed=SEEDID&lollipop=true&sbajifier=true'.  Start with a question mark after index2.html, and then for each new easter egg have an ampersand.  Here there be dragons. These are easter eggs, not main features. Shit can get weird.  I want to stress that each of these easter eggs are 100% modifiers to the real sessions. You can look at a session where everybody died and add a lollipop to it to see if it makes things better. One big exception is the seed easter eggs, like 612 or 413. These easter eggs straight up override the native players (and create some wholesale if there aren't enough players). So there's nothing to compare it to.</p>
+<br><a href = 'http://farragofiction.com/AudioLogs/?passPhrase=alchemysim'>Congrats! :)</a><br>
+<p> Hall of Fame is officially closed as of 6/12/17. </p>
+<p><a href = "http://www.farragofiction.com/AudioLogs/?passPhrase=thinklikeawaste">thinklikeawaste</a>:Congrats, have a podcast!!!</p>
+
+<p>I wonder if any other arc numbers have sessions for them. <span class = 'void'>Like 13? Like 4037???</span></p>
+<p><a href = 'npcTests.html'>NPC Viewer</a> view all carapaces, all big bads, and some test shit for jr</p>
+<p><a href = 'index2.html?destiny=ultimate'>Ultimate Showdown of Ultimate Destiny</a> All Big Bads are active from the start. It's chaos.</p>
+<p><a href = 'index2.html?tables=guarded'>TG mode</a> all carapaces, all the time, no players</p>
+<p><a href = "index2.html?spacePlayers=screwed">Shogun Hates Space Players, A Saga</a>: Wait. Is JR still adding easter eggs???</p>
+<p><a href = "index2.html?self=cest">Anstus Mode</a>:  It's a refrance, dunkass. Makes all players copies of the leader player. </p>
+
+<p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: A button will display on screen, pressing it allows you to peer into the Void. What mysteries are within??? (ProTip: not all Sessions have void players in them). </p>
+<p><a href = "index2.html?pen15=ouija">Pen15 Ouija</a>: What!??? Who let all those void players have markers???</p>
+<p><a href = "index2.html?canonState=everythingFuckingGoes">Glitch FAQ ++ Mode</a>: Also known as: fuck it's annoying to make WasteStucks or custom sessions to test gnosis.</p>
+
+<p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
+<p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
+<p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>
+<p><a href = "index2.html?sbajifier=true">SBAHJIFIER</a>: The graphics fuck up a LOT. Terrible outline artifacts are included (really proud of that), sprite layers are rendered offset, and I allow the page to randomize its own css. But the simulation itself is still working as normal. Oh yeah, besides everybody being given dunkass quirks.</p>
+<p><a href = "http://www.farragofiction.com/SBURBSim/index2.html?seed=131199038&b=KQYQzMAcCioEzAJywKwgeYAhW6kBZgAGI4ARhQCpLyzjST67McBNe8gQXISIDZgYEB0aMw3FrgRZepfKTIKAYuWhA&s=DTBuEsBMFMHtoAQHMCGBbaBnYAXAFogEbhLIrRrAEA21KAUtAGZMjCY4rgBO2T3AVw7cUOcLEqYA7tGg4AQt1ht+0cADtImPOAAOwAJ7RqsKcH7homgOLQlaA0A?sbajifier=true">The most Canon possible SBAHJ session.</a> It is a refrance.
+<p><a href = "index2.html?robot=true">RoboStuck</a>: Everyone looks like robots. Their relationships are initialized to neutral, because as we all know robots are tin cans incapable of feelings. (AB said it was ironically funny, I'm not REALLY Robo-Racist, I swear!). They also get a small power boost because robots are superior. They also TALK IN A LOUD MONOTONE. And...they say 'BEEP' sometimes. (They cannot control the beeps.) </p>
+<p> <a href = "index2.html?seed=413">Homestuck Beta</a>: The 8 human players, John all the way through Jake, play SBURB. Quirks/Character designs are approximate. </p>
+<p> <a href = "index2.html?seed=111111">Homestuck Alpha</a>: The 8 human players, Jane all the way through Jade, play SBURB (i.e. post scratch kids enter first). Quirks/Character designs are approximate. </p>
+<p> <a href = "index2.html?home=stuck">Homestuck Randomizer</a>: Normal players randomly replaced with Homestuck human characters. For example, 2 Johns, a Jade, a Jake and a Dave might play a session. </p>
+<p> <a href = "index2.html?seed=613">Hivebent Alpha</a>: The 12 Alpha troll players (Kankri all the way through Mituna) play SGRUB. If they manage to scratch, you'll instead get to see Karkat through Sollux. Quirks/Character designs are approximate.  I chose 613 because OpenBound is Act 6, Intermission 3. Or 6I3. Closest I could come up with an arc number for it.</p>
+<p> <a href = "index2.html?hive=bent">Hive Bent Randomizer</a>: Normal players randomly replaced with Alternian characters. For example, 2 Karkats, a Kanaya, an Eridan and an Aradia might play a session. </p>
+<p> <a href = "index2.html?seed=612">Hivebent Beta</a>: The 12 Beta troll players (Karkat all the way through Sollux) play SGRUB. If they manage to scratch, you'll instead get to see Kankri through Mituna. Quirks/Character designs are approximate. )(IC shows up, and will show up in any session that is a multiple of 612 that has trolls.</p>
+<p> <a href = "index2.html?open=bound">OpenBound Randomizer</a>: Normal players randomly replaced with Beforan trolls. characters. For example, 2 Kankris, a Porrim, a Rufioh and a Damara might play a session. </p>
+<p> <a href = "index2.html?seed=1025">Cascade</a>: The 8 human players, John all the way through Jake, play SBURB along with 4 troll players. Quirks/Character designs are approximate.  Lord English shows up, and will show up in any session that is a multiple of 1025. </p>
+<p> <a href = "index2.html?rumpus=fruity">Fruity Rumpus Asshole Factory</a>: Normal players randomly replaced with canon characters. For example, 2 Karkats, a Porrim, a Jake and an Aradia might play a session. </p>
+<p> <a href = "index2.html?seed=33">Nepeta Quest</a>: 12 Nepetas play SGRUB.  Has a true random 50% chance of either being Karkat and friends all dressing up like Nepeta, or 12 Nepetas all roleplaying as Karkat and friends. Basically, either everybody is olive blood, or they are their regular blood colors. Either way everyone has the quirks and trollTags of Karkat and friends.</p>
+<p> <a href = "index2.html?nepeta=:33">Nepeta Quest x2 Combob!!</a>: All players in a session (remember, can pass a specific session ID as well) are either roleplaying as Nepeta or are being roleplayed as BY nepetas. True random. Drives AB crazy.</p>
+
+<p> <a href = "index2.html?seed=88888888">SpiderQuuuuuuuuest</a>: 8  Vriskas play SGRUB and start an endless cycle of luck stealing. Probably. </p>
+<p> <a href = "index2.html?luck=AAAAAAAALL">SpiderQuuuuuuuuest x2 Combob!!</a>: Turn any random session into a bunch of Vriskas.</p>
+
+<p> <a href = "index2.html?seed=420">FridgeQuest</a>: 12  Gamzees play SGRUB and there is just a shit ton of shenanigans. </p>
+<p> <a href = "index2.html?honk=:o)">FridgeQuest x2 Combob!!</a>: Turn any random session into a bunch of Gamzees. Why would you do this???</p>
+<p> <a href = "index2.html?tier=cod&BardStuck=true">BardQuest: The Coddening</a>: Something has been...missing from everyone's favorite class. Add it? Y/N (mode=manic would work too, thanks manic :) )</p>
+<p>
+
+<p> <a href = "index2.html?seed=0">0_0</a>: Some Aradias play SGRUB. They are 0kay with this. </p>
+<p> <a href = "index2.html?shenanigans=temporal">Temporal Shenanigans x2 Combob!!</a>: Turn any random session into a bunch of Aradias.</p>
+
+<p> <a href = "index2.html?HopeStuck=true&PageStuck=true">PageStuck + HopeStuck</a>: Hello friends, you are good at riddles, yes? How would you make this be KnightStuck? Or BardStuck + TimeStuck?  Such mystery. Very giggle. Wow.</p>
+<p> <a href = "index2.html?easter=egg">Easter Egg</a>: Yo Dawg, I herd you liek easter eggs??? </p>
+<p> <a href = "index2.html?faces=off">FaceOff Mode</a>: Oh shit, too spoopy for me </p>
+
+<p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs. </p>
+<p><a href = "rare_session_finder.html?lollipop=true">AuthorBot Trickster</a>: Ask the AuthorBot to look through a bunch of Trickster Sessions.</p>
+<p><a href = "rare_session_finder.html?nepeta=:33">AuthorBot NepetaQuest</a>:Ask the AuthorBot to look through a bunch of NepetaQuests. (She will fucking hate this). You can figure out the rest on your own. </p>
+
+<p><a href = 'scribe_scribblings.html'>Scribe Scribblings</a>: aspiringWatcher, the Scribe of Life's notes on SBURBSim.
+
+<p> <a href = "rap.html">Extended Rap Battles (BROKEN)</a>:(NOTE: Broken Post Great Refactoring. Maybe one day I'll fix).  Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
+<span class = 'void'><p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
+<p><a href = "index2.html?images=pumpkin">What Images</a>: For those who just want to watch the world burn. I mean have 144 player sessions. </p>
+<textarea>b=%C3%BF%C2%83%C2%9A%05%C3%BD%C3%8C%14%03%C3%BE%C3%BE%1B&s=,,Dave,Karkat,specialSnowlake</textarea>
+
+<p><a href = "tools/">Development Tools</a>: A selection of tools made to help with SBURBSim development. Take a(nother) peek behind the curtain.</p>
+
+<p>Is 'void' class a thing in CSS???  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
+<p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
+<p><font color = "white"> Things like this won't be hidden if AB is in trickster mode. I find this hilarious. Some of the hints to this page were white font on a white page. There's actually tons of extra easter egg content throughout the site, mostly within the code itself, which understandably isn't a place your average Observer is gonna go rummaging around in.
+I'm actually planning on having things like this for the void players, but hidden much better, with a display:none tag in html. But seeing how obnoxiously it shows up in trickster mode...almost makes me want to make it white font after all. A little extra bonus, void tricksters THINK they are being all sneaky, but aren't. Yes. This is hilarious.
+</font> </p>
+
+<p>IMPORTANT: TO GET BACK HERE: The easiest way to return here is to get AB to help you (she is the best).  Have her simulate a few sessions for you (shouldn't take much) and filter by "full frog" and "all lived" and then do a "find on page" for "better than expected" and you should find a session id that will get you back to this page. You are certainly welcome to reuse the password that got you here this time...but be warned that should I push an update to the server, that session might not go the same way, and it might not work forever.  If you have trouble (maybe none within a hundred sessions or so) finding a "better than expected session", don't hesitate to drop me a line. Half the reason I chose that as the passphrase  was to give me a hard incentive to make sure there still even WERE sessions that went well. I don't want to be a COMPLETE asshole creator over here.</p>
+
+<p> <b>Never mind, there's an easier way to get in here, now.</b><br> <Br>
+Oh god, oh god, I can't stop laughing. Normally this is the sort of thing I would post on tumblr, or the newpost page, or the glitch faq or some shit,
+but all this stuff is a 'seeeecret', right???  So, KR wanted me to upgrade AB and ABJ to be able to search through easter egg sessions. And I agreed it would be
+useful to be able to find grim dark tricksters on command (did you know that's a thing?).
+
+But...see...the AuthorBot is pretty much the Sphinx guarding this password page, right? And I don't mean metaphorically. I mean literally. She checks the riddle answers.  So if you can slip the AuthorBot
+bullshit giggle candy over on the RareSessionFinder, you can slip her the candy here. You know "?lollipop=true" in the url. And...something like 80% of sessions go "better than expected"
+in trickster mode.  So, suddenly, the password for getting past the AuthorBot is "bribe her with candy and then lazily guess a few numbers." It's 100% in the spirit of trickster mode, who cares about doing things right and growing as a person, let's activate cheat mode and win!!!!!!!!!!!  Makes the hint phrase suddenly kinda ominous, right?
+Where is everything better than expected? Where AB can be high as a fucking kite. Whatever, have fun getting back here easier: <a href = "index_pw.html?lollipop=true"> Give AB a Lollipop? (Enter the session id like normal, the lollipop wil be in the URL)</a>. Or I guess you can avoid giving her mind altering substances and just get here the old fashioned way. Your choice.
+<br>Alternatively, it's kind of like AB installed her own haXOR style back door. Beautiful no matter how you look at it. And useful for all of us. I know I'M using it.
+<br><br>
+DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figuring out what the riddle is actually asking, via lucky guessing (or misunderstanding the riddle luckily), via hax0ring, and via roboBribing.
+<br><Br>Also, you may notice that if you slip AB some candy, she is still in her original chassis. You might say she becomes........WASTED.
+</p>
+
+</div>
+<div class = "hof413">
+<h1>Hall of Fame (4/13 Batch)</h1>
+<p>"I went to Derse and all I got was this stupid knife to the chest."
+<br>
+
+-recursiveSlacker</p>
+<Br>
+<p>"We did it team, we beat the Black King! Wait, where's the frog? WHERE DID IT GO OH GOD"
+<Br>
+-sanguineCynophilist</p>
+<Br>
+
+
+<p>"I shouldn't have tried disassembling the code on the session CD."
+<Br>
+-frozenLake</p>
+<Br>
+
+<p>"If only that orange man had given us some sort of SBURB guide..."
+<Br>
+- Makin (temporalPeregrine) </p>
+<Br>
+
+
+
+<p>"...Thεrε's nΘ wλy this sεssiΘn is gΘing tΘ survivε."
+<br>
+- Duoleb (methodicallyCerberal)
+</p>
+</div>
+
+<div class = "hof413">
+<h2> Hall of Fame (Post 4/13 Batch)</h2><Br>
+<p>"This is what I get for looking for my void player isn't it?"
+<br>
+ - gracefulBlossom
+ </p>
+
+<p>"Grinding + Wide open sandbox + Adventure + Roguelike + Playing the game in real world = This game. Who had this "great" idea?!"
+<br>
+- pulsarCycle
+</p>
+
+<p>"barD of blooD? seriously? noboDy else in the session was DestineD to be this much of a joke"
+<br>
+- Drykka (lonelyDivulger)
+</p>
+
+<p>"The difference made by fixing a bug could be measured in thousands of players."
+
+<br>
+- aspiringWatcher
+</p>
+
+<p>"That Yellow Yard decision was definitely a mistake, everyone went murderMode and grimDark."
+
+<br>
+- goldenDongle
+</p>
+
+<p>"why D&lt;O< all fishy guys have tO&lt; be genO&lt;ciD&lt;al."
+
+<br>
+-avianDoctor
+</p>
+
+<p>"please send help -- trapped in baby making lab."
+
+<br>
+-blindinglyNeon
+</p>
+
+<p>"I was not warned about the stairs."
+
+<br>
+- Alma (hospitableBartender)
+</p>
+
+<p>"Just. Let me. Talk. With. The Tentacle. Boys."
+<br>
+-waltzingOphidian, floating in-between Derse and the Furthest Ring
+</p>
+
+<p>"ea2y. next tiime go for two layer 2ecuriity. "
+<br>
+-twinArmageddons
+</p>
+</div>
+
+<div class = "hof413">
+<h2> Hall of Fame (Post Tumblr Hint ('cause I am bad at secrets))<div class = "void"> It's funny because every freaking part of this giant mess is chock FULL of secrets.  Hell, even less people made it here than I thought. Maybe I'm better at secrets than I think???</div></h2><Br>
+<p>"Be careful what you prototype...  "
+<br>
+-kaosDragon
+</p>
+
+<p>"Every0ne is dead and the c0uch is on fire."
+<br>
+~sadisticCynic
+</p>
+
+<p>"I came. I saw. I got shanked. I got back up. I got shanked again. What was I saying again?"
+<br>
+-manicInsomniac
+</p>
+
+<p>"Let me get this straight. You threw in DEADPOOL merchandise in there, and now our fourth wall is entirely in shatters. Genius. Bravo."
+<br>
+-TornSkippito
+</p>
+
+<p>"Who knew that prototyping two HorrorTerrors would result in Prospit blowing up? "
+<br>
+ -subjectiveSenesence
+</p>
+
+<p>"Remember, if it can't be solved by messing with timelines, you're as good as dead anyway! Scratch that record, stop the show! "
+<br>
+ -ersatzGlottologist
+</p>
+
+<p>"A fun and challenging game. I would replay it, but I'm not sure how to. The Ultimate Reward (no spoilers!) is worth it, though. Solid 8/10."
+<br>
+ -artificialArtificer
+</p>
+
+<p>"the box..... hass the bunny"
+<br>
+ -musikalmaestro
+</p>
+
+<p>"Oh gosh I can't believe we actually won I can barely walk without tripping let alone win some crazy reality game"
+<br>
+ -neoConfidante
+</p>
+
+<p>"And then I fired. And then I missed. And then I was out of bullets. And then I got sad. I had a popsicle. And then I passed out in the snow."
+<br>
+ -pupescentGenie
+</p>
+
+<p>"4ll Of My Friends 4re De4d 4nd Everyone Else Keeps Killing E4ch Other. 4t Le4st I Still H4ve My Crush’s Corpse To T4lk To!"
+<br>
+ -sassyBlasphemer
+</p>
+
+<p>"Everyone fail's to ignore the Page of Space's outfit."
+<br>
+ -impishPixel
+</p>
+
+<p>"It's amazing how many wrong paths there are to right answers."
+<br>
+ -morbidlyQueerious
+</p>
+
+<p>"I want to be memorialized! Gotta get in before it closes!"
+<br>
+ -felineConversationalist
+</p>
+
+<p>"i should've be working on projects due in 2 days instead of hunting for the password"
+<br>
+ -swa catastrofe
+</p>
+
+<p>"It wasn't in the Glitch FAQ."
+<br>
+-sarcasticIrony
+</p>
+
+<p>"Everything's fine. My friends aren't all trying to kill me. Nope! I totally don't just have this lil guy to talk to."
+<br>
+-inedibleCartographer
+</p>
+
+<p>"Time to m8ke every f_cking Flash into Javascript."
+<br>
+-madCreativiy
+</p>
+
+<p>"The world rolled me."
+<br>
+-Cnake(ConstitutionCoin)
+</p>
+
+<p>"caCAW"
+<br>
+-puzzlingPixelz
+</p>
+
+<p>"Look at the bigger picture. Zoom out for once."
+<br>
+-postmortemCheloid
+</p>
+
+<p>"I sense a disturbance in the Medium, as if thousands of Players just got trolled."
+<br>
+-wizardingPhysicist
+</p>
+
+
+<p>"all babies are born gay"
+<br>
+-sir meme
+</p>
+
+<p>"homestuck is trash, cause where is hiveswap" <span class = 'void'> I dunno, technically hiveswap != Homestuck, right??? I remember I started this worrying the sim would have to get put on hold when hiveswap cam out. Oh well...</span>
+<br>
+-digitalAssailant
+</p>
+
+<p>"why are green skull monsters so attractive?"
+<br>
+-phobicViolet
+</p>
+
+<p>"This is exactly why babies should not be allowed to dual-wield flintlock pistols."
+<br>
+-infiniteEdge
+</p>
+
+<p>"SCREW MAKING IT FUNNY IT CLOSES IN 11 DAYS HAVE TO GET MY NAME UP OR I'LL LOSE MY CHANCE"
+<br>
+-PersonalBureaucrat
+</p>
+
+<p>"I, errr, may have just, guessed? Thanks for that "two digit" hint , whoever sent that TG 1025 bugreport."
+<br>
+-twistedThinker
+</p>
+
+<p>"guessing codes worked!!!!!"
+<br>
+-watchfulRain
+</p>
+
+<p>"I made it. But, my team died, freaking zombie Black Queen, should've never killed that little Mage."
+<br>
+-vainTrainee
+</p>
+
+<p>"err, how do I, wait nvm already in medium. wait did jack just? Fuck this, I'm going to save you all with knives."
+<br>
+-murderousTraitor
+</p>
+
+<p>"I'll crash it man, I'll do it!"
+<br>
+-drewCursor, about to destroy the gate, while one player became GrimDark, the other going Murdermode, the third just fucks about drawing frogs.
+</p>
+
+
+<p>"What happens if you ask a genie 'I wish this wish didn't come true.' "
+<br>
+-whimsicalParadox
+</p>
+
+<p>"We lost our home planet, fought monsters, died and became gods, then created a new universe to live in, and all we got were these lousy PJs?"
+<br>
+-Caldoric (stormChaser)
+</p>
+
+<p>"I cracked that code like I would a cold one with the boys"
+<br>
+-Xander (ascendingAspirant)
+</p>
+
+
+<p>"Wow. Just, wow. I'm amazed that I survived this buggy mess."
+<br>
+-oblivionSurfer
+</p>
+
+
+<p>"I was expecting a ship. Instead, I got trees. WHAT do I DO with TREES?!"
+<br>
+-Poppamunz (keelhauledSynergy)
+
+</p>
+
+<p>"DrEaMs"
+<br>
+-floatyPinniped
+
+</p>
+
+<p>"it's never too late to break everything by accident."<span class="void">Apparently I missed them on Tumblr b4 the deadline. Retcon's ahoy!</span>
+<br>
+-ailuroTemplar
+
+</p>
+
+
+
+</p>
+</div>
+
+<div class = "hof413">
+<h2> Hall of Fame: 6/12 Edition</h2><Br>
+
+
+<p>"L'universo mi ha detto, "Tu hai Tutta la vita davanti, Io no" e Poi Il pianeta terra Esplose"
+<br>
+-reDeadita
+</p>
+
+<p>"jegus, stop killing me"
+<br>
+-proficientTarget
+</p>
+
+
+
+<p>"Everybody died on arrival, except me, somehow. Welp, I have to replay this, so... I wish this next session will go better than expected"
+<br>
+-lastingMemory
+</p>
+
+<p>"all hail our lord and savior Shaggy 2 Dope"
+<br>
+-fortunateRoyalty
+</p>
+
+<p>"heck"
+<br>
+-quantumlyUnstable
+</p>
+
+
+<p>"I regret, not letting my friends live, BECAUSE THE FUCKING BLACK QUEEN WANTED TO GET OUT OF THIS GAME!"
+<br>
+-watchfulTower
+</p>
+
+
+<p>"Look, you need to fly the ship to the battlefield, then not get shot down by th- OH SHIT METEOR"
+<br>
+-randomCalron
+</p>
+
+
+<p>" watch over everything, there are no pumpkins, wait. Hey, Rabdy, can yo- wait, why do you have candy and a ham- OH GOD STOP HITTING ME! NO, I WASN'T DOING THAT, STOP! PLEASE!"
+<br>
+-watchfulTower, who was caught reading about the doppleganger
+</p>
+
+
+<p>"I couldn't have made it here without the training experience of Zahada, the helpful focus boost of Ritalin, the calming effect of my kitty, and more DMs with jR than I would ever like to admit."
+<br>
+-Taargüs, who made the 6/12 deadline with three hours to midnight
+</p>
+
+<p>"I ate a mosquito this evening."
+<br>
+-yellowMackintosh
+</p>
+
+
+<p>"Scouring through backgrounds reading broken javascript, only to cheat in the end (hello .js files)."  <span class ="void">Awww...my javascript isn't broken! It's just shitty!</span>
+<br>
+
+- rankedConfectionery/Sergeant Bananabread
+</p>
+
+
+
+
+</div>
+
+
+
+</div>

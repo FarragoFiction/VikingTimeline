@@ -1,0 +1,19 @@
+b=P%3A!%C2%93%C3%BE1%00B%12%12%01&s=,,Data Entry,Song Writing,manicInsomniac
+b=8%22%07h%C3%BE%C3%93%04%1A%1A%1A%3C&s=,,Theorycrafting,Storytelling,recursiveSlacker
+b=%C2%95%5C%11%C2%81%C3%BA%C3%86%00K%0A(4&s=,,Physics,Genocide,quantumlyUnstable
+b=%C2%80%00%00R%C3%BE%C2%8B%00Q%20%05%11&s=,,Cooking,Tabletop Roleplaying,wooMod
+b=5'%02*%C3%BE%C2%A7%08T%08%08%1E&s=,,Programming,Science Fiction,infiniteEdge
+b=%00%00%00%C2%87%C3%B7%20%00%5B%24%24%0B&s=,,Storytelling,other devious ideas,sadisticCynic
+b=%C3%BF%C3%BE%C3%97%14%C3%BE%C3%91%00P%19%19%07&s=,,Politics,Singing,politicalBass
+b=%7B%15%C2%A2%C2%B9%C3%B9p%C2%80%26%1C.%3A&s=,,Mermaids,Puns,Xexus
+b=H4%1E%C2%A2%C3%BE%0B%04A%17%17%3C&s=,,Memes,Psychology,capncrunchMemer
+b=F%C2%B7%008%C3%BE%C2%B5%00Z%18%18%16&s=,,Hacking,Faeries,artificialArtificer
+b=%00%00%00%25%C3%B4%C2%BA%10QEE%04&s=,,Online Roleplaying,Automation,ailuroTemplar
+b=qq%00A%C3%BE%C2%B9%00%04%1A%1A%01&s=,,Social Media,Video Games,sarcasticPoetry
+b=%00%00%00!%C3%BE%C3%91%00%09%1F%1F%3C&s=,,Alternate History,Playing Piano,ancientExplorer
+b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
+b=B1%0F%C2%81%C3%BE%C2%A7%00H%19%193&s=,,Coding,Science Fiction,insipidTestimony
+b=G%22%0E%15%C3%BE-%00%06%0F%0F%3A&s=,,Drawing,History,celeriApocryph
+b=%00%00%00%26%C3%BE%3D%00%07))%18&s=,,Writing,Science,asocialGoldfish
+b=%00%00%00%C3%BB%C3%BE%C3%9B%00%5C%06%068&s=,,Mathematics,Tabletop Roleplaying,aspiringWatcher
+

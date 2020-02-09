@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/newspost.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<title>Newsposts by karmicRetribution</title>
+	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	<script type="text/javascript" src="javascripts/newsposts.js"></script>
+	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script>
+	window.onload = function() {
+		loadNavbar();
+		artNewsposts("");
+		//http://stackoverflow.com/questions/8748426/scroll-background-image-untill-the-end-not-further
+		$( window ).scroll( function(){
+			var ypos = $( window ).scrollTop(); //pixels the site is scrolled down
+			var visible = $( window ).height(); //visible pixels
+			const img_height = 1500; //replace with height of your image
+			var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
+		//change position of background-image as long as there is something not visible at the bottom
+		if ( max_scroll > ypos) {
+			 $("body").css("background-position", "center -" + ypos + "px");
+			} else {
+			$("body").css("background-position", "center -" + max_scroll + "px");
+			}
+	});
+
+	}
+	</script>
+	</head>
+<body style = "background: url(images/Derse_Prospit.png), url(images/krbg.jpg)bottom center; background-attachment:fixed;   background-repeat: repeat-x,repeat;">
+
+<div id = "navbar"></div>
+<img src = "images/Smith_of_Dreams.png" style="float:left;">
+
+
+
+	<div id = "artist_newsposts">
+<h1 > News Posts </h1>
+
+So have you ever gotten interested in a friend's project, and then thought "Oh look, there's a small thing I can help them with! It should only take a few minutes, even!" And a few weeks later you found yourself using all of your spare time to work on the project?
+<p>
+Yeah.
+<p>
+Anyway, I'm karmicRetribution, Smith of <a href="http://archiveofourown.org/works/340777/chapters/644389">Dream</a> (because this project is <em>all</em> about self-indulgent OC antics), and I put together the vast majority of the images for the <a href="index2.html">Sburb Story Generator</a> and <a href="oc_generator.html">OC Generator</a>. See <a href="sources">here</a> for a list of sources for sprites, etc. Sprites have been re-sized, re-colored, and occasionally entirely redrawn so that they could be pulled apart into individual pieces and fed to the rendering engine. A couple of things I drew from scratch, like the human babies.
+<p>
+If you want to contact me, just send your message to jadedResearcher@yahoo.com and let her know you have a question/comment/rude remark for karmicRetribution. It'll get to me.
+<p>
+
+</div>
+
+<a href = "index2.html?babyStuck=true">goo?</a>
+</body>
+</html>

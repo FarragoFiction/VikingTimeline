@@ -1,0 +1,13 @@
+SBURBSim Bundle Manifest
+
+images/Hair/hair
+    hair\d+.png
+    hair_back\d+.png
+
+images/Bodies/baby
+    baby\d*.png
+    grub\d*.png
+
+manifest/test
+    testtext.txt
+    testtext2.txt

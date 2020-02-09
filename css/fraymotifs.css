@@ -1,0 +1,76 @@
+#story{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+.whiteCenterThingy{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+#debug{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+
+.void{
+	display: none;
+	background-color: #000066;
+	color: #ffffff;
+}
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+
+.statValue{
+	text-align: right;
+	display: inline-block;
+}
+
+.statName{
+	display: inline-block;
+	width: 160px;
+}
+
+.statHolder{
+	width: 200px;
+}
+
+#fraymotifs{
+	display: inline-block;
+	padding: 5px;
+	width: 200px;
+}
+
+.playerStat{
+	width: 200px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.fraymotifStat{
+	width: 800px;
+	display: inline-block;
+	padding: 5px;
+}
+
+#playerStats{
+	display: inline-block;
+	padding: 5px;
+	width: 700px;
+	vertical-align: top;
+}
