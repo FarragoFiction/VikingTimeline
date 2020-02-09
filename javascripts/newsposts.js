@@ -19,7 +19,7 @@ var version2 = true; //even though idon't want  to render content, 2.0 is differ
 
 function newsposts(main){
 
-	writeNewspost(main,"3/20/17", "Before this day I was mostly working on debugging and tweaking sessions. I enlisted you, the fans, to help me find rare sessions.");
+	writeNewspost(main,"9/2/2020", "FINALLY. A TIMELINE WORTHY OF MY TIME. <br><br> LET'S BEGIN.");
 
 }
 

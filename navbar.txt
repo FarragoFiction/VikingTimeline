@@ -29,7 +29,6 @@
     <div class="dropdown-content">
       <a href="landing.html">About</a>
       <a href="newsposts.html">Author Newposts</a>
-      <a href="art_newsposts.html">Artist Newposts</a>
       <a href="about.html">FAQ</a>
       <a href="todo.html">TODO Pile</a>
       <a href="glitches.html">Glitch FAQ</a>
