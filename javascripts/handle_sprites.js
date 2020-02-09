@@ -1839,6 +1839,9 @@ function babySprite(canvas,player){
 function aspectSymbol(canvas, player){
     var ctx = canvas.getContext('2d');
     var imageString = player.aspect + ".png"
+    if(player.class_name == "Knight"){
+    return
+    }
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
