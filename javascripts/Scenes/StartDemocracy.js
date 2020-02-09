@@ -9,6 +9,8 @@
   During Reckoning, WarWeary Villain assembles and army to help fight King.
 
   During ending, if democracy = true, mention that.
+
+  MAN, DEMOCRACY IS SO STUPID. YOU KNOW WHAT WOULD BE COOLER? STOPPING THE HERETICS. I'M SURE NIDHOGG WOULD APPRECIATE THIS OF ME. HE'S GOING TO THINK I AM SO USEFUL.
 */
 
 function StartDemocracy(session){
@@ -53,10 +55,10 @@ function StartDemocracy(session){
 
 		var ret = " The " + this.friend.htmlTitle() + " is just minding their own business when they are approached by an adorable little Dersite. ";
 		ret += " The Dersite introduces himself as a Warweary Villein hoping to recruit a Champion. ";
-		ret += " He wishes to end this stupid war, caused by the excesses of the Monarchy. "
-		ret += " The Warweary Villein just hates the Monarchy.  They are petty, bossy tyrants and are really full of themselves and are basically awful in every way. "
-		ret += " The " + this.friend.htmlTitle() + " can't help but be persuaded by the adorable rant. Look at the little guy's clenched fists! ";
-		ret += " A plan is hatched to exile the Queen, and the Dersite promises an army to help fight the King. ";
+		ret += " He wishes to end the existence of all clones, allowed to live for too long by the Monarchy, who are too busy using them to kickstart their stupid war. "
+		ret += " The Warweary Villein hates the Monarchy, but most importantly, he hates clones.  They are unholy creatures of man who do nothing but spit on the Father's creations, and, quote, awful in every way, unquote. "
+		ret += " The " + this.friend.htmlTitle() + " can't help but somehow be persuaded by the adorable rant. Look at the little guy's clenched fists! There's nothing unsettling about this at all! ";
+		ret += " A plan is hatched to exile the Queen, and the Dersite promises an army to help fight the King in return for the death of all heretics. ";
 		this.session.democracyStrength += 50;
 		return ret;
 	}

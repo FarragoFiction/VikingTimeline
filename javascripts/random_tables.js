@@ -1411,30 +1411,30 @@ var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritat
 var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to screw everyone over", "dangerous"];
 
 
-var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on carapacian etiquette. "];
+var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support the holy crusade."," WV gathers followers using techniques learned from reading a book on extremely aggressive propaganda. "];
 democracyTasks.push(" WV demonstrates tactical knowledge to Dersites, convincing them they can win against the King. ");
-democracyTasks.push(" WV gives rousing speeches to Prospitians, emphasizing that they share the same goal. ");
-democracyTasks.push(" WV gives rousing speeches to Dersites, listing every crime the King and Queen have commited against their own people. ");
-democracyTasks.push(" WV debates Dersite beliefs, asking if they REALLY want to die in the Reckoning rather than go live in a new Universe (loathesome though frogs may be). ");
-democracyTasks.push(" WV distributes hastily scrawled parking ticket pamphlets decrying the Royals as 'Total Jerks Bluh Bluh’, much to the ire of the Dersite Parking Authority.");
+democracyTasks.push(" WV gives loud, rambling speeches to Prospitians, mostly about the importance of culling clones. ");
+democracyTasks.push(" WV gives rousing speeches to Dersites, showing them what the power of a lot of really angry people can REALLY do. ");
+democracyTasks.push(" WV debates Prospitian beliefs, asking if clones are REALLY worth as good human life. ");
+democracyTasks.push(" WV distributes hastily scrawled parking ticket pamphlets decrying the Royals as 'Degenerates fit to die by the sword’, much to the ire of the Dersite Parking Authority.");
 democracyTasks.push(" WV arranges a covert series of blinking signals with the help of a firefly. ");
 
 
 var democracySuperTasks = [" WV flips the fuck out and starts distributing free TAB soda to anyone who joins his army. "];
-democracySuperTasks.push(" WV grabs a random Player and uses them as a prop during a speech, triggering the frothing devotion of the local consorts. ");
+democracySuperTasks.push(" WV grabs a random Player and uses them as a prop during a speech, triggering the frothing devotion of the local consorts, and ending the lives of at least six different time clones. ");
 democracySuperTasks.push(" WV arranges a military training session with carapacians on both sides of the War, raising their confidence for the upcoming battle. ");
-democracySuperTasks.push(" WV accidentally steals a colossal Derse war machine. Somehow. ");
-democracySuperTasks.push(" WV trains other carapacians in the art of forward attacks. They are the best pawn. It is them. ");
-democracySuperTasks.push(" WV and a random Player go on an alchemy spree, arming the democratic army with all manners of insane weaponry that is off both the hook and also the chain. In fact, they couldn’t manage to alchemize a single flail. Only giant spiky balls. ");
+democracySuperTasks.push(" WV advances the holy army onto the terrifying threat of identical mailboxes. None are spared. ");
+democracySuperTasks.push(" WV trains other carapacians in the art of identifying heretics. By the end of it, they can tell the difference between two different TAB cans in the blink of an eye. ");
+democracySuperTasks.push(" WV and a random Player go on an alchemy spree, arming the democratic army with all manners of insane weaponry that is off both the hook and also the chain. In fact, they couldn’t manage to alchemize a single flail. Only giant spiky balls. To their merit, none of the balls looked the same. ");
 
 
 var mayorDistractionTasks = [" WV is distracted eating green objects rather than recruiting for his army. "];
-mayorDistractionTasks.push( " WV is distracted planning the civil infrastructure of a city, rather than recruiting for his army.");
-mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a mayor he will be. ");
+mayorDistractionTasks.push( " WV is distracted reading the broble, rather than recruiting for his army.");
+mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a big, mighty paladin he will be. ");
 mayorDistractionTasks.push(" WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! ");
 mayorDistractionTasks.push(" WV gets distracted freaking out about car safety. ");
-mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad monarchy is. ");
-mayorDistractionTasks.push(" WV gets distracted writing a constitution for the new democracy. ");
+mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad the existence of clones is. ");
+mayorDistractionTasks.push(" WV gets distracted writing the very important laws for his upcoming holy empire. ");
 
 //rage and void can do these in VoidySTuff, even if it's not a quest. just for funsies. (even the heavy shit. oh look the rage player is being LOL SO RANDOM what with their decapitated head shenanigans.)
 var lightQueenQuests = ["makes a general nuisance of themselves to the Black Queen.", "spreads disparaging rumours concerning the Black Queen.", "sabotages several official portraits of the Black Queen."];
