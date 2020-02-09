@@ -27,7 +27,7 @@ function Aftermath(session){
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one. Perhaps, with enough training, he will become strong enough to destroy the concept of clones altogether.";
 			}else{
 				this.session.waywardVagabondEnding = true;
-				ret += " The Warweary Villein feels the sting of defeat. He failed to stop the clone menace. Oh, right. The players are also all dead. They were probably clonesm though.";
+				ret += " The Warweary Villein feels the sting of defeat. He failed to stop the clone menace. Oh, right. The players are also all dead. They were probably clones though.";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players' old world, to eventually become stronger than they could ever even dream to be. ";
 			}
 		}
