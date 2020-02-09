@@ -1002,11 +1002,12 @@ function drawChatJRPlayer(canvas, chat, player){
 }
 
 //she is the best <3
+//I CONCUR.
 function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering jadedResearcher" + " [JR] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a"  )
+  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a"  )
 }
 
 function  drawChatJRAB(canvas, chat){

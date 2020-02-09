@@ -44,7 +44,7 @@ function Aftermath(session){
 		if(!timePlayer && singleUseOfSeed > .5){
 			timePlayer = findAspectPlayer(this.session.players, "Time")
 		}
-		if(dead.length >= living.length && timePlayer || this.session.janusReward){
+		if(true){
 			//console.log("Time Player: " + timePlayer);
 			timePlayer = findAspectPlayer(this.session.players, "Time") //NEED to have a time player here.
 			var s = new YellowYard(this.session);
