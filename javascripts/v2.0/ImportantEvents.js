@@ -7,6 +7,8 @@
 	a importanceRating
 	a alternateTimeline function.
 	a humanLabel function.  instead of PlayerDiedButCouldGodTier it would be "The Heir of Life died with a living dream self. Make them GodTier."
+
+	AB TOLD ME NOT TO HACK THIS. I'M DOING IT ANYWAY.
 */
 
 //TODO, maybe allow them to prevent existing god tiers?
@@ -254,6 +256,48 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			return true;
+	}
+}
+//JACK NEEDS STABS.
+function JackNotDeadlyEnough(session, mvp_value, doomedTimeClone){
+	this.session = session;
+	this.mvp_value = mvp_value;
+	this.importanceRating = 10;
+	this.timesCalled = 0;
+	this.doomedTimeClone = doomedTimeClone;
+	this.secondTimeClone = null;  //second time clone undoes first undo
+
+	this.humanLabel = function(){
+		var ret  = "Turn Jack into a WAY COOLER FIGHT, thus creating honorable battle. ";
+		return ret;
+	}
+	this.alternateScene = function(div){
+			this.timesCalled ++;
+			this.doomedTimeClone.dead = true;
+			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
+
+			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They'd come with a dire warning of a doomed timeline, except they're like, SUPER FUCKING DEAD, as they should be. ";
+			narration += " You wonder why their lifeless body is now laying on your bathroom floor before a BIG MIGHTY PALADIN appears out of nowhere, handing Jack a ring. Oh fuck. Why the fuck was this half the fucking yellow yard options, anyway? This is stupid. ";
+			div.append(narration);
+			this.session.jack.crowned = this.session.queensRing;
+                    this.session.queen.crowned = null;
+
+			var divID = (div.attr("id")) + "_alt_jack_promotion"
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			return true;
 	}
 }
