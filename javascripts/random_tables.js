@@ -1198,53 +1198,54 @@ free_land_titles = free_land_titles.concat(corruptedOtherLandTitles);
 
 
 
-var space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];
-var time_levels = ["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"];
-var breath_levels = ["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"];
-var doom_levels = ["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"];
-var blood_levels = ["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"];
-var heart_levels = ["SHARKBAIT HEARTHROB", "FEDORA FLEDGLING","PENCILWART PHYLACTERY"];
-var mind_levels = ["NIPPER-CADET", "COIN-FLIPPER CONFIDANTE", "TWO-FACED BUCKAROO"];
-var light_levels = ["SHOWOFF SQUIRT","JUNGLEGYM SWASHBUCKLER","SUPERSTITIOUS SCURRYWART"];
-var void_levels = ["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"];
-var rage_levels = ["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"];
-var hope_levels = ["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"];
-var life_levels = ["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"];
+var space_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var time_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var breath_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var doom_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var blood_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var heart_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var mind_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var light_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var void_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var rage_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var hope_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
+var life_levels = ["UNIMPORTANT", "UNIMPORTANT", "UNIMPORTANT"];
 
-var maid_levels = ["SCURRYWART SERVANT", "SAUCY PILGRIM", "MADE OF SUCCESS"];
-var page_levels = ["APPRENTICE ANKLEBITER", "JOURNEYING JUNIOR", "OUTFOXED BUCKAROO"];
-var mage_levels = ["WIZARDING TIKE", "THE SORCERER'S SCURRYWART", "FAMILIAR FRAYMOTTIFICTIONADO"];
-var knight_levels = ["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
-var rogue_levels = ["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
-var sylph_levels = ["SERENE SCALLYWAG", "MYSTICAL RUGMUFFIN","FAE FLEDGLING"];
-var thief_levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
-var heir_levels = ["UNREAL HEIR","HEIR CONDITIONER","EXTRAORDINHEIR"];
-var bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
-var prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
-var witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
-var seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
-var waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
-var scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
-var scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
-var sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
-var generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
+var maid_levels = ["SCURRYWART VIKING", "SAUCY VIKING", "MADE OF VIKING"];
+var page_levels = ["APPRENTICE VIKING", "JOURNEYING VIKING", "OUTFOXED VIKING"];
+var mage_levels = ["WIZARDING VIKING", "THE VIKING'S VIKING", "FAMILIAR VIKING"];
+var knight_levels = ["QUESTING VIKING", "LADABOUT VIKING", "SIR VIKING"];
+var rogue_levels = ["KNEEHIGH VIKING","DASHING VIKING", "COMMUNIST VIKING"];
+var sylph_levels = ["SERENE VIKING", "MYSTICAL VIKING","FAE VIKING"];
+var thief_levels = ["RUMPUS VIKING", "HAMBURGLER VIKING", "PRISONVIKING"];
+var heir_levels = ["UNREAL VIKING","VIKING CONDITIONER","EXTRAORDIVIKING"];
+var bard_levels = ["VIKING'S TOP VIKING","POPSTAR VIKING","SONGVIKING"];
+var prince_levels = ["VIKING HARMING","ROYAL VIKING","DIGIT VIKING"];
+var witch_levels = ["WESTWORD VIKING","BUBBLEVIKING","EYE OF VIKING"];
+var seer_levels = ["SEEING VIKING","PIPSQUEAK VIKING","VIKING 5000"];
+var waste_levels = ["4TH WALL VIKING","CATACLYSM VIKING","VIKING"];
+var scout_levels = ["BOSTON VIKING","COOKIE VIKING","FIRE VIKING"];
+var scribe_levels = ["MIDNIGHT VIKING","WRITER VIKING","VIKING DEAREST"];
+var sage_levels = ["HERBAL VIKING","CHICKEN VIKING","TOMEVIKING"];
+var generic_levels = ["SNOWMAN VIKING","NOBODY VIKING","VIKINGZILLA"];
 
-var free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"]
+var free_levels = ["UNIMPORTANT","NO ONE CARES","DOESN'T MATTER","BLUH BLUH BLUH","NOPE","GET A REAL ECHELADDER","DISGUSTING","ZZZ","UNINTERESTING","DULL","WOW, NO","EH", "NOT NIDHOGG"]
 //only need two for each. since each player has two interests, combines to 4
-var music_levels = ["SINGING SCURRYWORT","MUSICAL MOPPET"];
-var culture_levels = ["APPRENTICE ARTIST","CULTURE BUCKAROO"];
-var writing_levels = ["SHAKY SHAKESPEARE","QUILL RUINER"];
-var pop_culture_levels = ["TRIVIA SMARTYPANTS","NIGHTLY NABBER"];
-var technology_levels = ["HURRYWORTH HACKER","CLANKER CURMUDGEON"];
-var social_levels = ["FRIEND-TO-ALL","FRIEND COLLECTOR"];
-var romantic_levels = ["QUESTING CUPID","ROMANCE EXPERT"];
-var academic_levels = ["NERDY NOODLER","SCAMPERING SCIENTIST"];
-var comedy_levels = ["PRATFALL PRIEST","BEAGLE PUSS DARTABOUT"];
-var domestic_levels = ["BATTERBRAT","GRITTY GUARDIAN"];
-var athletic_levels = ["MUSCLES HOARDER","BODY BOOSTER"];
-var terrible_levels = ["ENEMY #1","JERKWAD JOURNEYER"];
-var fantasy_levels = ["FAKEY FAKE LOVER","FANTASTIC DREAMER"];
-var justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
+//WHO CARES ABOUT INTERESTS ANYWAY? WHO NEEDS THEM? THIS IS BORING.
+var music_levels = ["STUPID SINGER","MUSIC IS BORING"];
+var culture_levels = ["ART COWARD","NOT A SWORD"];
+var writing_levels = ["NOT A SWORD EITHER","THE SWORD IS MIGHTIER THAN THE PEN"];
+var pop_culture_levels = ["ANIME ASSHOLE","BORING TRIVIA-KNOWER"];
+var technology_levels = ["HACKING IS OK ACTUALLY","COMPUTER USER"];
+var social_levels = ["COWARD FRIEND-MAKER","INCAPABLE OF BATTLE"];
+var romantic_levels = ["ROMANCE IS STUPID","WHO CARES?"];
+var academic_levels = ["LOCKER GREMLIN","KNOWLEDGE IS FOR THE WEAK"];
+var comedy_levels = ["NOSE-HONKING ASSHOLE","CLOWN BASTARD"];
+var domestic_levels = ["FATHER FIGURE","NIDHOGG WOULD BE PROUD"];
+var athletic_levels = ["WORTHY OF BATTLE","PROPER BRUISER"];
+var terrible_levels = ["HERETIC","CLONE"];
+var fantasy_levels = ["USELESS DAYDREAMER","CAN'T HOLD A SWORD"];
+var justice_levels = ["DELIVERER OF GOOD","FRUIT DEFENDER"];
 
 var level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
 var level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
@@ -1410,30 +1411,30 @@ var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritat
 var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to screw everyone over", "dangerous"];
 
 
-var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on carapacian etiquette. "];
+var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support the holy crusade."," WV gathers followers using techniques learned from reading a book on extremely aggressive propaganda. "];
 democracyTasks.push(" WV demonstrates tactical knowledge to Dersites, convincing them they can win against the King. ");
-democracyTasks.push(" WV gives rousing speeches to Prospitians, emphasizing that they share the same goal. ");
-democracyTasks.push(" WV gives rousing speeches to Dersites, listing every crime the King and Queen have commited against their own people. ");
-democracyTasks.push(" WV debates Dersite beliefs, asking if they REALLY want to die in the Reckoning rather than go live in a new Universe (loathesome though frogs may be). ");
-democracyTasks.push(" WV distributes hastily scrawled parking ticket pamphlets decrying the Royals as 'Total Jerks Bluh Bluh’, much to the ire of the Dersite Parking Authority.");
+democracyTasks.push(" WV gives loud, rambling speeches to Prospitians, mostly about the importance of culling clones. ");
+democracyTasks.push(" WV gives rousing speeches to Dersites, showing them what the power of a lot of really angry people can REALLY do. ");
+democracyTasks.push(" WV debates Prospitian beliefs, asking if clones are REALLY worth as good human life. ");
+democracyTasks.push(" WV distributes hastily scrawled parking ticket pamphlets decrying the Royals as 'Degenerates fit to die by the sword’, much to the ire of the Dersite Parking Authority.");
 democracyTasks.push(" WV arranges a covert series of blinking signals with the help of a firefly. ");
 
 
 var democracySuperTasks = [" WV flips the fuck out and starts distributing free TAB soda to anyone who joins his army. "];
-democracySuperTasks.push(" WV grabs a random Player and uses them as a prop during a speech, triggering the frothing devotion of the local consorts. ");
+democracySuperTasks.push(" WV grabs a random Player and uses them as a prop during a speech, triggering the frothing devotion of the local consorts, and ending the lives of at least six different time clones. ");
 democracySuperTasks.push(" WV arranges a military training session with carapacians on both sides of the War, raising their confidence for the upcoming battle. ");
-democracySuperTasks.push(" WV accidentally steals a colossal Derse war machine. Somehow. ");
-democracySuperTasks.push(" WV trains other carapacians in the art of forward attacks. They are the best pawn. It is them. ");
-democracySuperTasks.push(" WV and a random Player go on an alchemy spree, arming the democratic army with all manners of insane weaponry that is off both the hook and also the chain. In fact, they couldn’t manage to alchemize a single flail. Only giant spiky balls. ");
+democracySuperTasks.push(" WV advances the holy army onto the terrifying threat of identical mailboxes. None are spared. ");
+democracySuperTasks.push(" WV trains other carapacians in the art of identifying heretics. By the end of it, they can tell the difference between two different TAB cans in the blink of an eye. ");
+democracySuperTasks.push(" WV and a random Player go on an alchemy spree, arming the democratic army with all manners of insane weaponry that is off both the hook and also the chain. In fact, they couldn’t manage to alchemize a single flail. Only giant spiky balls. To their merit, none of the balls looked the same. ");
 
 
 var mayorDistractionTasks = [" WV is distracted eating green objects rather than recruiting for his army. "];
-mayorDistractionTasks.push( " WV is distracted planning the civil infrastructure of a city, rather than recruiting for his army.");
-mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a mayor he will be. ");
+mayorDistractionTasks.push( " WV is distracted reading the broble, rather than recruiting for his army.");
+mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a big, mighty paladin he will be. ");
 mayorDistractionTasks.push(" WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! ");
 mayorDistractionTasks.push(" WV gets distracted freaking out about car safety. ");
-mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad monarchy is. ");
-mayorDistractionTasks.push(" WV gets distracted writing a constitution for the new democracy. ");
+mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad the existence of clones is. ");
+mayorDistractionTasks.push(" WV gets distracted writing the very important laws for his upcoming holy empire. ");
 
 //rage and void can do these in VoidySTuff, even if it's not a quest. just for funsies. (even the heavy shit. oh look the rage player is being LOL SO RANDOM what with their decapitated head shenanigans.)
 var lightQueenQuests = ["makes a general nuisance of themselves to the Black Queen.", "spreads disparaging rumours concerning the Black Queen.", "sabotages several official portraits of the Black Queen."];
