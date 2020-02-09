@@ -62,18 +62,19 @@ function Intro(session){
 			var canvas = document.getElementById("canvaskernel"+ divID);
 			var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
 			var timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
+			timePlayer.dead = true;
 			drawTimeGears(canvas, timePlayer);
 			drawSinglePlayer(canvas, timePlayer);
-			var ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
+			var ret = "A " + timePlayer.htmlTitleBasic() + " can't do much before a VERY COOL VERY RELIGIOUS PALADIN swoops in to kill them for the sin of being a clone. ";
 			if(timePlayer.dead){
-				ret += "It's a little alarming how much they are bleeding. "
+				ret += "Man, they sure are dead. It's kind of disgusting."
 			}
-			ret += " They come with a dire warning of a doomed timeline. ";
-			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
+			ret += " They'd come with a dire warning of a doomed timeline, but the fact that they're dead proves that timeline was definitely very doomed anyway. ";
+			ret += "Their lifeless corpse barrels the " + this.player.object_to_prototype.htmlTitle() + " out of the way and falls into the" + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
 			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.chatHandle)
 			this.player.object_to_prototype.helpfulness = 1;
 			//shout out to DinceJof for the great sprite phrase
-			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
+			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a literal arrow to the knee, so they're pretty fucking dead. Kind of helpful?";
 			this.player.object_to_prototype.player = true;
 			console.log("time player sprite in session: " + this.session.session_id);
 
