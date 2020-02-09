@@ -83,11 +83,11 @@ function SaveDoomedTimeLine(session){
 	}
 
 	this.content = function(){
-		var ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
-		ret += " They come with a dire warning of a doomed timeline. ";
+		var ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " can't do much before a VERY COOL VERY RELIGIOUS PALADIN swoops in to kill them for the sin of being a clone.";
+		ret += " They'd normally come with a dire warning of a doomed timeline, but they're dead, so it's totally cool. It never happened. ";
 		if(this.enablingPlayer != this.timePlayer){
 			console.log("nonTime player doomed time clone: " + this.session.session_id)
-			ret += " The " + this.enablingPlayer.htmlTitleBasic() + " helped them come back in time to change things. ";
+			ret += " The " + this.enablingPlayer.htmlTitleBasic() + " is properly horrified at this series of events. ";
 
 		} 
 
@@ -157,10 +157,10 @@ function SaveDoomedTimeLine(session){
 
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to change the timeline. ";
-			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
-			ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
-			ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
+			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves(?) to change the timeline. ";
+			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it... this one is still dead as fuck. ";
+			ret += " You know, the plan was to time travel to where they can do the most good, but clones are disgusting and heretic, so that's the world we live in now. ";
+			ret += " After being dead and doing nothing, they vanish in a cloud of clocks and gears. ";
 		}else{
 			console.log("death's hand maid in: " + this.session.session_id)
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. "

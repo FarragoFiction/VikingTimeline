@@ -440,7 +440,7 @@ function makeRenderingSnapshot(player){
 //taken out of SaveDoomedTimeLine this
 function makeDoomedSnapshot(timePlayer){
 	var timeClone = makeRenderingSnapshot(timePlayer);
-	timeClone.dead = false;
+	timeClone.dead = true;
 	timeClone.currentHP = timeClone.hp
 	timeClone.doomed = true;
 	//from a different timeline, things went differently.
