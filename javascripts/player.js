@@ -233,6 +233,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Doom") return this.doomDenizenNames();
 		return ["ERROR 404: DENIZEN NOT FOUND"]
 	}
+	//JR says we are testing this shit, yn
 	//discord generated most of these names.
 	this.bloodDenizenNames = function(){
 		return ['Blood','Hera','Hestia','Bastet','Bes','Vesta','Eleos','Sanguine','Medusa','Frigg','Debella','Juno','Moloch','Baal','Eusebeia','Horkos','Homonia','Harmonia','Philotes'];
