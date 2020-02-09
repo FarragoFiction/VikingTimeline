@@ -233,6 +233,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Doom") return this.doomDenizenNames();
 		return ["ERROR 404: DENIZEN NOT FOUND"]
 	}
+	//JR says we are testing this shit, yn
 	//discord generated most of these names.
 	this.bloodDenizenNames = function(){
         return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
