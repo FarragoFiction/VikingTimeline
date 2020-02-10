@@ -1007,14 +1007,14 @@ function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#1B41D0"  )
+  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "YN:", "#ff0000", "#1B41D0"  )
 }
 
 function  drawChatJRAB(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- yearnfulNode [YN] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "JR:", "AB:", "#1B41D0", "#ff0000"  )
+  drawChatNonPlayer(canvas, chat, "-- yearnfulNode [YN] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "YN:", "AB:", "#1B41D0", "#ff0000"  )
 }
 
 
