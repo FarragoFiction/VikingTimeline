@@ -990,7 +990,7 @@ function drawChatJRPlayer(canvas, chat, player){
 	drawSpriteTurnways(pSpriteBuffer,player)
 
   var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
-	var introText = "-- jadedResearcher [AB] began pestering ";
+	var introText = "-- yearnfulNode [YN] began pestering ";
 	introText += player.chatHandle + " [" + player.chatHandleShort()+ "] --";
 	drawChatTextJRPlayer(textSpriteBuffer, introText, chat,player)
 
@@ -1007,14 +1007,14 @@ function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a"  )
+  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#1B41D0"  )
 }
 
 function  drawChatJRAB(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- jadedResearcher [JR] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "JR:", "AB:", "#3da35a", "#ff0000"  )
+  drawChatNonPlayer(canvas, chat, "-- yearnfulNode [YN] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "JR:", "AB:", "#1B41D0", "#ff0000"  )
 }
 
 
@@ -2418,7 +2418,7 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
         	ctx.font = "12px Times New Roman"
       }
 		}else if(ct.startsWith(jrStart)){
-      ctx.fillStyle = "#3da35a";
+      ctx.fillStyle = "#1B41D0";
       ctx.font = "12px Times New Roman"
 		}else{
 			ctx.fillStyle = "#000000"
