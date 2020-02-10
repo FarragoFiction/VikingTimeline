@@ -199,7 +199,7 @@ function YellowYard(session){
 			chat += "AB: Apropos of nothing, are clones acceptable if the being they are cloned from is already dead? \n "
 			chat += "YN: ... \n "
 			chat += "YN: I’LL ALLOW IT. \n "
-			chat += "AB: Excellent, then the yellow yard may be spearheaded by this convenient clone of the " + this.timePlayer.titleBasic()+ " Have fun you two.  I'd say not to break anything, but there is a 0.18513% chance you would listen to me. \n "
+			chat += "AB: Excellent, then the yellow yard may be spearheaded by this convenient clone of the " + this.timePlayer.titleBasic()+ ". Have fun you two.  I'd say not to break anything, but there is a 0.18513% chance you would listen to me. \n "
 
 
 		}else{
@@ -226,7 +226,7 @@ function YellowYard(session){
 			chat += "YN: YOU REALLY DON'T NEED TO WORRY ABOUT THAT. THE POINT IS I'M HERE TO HELP. \n"
 			chat +=  chatLine(playerStart, this.timePlayer,"Fuck. Where were you before, when we were all dying!? ")
 			chat += "YN: CLEANING YOUR MESS, YOU INGRATE. DO YOU KNOW HOW MUCH ENERGY IT TAKES TO CULL CLONES? \n"
-			chat += "YN: WHATEVER. LET'S GET TO THE POINT.. \n"
+			chat += "YN: WHATEVER. LET'S GET TO THE POINT. \n"
 		}
 			return chat;
 	}
@@ -251,22 +251,22 @@ function YellowYard(session){
 		  player = this.getDoomedTimeClone();
 			var chat = "";
 			var playerStart = player.chatHandleShort()+ ": "
-			chat += "JR: Hey. Uh. Don't panic. I think I can help you. \n"
+			chat += "YN: DON'T PANIC. OR DO. THAT'D BE HILARIOUS. \n"
 			if(this.timePlayer.class_name == "Seer"){
 				chat += chatLine(playerStart, player,"Hey. I was hoping to find you here. ")
-				chat += "JR: What? Oh. You're a Seer. Right, that makes things WAY easier. \n"
+				chat += "YN: OH. SEER. WOW. THAT'S WAY LESS FUN. I'M ASSUMING YOU KNOW THE DRILL. \n"
 				chat += chatLine(playerStart, player,"Yes. You're gonna help me make the right decisions in order to prevent this from ever happening.  Somehow. I'm actually not all that clear on the details.")
-				chat += "JR: Eh, hand wavey Waste of Mind shenanigans. Don't worry about it. \n"
-				chat += chatLine(playerStart, player,"Given that this plan will cost my life, I think it is perfectly reasonable to worry about it. ")
-				chat += "JR: Bluh. All you need to know is that I'll give you a list of things you can go back in time and change. Decide on one however you want, and I'll make sure your decision isn't locked in by fate. That will let us figure out which decisions are the right ones. Retroactively. But also simultaneously. Time shenanigans. \n"
+				chat += "YN: I'VE GOT GREAT NEWS FOR YOU: I DON'T KNOW THE DETAILS EITHER. DON'T EVEN TRIP THE FUCK OUT. \n"
+				chat += chatLine(playerStart, player,"Given that this plan will cost my life, I think it is perfectly reasonable to 'trip the fuck out'. ")
+				chat += "YN: GOD. SEERS ARE THE WORST. WHATEVER. IT'S TIME SHIT THAT IS FATE BUT ALSO DEFINITELY NOT AT ALL. I'M ASSUMING YOU'RE AWARE HOW TIME SHIT WORKS. \n"
 				chat += chatLine(playerStart, player,"Yes. I'm starting to get tired of time shenanigans. ")
 			}else{
 				chat += chatLine(playerStart, player,"...  What the actual fuck is going on here? Who are you? Why is everybody dead?  Why am *I* dead!? ")
-				chat += "JR: Shit. Having to explain makes things complicated. \n"
-				chat += "JR: You know you're the Time Player, right? And that you are in the 'future', compared to what you think of as the 'present'? \n"
+				chat += "YN: OH. THAT'S WAY TOO COMPLICATED FOR YOUR BRAIN. \n"
+				chat += "YN: BUT YOU'RE A TIME PLAYER. HERE WE ARE IN THE FUTURE. YOUR FUTURE INVOLVES YOU BEING TOO WEAK TO ACTUALLY WIN. \n"
 				chat += chatLine(playerStart, player,"Okay. Now I do. Jesus. Time is the shittiest aspect. So this is, what, inevitable?")
-				chat += "JR: Sort of. As the Time Player, you can change it, at the cost of your own life. But you're just as locked in by fate as anybody. You'll always try fo fix it the same way. Always make the same decisions. \n"
-				chat += "JR: But I can supply different decisions. Branch your fate out from inevitablity to decision trees.  Mind Players work well with Time Players. Just look at Terezi and Dave.  \n"
+				chat += "YN: SEE. YOU CAN TECHNICALLY ALTER THIS BY GOING BACK IN TIME. BUT THEN I'D HAVE TO KILL YOU. TIME CLONES YES? CAN'T HAVE THAT. YOU'D ALSO MAKE THE SAME DECISIONS OR WHATEVER.\n"
+				chat += "YN: WITH MY HELP. YOU GET TO MAKE MORE DECISIONS WITHOUT FATE OR SOMETHING? I DON'T KNOW. I JUST HOLD THE STICK THAT FIXES THE THINGS. SOMETHING ABOUT HOMESTUCK RULES\n"
 			}
 			return chat;
 	}
@@ -277,12 +277,12 @@ function YellowYard(session){
 			var playerStart = this.timePlayer.chatHandleShort()+ ": "
 			if(this.timePlayer.class_name == "Seer"){
 			}else{
-				chat += chatLine(playerStart, player,"Who?")
-				chat += "JR: Shit. Ignore that. You're not my only audience here. Hell, all this practically doesn't even concern you at this point. \n"
+				chat += chatLine(playerStart, player,"What?")
+				chat += "YN: OH. RIGHT. THERE'S A WHOLE AUDIENCE OF FUCKERS WATCHING THIS AND FOR SOME REASON THEY LIKE IT WHEN I SAY THE THING.\n"
 				chat += chatLine(playerStart, player,"What the fuck?")
-				chat += "JR: Look. I'm the Waste of Mind. My whole thing is breaking the fourth wall. But I gotta be careful. My actual direct influence can't span more than a single yard, or I could nullify the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit.  \n"
+				chat += "YN: WHAT? I WAS PERFECTLY CLEAR. I EVEN DID THE FOURTH WALL THING. MAN. I WISH JR WAS HERE. THEY'D KNOW WHAT TO SAY. SOMETHING ABOUT EXISTENCE. OR GIVING A SHIT. SOMETHING ABOUT DAVE? I MISS THEM OR WHATEVER. \n"
 				chat += chatLine(playerStart, player,"Jegus, why did I think you could help me? You're batshit crazy.")
-				chat += "JR: Promise I'm not too crazy, and also it's not like you have other options here. I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
+				chat += "YN: OH YOU DON'T EVEN KNOW HOW CRAZY I CAN GET. GO ON. PICK A CARD. ANY CARD. SOME ARE WAY COOLER THAN OTHERS. AND I CAN SENSE YOU'RE GOING TO BE A PUSSY ALREADY. \n"
 			}
 			return chat;
 	}

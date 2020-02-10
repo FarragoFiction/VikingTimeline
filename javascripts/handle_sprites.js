@@ -2404,7 +2404,7 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 	var lineHeight = ctx.measureText("M").width * 1.2;
     var lines = chat.split("\n");
 	var playerStart = player.chatHandleShort()
-	var jrStart = "JR: "
+	var jrStart = "YN: "
  	for (var i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
 		var ct = lines[i].trim();
