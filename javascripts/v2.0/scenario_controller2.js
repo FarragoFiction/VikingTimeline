@@ -15,13 +15,20 @@ var curSessionGlobalVar;
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
+//NUMBERS ARE STUPID. THEY ARE CANCELLED NOW.
 window.onload = function() {
+var urlseed = getParameterByName("seed");
+
+   if (urlseed && isNaN(urlseed)){
+     urlseed = numbertoseed(urlseed);
+}
+
 	//these bitches are SHAREABLE.
 	setTimeout(function() {window.scrollTo(0, 0);},1)
 	loadNavbar();
-	if(getParameterByName("seed")){
-		Math.seed = getParameterByName("seed");
-		initial_seed = getParameterByName("seed");
+	if(urlseed){
+		Math.seed = urlseed;
+		initial_seed = urlseed;
 	}else{
 		var tmp = getRandomSeed();
 		Math.seed = tmp;
@@ -44,6 +51,13 @@ window.onload = function() {
 	//debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
 	//debugCorpseSmooch();
+}
+function numbertoseed(seed){
+var output = 0;
+   for (var i = 0, len = seed.length; i < len; i++) {
+      output += seed[i].charCodeAt(0)
+    }
+return output
 }
 
 function reinit(){
