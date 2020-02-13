@@ -1,14 +1,18 @@
-function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
+ohgodplz = 0
+
+function Player(session, class_name, aspect, object_to_prototype, moon, godDestiny, id) {
 	this.baby = null;
 	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
-	this.permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+	this.permaBuffs = {
+		"MANGRIT": 0
+	}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
 	this.renderingType = 0; //0 means default for this sim.
-	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
+	this.associatedStats = []; //most players will have a 2x, a 1x and a -1x stat.
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
 	this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 	this.interest1Category = null; //used by Replay page for custom interests.
 	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
-	this.spriteCanvasID = null;  //part of new rendering engine.
+	this.spriteCanvasID = null; //part of new rendering engine.
 	this.session = session;
 	this.pvpKillCount = 0; //for stats.
 	this.timesDied = 0;
@@ -53,13 +57,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
 	this.aspect = aspect;
 	this.land = null;
-	this.interest1 =null;
+	this.interest1 = null;
 	this.interest2 = null;
 	this.chatHandle = null;
 	this.object_to_prototype = object_to_prototype;
 	this.relationships = [];
 	this.moon = moon;
-	this.power = 1;   //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
+	this.power = 1; //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 	this.leveledTheHellUp = false; //triggers level up scene.
 	this.mylevels = null
 	this.level_index = -1; //will be ++ before i query
@@ -78,95 +82,106 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.dead = false;
 	this.godDestiny = godDestiny;
 	//should only be false if killed permananetly as god tier
-	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
+	this.canGodTierRevive = true; //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
 	this.sanity = 2; //make up for moon bonus
-	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
+	this.murderMode = false; //kill all players you don't like. odds of a just death skyrockets.
 	this.leftMurderMode = false; //have scars, unless left via death.
 	this.corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
-	this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
+	this.grimDark = 0; //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false;
 	this.denizenDefeated = false;
 	this.denizenMinionDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-	this.doomedTimeClones =  []; //help fight the final boss(es).
+	this.doomedTimeClones = []; //help fight the final boss(es).
 	this.doomed = false; //stat that doomed time clones have.
+	this.abscondable = true; //nice abscond
+	this.canAbscond = true; //can't abscond bro
+	this.playersAbsconded = [];
+	this.iAbscond = false;
 
 
-	this.fromThisSession = function(session){
+	this.fromThisSession = function (session) {
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)
 	}
 
-	this.isQuadranted = function(){
-		if(this.getHearts().length > 0) return true;
-		if(this.getClubs().length > 0) return true;
-		if(this.getDiamonds().length > 0) return true;
-		if(this.getSpades().length > 0) return true;
+	this.getLivingMinusAbsconded = function (players) {
+		var living = findLivingPlayers(players);
+		for (var i = 0; i < this.playersAbsconded.length; i++) {
+			removeFromArray(this.playersAbsconded[i], living);
+		}
+		return living
+	}
+
+	this.isQuadranted = function () {
+		if (this.getHearts().length > 0) return true;
+		if (this.getClubs().length > 0) return true;
+		if (this.getDiamonds().length > 0) return true;
+		if (this.getSpades().length > 0) return true;
 
 	}
 
-	this.getClubs = function(){
+	this.getClubs = function () {
 		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.saved_type == r.clubs){
+			if (r.saved_type == r.clubs) {
 				ret.push(r);
 			}
 		}
 		return ret;
 	}
 
-	this.getHearts = function(){
+	this.getHearts = function () {
 		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.saved_type == r.heart){
+			if (r.saved_type == r.heart) {
 				ret.push(r);
 			}
 		}
 		return ret;
 	}
 
-	this.getDenzenNameArray = function(){
+	this.getDenzenNameArray = function () {
 
 	}
 
 	//returns a number based on the absolute value of everything except relationships (can't help you with a denizen fight and that's what this is for)
-	this.getOverallStrength  = function(){
+	this.getOverallStrength = function () {
 		var ret = 0;
 		ret += this.power;
 		ret += Math.abs(this.freeWill)
 		ret += Math.abs(this.mobility)
 		ret += Math.abs(this.hp)
-		ret += Math.abs
-		(this.maxLuck + this.minLuck)
+		ret += Math.abs(this.maxLuck + this.minLuck)
 		ret += Math.abs(this.sanity)
 		return ret;
 	}
 
-	this.generateDenizen = function(){
+	this.generateDenizen = function () {
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 150;  //if i change how stats work, i need to update this value 
-		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
+		var expectedMaxStrength = 150; //if i change how stats work, i need to update this value
+		var strengthPerTier = (expectedMaxStrength) / possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
-		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
+		var denizenIndex = Math.round(strength / strengthPerTier) - 1; //want lowest value to be off the denizen array.
 
 		var denizenName = "";
-		var denizenStrength = (denizenIndex/(possibilities.length))+1 //between 1 and 2
+		var denizenStrength = (denizenIndex / (possibilities.length)) + 1 //between 1 and 2
 		//console.log("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length)
-		if(denizenIndex == 0){
+		if (denizenIndex == 0) {
 			denizenName = this.weakDenizenNames();
-			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
+			denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
 			console.log("strength demands a weak denizen " + this.session.session_id)
-		}else if(denizenIndex >= possibilities.length){
+		} else if (denizenIndex >= possibilities.length) {
 			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
 			denizenStrength = 5;
 			console.log("Strength demands strong denizen. " + this.session.session_id)
-		}else{
+		} else {
 			denizenName = possibilities[denizenIndex];
 
 		}
@@ -176,16 +191,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	//generate denizen gets me name and strength, this just takes care of making it.
-	this.makeDenizenWithStrength = function(name, strength){
+	this.makeDenizenWithStrength = function (name, strength) {
 		//console.log("Strength for denizen " + name + " is: " + strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
-		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
+		var denizen = new GameEntity(this.session, "Denizen " + name, null);
+		var denizenMinion = new GameEntity(this.session, name + " Minion", null);
 		var tmpStatHolder = {};
 		tmpStatHolder.minLuck = -10;
 		tmpStatHolder.abscondable = true; //players can decide to flee like little bitches
-        tmpStatHolder.canAbscond = false;
+		tmpStatHolder.canAbscond = false;
 		tmpStatHolder.maxLuck = 10;
 		tmpStatHolder.hp = 10 * strength;
 		tmpStatHolder.mobility = 10;
@@ -193,253 +208,300 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		tmpStatHolder.freeWill = 10;
 		tmpStatHolder.power = 5 * strength;
 		tmpStatHolder.grist = 1000;
-		tmpStatHolder.RELATIONSHIPS = 10;  //not REAL relationships, but real enough for our purposes.
-		for(var i = 0; i<this.associatedStats.length; i++){
+		tmpStatHolder.RELATIONSHIPS = 10; //not REAL relationships, but real enough for our purposes.
+		for (var i = 0; i < this.associatedStats.length; i++) {
 			//alert("I have associated stats: " + i)
 			var stat = this.associatedStats[i];
-			if(stat.name == "MANGRIT"){
+			if (stat.name == "MANGRIT") {
 				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier * strength
-			}else{
+			} else {
 				tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
-			} 
+			}
 		}
 
 		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
-		
+
 		denizenMinion.setStatsHash(tmpStatHolder);
-		tmpStatHolder.power = 10*strength;
-		for(var key in tmpStatHolder){
-			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
+		tmpStatHolder.power = 10 * strength;
+		for (var key in tmpStatHolder) {
+			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger.
 		}
 		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
 		denizen.setStatsHash(tmpStatHolder);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
-		this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this,name);
+		this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);
 	}
 
-	this.getDenizenNameArray = function(){
-		if(this.aspect == "Blood") return this.bloodDenizenNames();
-		if(this.aspect == "Mind") return this.mindDenizenNames();
-		if(this.aspect == "Rage") return this.rageDenizenNames();
-		if(this.aspect == "Void") return this.voidDenizenNames();
-		if(this.aspect == "Time") return this.timeDenizenNames();
-		if(this.aspect == "Heart") return this.heartDenizenNames();
-		if(this.aspect == "Breath") return this.breathDenizenNames();
-		if(this.aspect == "Light") return this.lightDenizenNames();
-		if(this.aspect == "Space") return this.spaceDenizenNames();
-		if(this.aspect == "Hope") return this.hopeDenizenNames();
-		if(this.aspect == "Life") return this.lifeDenizenNames();
-		if(this.aspect == "Doom") return this.doomDenizenNames();
+	this.getDenizenNameArray = function () {
+		if (this.aspect == "Blood") return this.bloodDenizenNames();
+		if (this.aspect == "Mind") return this.mindDenizenNames();
+		if (this.aspect == "Rage") return this.rageDenizenNames();
+		if (this.aspect == "Void") return this.voidDenizenNames();
+		if (this.aspect == "Time") return this.timeDenizenNames();
+		if (this.aspect == "Heart") return this.heartDenizenNames();
+		if (this.aspect == "Breath") return this.breathDenizenNames();
+		if (this.aspect == "Light") return this.lightDenizenNames();
+		if (this.aspect == "Space") return this.spaceDenizenNames();
+		if (this.aspect == "Hope") return this.hopeDenizenNames();
+		if (this.aspect == "Life") return this.lifeDenizenNames();
+		if (this.aspect == "Doom") return this.doomDenizenNames();
 		return ["ERROR 404: DENIZEN NOT FOUND"]
 	}
 	//JR says we are testing this shit, yn
 	//discord generated most of these names.
-	this.bloodDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
-    }
-
-	this.mindDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.bloodDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.rageDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.mindDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.voidDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.rageDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.timeDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.voidDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.heartDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.timeDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.breathDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.heartDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.lightDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.breathDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.spaceDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.lightDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.hopeDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.spaceDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.lifeDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.hopeDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.doomDenizenNames = function(){
-        return ["Odin","Thor","Tyr","Loki","Frigg","Heimdall","Vili","Ve","Baldur","Mimir","Braggi","Idun","Njord","Freya","Freyr","Forseti","Nerthus","Fenrir","Jormungand","Echidna","Nidhogg","Skoll","Hati","Sleipnir","The Crows","The Norns","Surt","Ymir","Lamia","The Minotaur","Garm","Leviathan","Medusa","Typhon","Trinitus","Sok","Baast","Zeitt","Eotia","Andagdr","Morgar","The Octamorts","Sookell","Aguz","Ap’Lo","Posid","Zu","Hiad","Cera","Lyb","Lyva","Garrefell","Zann","Junwyk","Princelestia","Opreim","Taos and Darvadir","Kernmec","Stiiv","Yllza","Palepton","Baariix","Mysspeg","Elfriedn","Rublaex","Pinkachu","Gu’Uz","Kupaar","The Analyst","The Blacksmith","The Droughtsman","The Escort","The Instinct","The Puppeteer","The Scrivener","The Kindled","The Provider","The Visionary","The Virtuoso","The Whisperer","The Faithful","The Tailor","The Oracle","The Spectre"]
+	this.lifeDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
 	}
 
-	this.strongDenizenNames = function(){
-	    console.log("What if you don't want stranth? " + this.session.session_id)
+	this.doomDenizenNames = function () {
+		return ["Odin", "Thor", "Tyr", "Loki", "Frigg", "Heimdall", "Vili", "Ve", "Baldur", "Mimir", "Braggi", "Idun", "Njord", "Freya", "Freyr", "Forseti", "Nerthus", "Fenrir", "Jormungand", "Echidna", "Nidhogg", "Skoll", "Hati", "Sleipnir", "The Crows", "The Norns", "Surt", "Ymir", "Lamia", "The Minotaur", "Garm", "Leviathan", "Medusa", "Typhon", "Trinitus", "Sok", "Baast", "Zeitt", "Eotia", "Andagdr", "Morgar", "The Octamorts", "Sookell", "Aguz", "Ap’Lo", "Posid", "Zu", "Hiad", "Cera", "Lyb", "Lyva", "Garrefell", "Zann", "Junwyk", "Princelestia", "Opreim", "Taos and Darvadir", "Kernmec", "Stiiv", "Yllza", "Palepton", "Baariix", "Mysspeg", "Elfriedn", "Rublaex", "Pinkachu", "Gu’Uz", "Kupaar", "The Analyst", "The Blacksmith", "The Droughtsman", "The Escort", "The Instinct", "The Puppeteer", "The Scrivener", "The Kindled", "The Provider", "The Visionary", "The Virtuoso", "The Whisperer", "The Faithful", "The Tailor", "The Oracle", "The Spectre"]
+	}
+
+	this.strongDenizenNames = function () {
+		console.log("What if you don't want stranth? " + this.session.session_id)
 		var ret = ['<span class = "void">Very good, Very noble, Very Religions, Wow, Grub-Smashing, Timehole-inhabiting, coin-collecting </span>Paladyn'];
 		return getRandomElementFromArray(ret);
 	}
 
-	this.weakDenizenNames = function(){
+	this.weakDenizenNames = function () {
 		var ret = ['<span class = "void">Very sad, weak, pathetic, non-grub-smashing, non religious </span>Hynbo'];
 		return getRandomElementFromArray(ret);
 	}
 
 
-
 	//flipping out over the dead won't call this but everything else will.
-	this.flipOut = function(reason){
+	this.flipOut = function (reason) {
 		//console.log("flip out method called for: " + reason)
 		this.flippingOutOverDeadPlayer = null;
 		this.flipOutReason = reason;
 	}
 
-	this.interestedIn = function(interestWord,interestNum){
-		if(!interestNum){
-			if(interestWord == "Comedy") return playerLikesComedy(this)
-			if(interestWord == "Music") return playerLikesMusic(this)
-			if(interestWord == "Culture") return playerLikesCulture(this)
-			if(interestWord == "Writing") return playerLikesWriting(this)
-			if(interestWord == "Athletic") return playerLikesAthletic(this)
-			if(interestWord == "Terrible") return playerLikesTerrible(this)
-			if(interestWord == "Justice") return playerLikesJustice(this)
-			if(interestWord == "Fantasy") return playerLikesFantasy(this)
-			if(interestWord == "Domestic") return playerLikesDomestic(this)
-			if(interestWord == "PopCulture") return playerLikesPopculture(this)
-			if(interestWord == "Technology") return playerLikesTechnology(this)
-			if(interestWord == "Social") return playerLikesSocial(this)
-			if(interestWord == "Romance") return playerLikesRomantic(this)
-			if(interestWord == "Academic") return playerLikesAcademic(this)
+	this.interestedIn = function (interestWord, interestNum) {
+		if (!interestNum) {
+			if (interestWord == "Comedy") return playerLikesComedy(this)
+			if (interestWord == "Music") return playerLikesMusic(this)
+			if (interestWord == "Culture") return playerLikesCulture(this)
+			if (interestWord == "Writing") return playerLikesWriting(this)
+			if (interestWord == "Athletic") return playerLikesAthletic(this)
+			if (interestWord == "Terrible") return playerLikesTerrible(this)
+			if (interestWord == "Justice") return playerLikesJustice(this)
+			if (interestWord == "Fantasy") return playerLikesFantasy(this)
+			if (interestWord == "Domestic") return playerLikesDomestic(this)
+			if (interestWord == "PopCulture") return playerLikesPopculture(this)
+			if (interestWord == "Technology") return playerLikesTechnology(this)
+			if (interestWord == "Social") return playerLikesSocial(this)
+			if (interestWord == "Romance") return playerLikesRomantic(this)
+			if (interestWord == "Academic") return playerLikesAcademic(this)
 			return false;
-		}else if(interestNum == 1){
-			if(interestWord == "Comedy") return comedy_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Music") return music_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Culture") return culture_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Writing") return writing_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Athletic") return athletic_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Terrible") return terrible_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Justice") return justice_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Domestic") return domestic_interests.indexOf(this.interest1) != -1
-			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Technology") return technology_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Social") return social_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Romance") return romantic_interests.indexOf(this.interest1) != -1
-			if(interestWord == "Academic") return academic_interests.indexOf(this.interest1) != -1
-		}else if(interestNum == 2){
-			if(interestWord == "Comedy") return comedy_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Music") return music_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Culture") return culture_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Writing") return writing_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Athletic") return athletic_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Terrible") return terrible_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Justice") return justice_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Domestic") return domestic_interests.indexOf(this.interest2) != -1
-			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Technology") return technology_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Social") return social_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Romance") return romantic_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Academic") return academic_interests.indexOf(this.interest2) != -1
+		} else if (interestNum == 1) {
+			if (interestWord == "Comedy") return comedy_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Music") return music_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Culture") return culture_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Writing") return writing_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Athletic") return athletic_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Terrible") return terrible_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Justice") return justice_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Domestic") return domestic_interests.indexOf(this.interest1) != -1
+			if (interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Technology") return technology_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Social") return social_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Romance") return romantic_interests.indexOf(this.interest1) != -1
+			if (interestWord == "Academic") return academic_interests.indexOf(this.interest1) != -1
+		} else if (interestNum == 2) {
+			if (interestWord == "Comedy") return comedy_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Music") return music_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Culture") return culture_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Writing") return writing_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Athletic") return athletic_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Terrible") return terrible_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Justice") return justice_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Domestic") return domestic_interests.indexOf(this.interest2) != -1
+			if (interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Technology") return technology_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Social") return social_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Romance") return romantic_interests.indexOf(this.interest2) != -1
+			if (interestWord == "Academic") return academic_interests.indexOf(this.interest2) != -1
 		}
 	}
 
 	//if change would push me over 3, render 'cause i'm newly grimdark
 	//if it would pull be from over 3, render 'cause i have somewhat recovered.
-	this.changeGrimDark = function(val){
+	this.changeGrimDark = function (val) {
 		//this.grimDark += val;
 		var tmp = this.grimDark + val;
 		var render = false;
 
-		if(this.grimDark <= 3 && tmp > 3){ //newly GrimDark
+		if (this.grimDark <= 3 && tmp > 3) { //newly GrimDark
 			console.log("grim dark 3 or more in session: " + this.session.session_id)
 			render = true;
-		}else if(this.grimDark >3 && tmp <=3){ //newly recovered.
+		} else if (this.grimDark > 3 && tmp <= 3) { //newly recovered.
 			render = true;
 		}
 		this.grimDark += val;
-		if(render){
+		if (render) {
 			this.renderSelf();
 		}
 
 	}
 
-	this.makeMurderMode = function(){
+	this.makeMurderMode = function () {
 		this.murderMode = true;
 		this.increasePower();
 		this.renderSelf(); //new scars. //can't do scars just on top of sprite 'cause hair might cover.'
 	}
 
-	this.unmakeMurderMode = function(){
+	this.unmakeMurderMode = function () {
 		this.murderMode = false;
 		this.leftMurderMode = true;
 		this.renderSelf();
 	}
 
 
-	this.makeDead = function(causeOfDeath){
+	this.makeDead = function (causeOfDeath) {
 		this.dead = true;
-		this.timesDied ++;
+		this.timesDied++;
 		this.buffs = [];
 		this.causeOfDeath = sanitizeString(causeOfDeath);
-		if(this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
+		if (this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
-		if(this.aspect == "Doom"){ //powered by their own doom.
+		if (this.aspect == "Doom") { //powered by their own doom.
 			//console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.power += 50;
 			this.hp = Math.max(100, this.hp); //prophecy fulfilled. but hp and luck will probably drain again.
 			this.minLuck = 30; //prophecy fulfilled. you are no longer doomed.
 		}
-		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
+		if (!this.godTier) { //god tiers only make ghosts in GodTierRevivial
 			var g = makeRenderingSnapshot(this);
 			g.fraymotifs = this.fraymotifs.slice(0); //copy not reference
-			this.session.afterLife.addGhost(g);
+			if (this.session && this.session.afterLife) {
+				this.session.afterLife.addGhost(g);
+			}
 		}
 
 		this.renderSelf();
 		this.triggerOtherPlayersWithMyDeath();
 	}
 
+	this.tryAutoRevive = function (div, deadPlayer) {
+
+		//first try using pacts
+		var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
+		if (undrainedPacts.length > 0) {
+			console.log("using a pact to autorevive in session " + this.session.session_id)
+			var source = undrainedPacts[0][0];
+			source.causeOfDrain = deadPlayer.title();
+			var ret = " In the afterlife, the " + deadPlayer.htmlTitleBasic() + " reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life "
+			if (deadPlayer.godTier) ret += ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. "
+			ret += "It will be a while before the ghost recovers."
+			div.append(ret);
+			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+			removeFromArray(myGhost, this.session.afterLife.ghosts);
+			var canvas = drawReviveDead(div, deadPlayer, source, undrainedPacts[0][1]);
+			deadPlayer.makeAlive();
+			if (undrainedPacts[0][1] == "Life") {
+				deadPlayer.hp += 100; //i won't let you die again.
+			} else if (undrainedPacts[0][1] == "Doom") {
+				deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				div.append("The prophecy is fulfilled. ")
+			}
+		} else if ((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life") && (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")) {
+			var ghost = this.session.afterLife.findAnyUndrainedGhost();
+			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+			if (!ghost || ghost == myGhost) return;
+			ghost.causeOfDrain = deadPlayer.title();
+
+			removeFromArray(myGhost, this.session.afterLife.ghosts);
+			if (deadPlayer.class_name == "Thief") {
+				console.log("thief autorevive in session " + this.session.session_id)
+				div.append(" The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitle() + " in order to revive and keep fighting. It will be a while before the ghost recovers.");
+			} else if (deadPlayer.class_name == "Heir") {
+				console.log("heir autorevive in session " + this.session.session_id)
+				div.append(" The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitle() + " in order to revive and continue their battle. It will be a while before the ghost recovers.");
+			}
+			var canvas = drawReviveDead(div, deadPlayer, ghost, deadPlayer.aspect);
+			deadPlayer.makeAlive();
+			if (deadPlayer.aspect == "Life") {
+				deadPlayer.hp += 100; //i won't let you die again.
+			} else if (deadPlayer.aspect == "Doom") {
+				deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				div.append("The prophecy is fulfilled. ")
+			}
+		}
+	}
+
 	//this used to happen in beTriggered. fuck that noise, it was shit.
-	this.triggerOtherPlayersWithMyDeath = function(){
+	this.triggerOtherPlayersWithMyDeath = function () {
 		//go through my relationships. if i am the only dead person, trigger everybody (death still has impact)
 		//trigger (possibly ontop of base trigger) friends, and quadrant mates. really fuck up my moirel(s) if i have any
 		//if triggered, also give a flip out reason.
 		var dead = findDeadPlayers(this.session.players);
-		for(var i = 0; i <this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
 
-			if(r.saved_type == r.goodBig){
+			if (r.saved_type == r.goodBig) {
 				r.target.sanity += -10;
-				if(r.target.flipOutReason == null){
+				if (r.target.flipOutReason == null) {
 					r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
 					r.target.flippingOutOverDeadPlayer = this;
 				}
-			}else if(r.value > 0){
+			} else if (r.value > 0) {
 				r.target.sanity += -10;
-				if(r.target.flipOutReason == null){
-					 r.target.flippingOutOverDeadPlayer = this;
-					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
+				if (r.target.flipOutReason == null) {
+					r.target.flippingOutOverDeadPlayer = this;
+					r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
 				}
-			}else if(r.saved_type == r.spades){
+			} else if (r.saved_type == r.spades) {
 				r.target.sanity += -100;
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
-			}else if(r.saved_type == r.heart){
+			} else if (r.saved_type == r.heart) {
 				r.target.sanity += -100
 				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
-			}
-			else if(r.saved_type == r.diamond){
+			} else if (r.saved_type == r.diamond) {
 				r.target.sanity += -1000
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
@@ -451,63 +513,51 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		//whether or not i care about them, there's also the novelty factor.
-		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
+		if (dead.length == 1) { //if only I am dead, death still has it's impact and even my enemies care.
 			r.target.sanity += -10;
-			if(r.target.flipOutReason == null){
+			if (r.target.flipOutReason == null) {
 				r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
-			 r.target.flippingOutOverDeadPlayer = this;
+				r.target.flippingOutOverDeadPlayer = this;
 			}
 		}
 	}
 
 	//needed'cause ghost pacts are a an array of pairs now so i know how i'm reviving.
-	this.getPactWithGhost = function(ghost){
-		for(var i = 0; i<this.ghostPacts.length; i++){
+	this.getPactWithGhost = function (ghost) {
+		for (var i = 0; i < this.ghostPacts.length; i++) {
 			var g = this.ghostPacts[i][0]
-			if(g == ghost) return g
+			if (g == ghost) return g
 		}
 		return null;
 	}
 
-	this.getSpades = function(){
+	this.getSpades = function () {
 		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.saved_type == r.spades){
+			if (r.saved_type == r.spades) {
 				ret.push(r);
 			}
 		}
 		return ret;
 	}
 
-	this.getCrushes = function(){
+	this.getCrushes = function () {
 		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.saved_type == r.goodBig){
+			if (r.saved_type == r.goodBig) {
 				ret.push(r);
 			}
 		}
 		return ret;
 	}
 
-	this.getBlackCrushes = function(){
+	this.getBlackCrushes = function () {
 		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.saved_type == r.badBig){
-				ret.push(r);
-			}
-		}
-		return ret;
-	}
-
-
-	this.getDiamonds = function(){
-		var ret = [];
-		for (var i = 0; i<this.relationships.length; i++){
-			var r = this.relationships[i];
-			if(r.saved_type == r.diamond){
+			if (r.saved_type == r.badBig) {
 				ret.push(r);
 			}
 		}
@@ -515,13 +565,25 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 
-	this.chatHandleShort = function(){
+	this.getDiamonds = function () {
+		var ret = [];
+		for (var i = 0; i < this.relationships.length; i++) {
+			var r = this.relationships[i];
+			if (r.saved_type == r.diamond) {
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
+
+
+	this.chatHandleShort = function () {
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 
-	this.chatHandleShortCheckDup = function(otherHandle){
-		var tmp= this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
-		if(tmp == otherHandle){
+	this.chatHandleShortCheckDup = function (otherHandle) {
+		var tmp = this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
+		if (tmp == otherHandle) {
 			tmp = tmp + "2";
 		}
 		return tmp;
@@ -529,7 +591,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//what happened when you reached god tier was too inconsistent, and also
 	//this lets sprite be updated.
-	this.makeGodTier = function(){
+	this.makeGodTier = function () {
 		this.hp += 500; //they are GODS.
 		this.power += 500;
 		this.increasePower();
@@ -543,366 +605,361 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 
-
-	this.makeAlive = function(){
-			if(this.dead == false) return; //don't do all this.
-			if(this.stateBackup) this.stateBackup.restoreState(this);
-			this.influencePlayer = null;
-			this.influenceSymbol = null;
-			this.dead = false;
-			this.murderMode = false;
-			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
-			//console.log("HP after being brought back from the dead: " + this.currentHP)
-			this.grimDark = 0;
-			this.sanity += -101;  //dying is pretty triggering.
-			this.flipOutReason = "they just freaking died"
-			//this.leftMurderMode = false; //no scars
-			this.victimBlood = null; //clean face
-			this.renderSelf();
-		}
-
+	this.makeAlive = function () {
+		if (this.dead == false) return; //don't do all this.
+		if (this.stateBackup) this.stateBackup.restoreState(this);
+		this.influencePlayer = null;
+		this.influenceSymbol = null;
+		this.dead = false;
+		this.murderMode = false;
+		this.currentHP = Math.max(this.hp, 1); //if for some reason your hp is negative, don't do that.
+		//console.log("HP after being brought back from the dead: " + this.currentHP)
+		this.grimDark = 0;
+		this.sanity += -101; //dying is pretty triggering.
+		this.flipOutReason = "they just freaking died"
+		//this.leftMurderMode = false; //no scars
+		this.victimBlood = null; //clean face
+		this.renderSelf();
+	}
 
 
-
-	this.title = function(){
+	this.title = function () {
 		var ret = "";
 
-		if(this.doomed){
+		if (this.doomed) {
 			ret += "Doomed "
 		}
 
 
-
-		if(this.trickster){
+		if (this.trickster) {
 			ret += "Trickster "
 		}
 
-		if(this.murderMode){
+		if (this.murderMode) {
 			ret += "Murder Mode ";
 		}
 
-		if(this.grimDark>3){
+		if (this.grimDark > 3) {
 			ret += "Severely Grim Dark ";
-		}else if(this.grimDark > 1){
+		} else if (this.grimDark > 1) {
 			ret += "Mildly Grim Dark ";
-		}else if(this.grimDark >2){
+		} else if (this.grimDark > 2) {
 			ret += "Grim Dark ";
 		}
 
-		if(this.godTier){
-			ret+= "God Tier "
-		}else if(this.isDreamSelf){
-			ret+= "Dream ";
+		if (this.godTier) {
+			ret += "God Tier "
+		} else if (this.isDreamSelf) {
+			ret += "Dream ";
 		}
-		if(this.robot){
+		if (this.robot) {
 			ret += "Robo"
 		}
-		ret+= this.class_name + " of " + this.aspect;
-		if(this.dead){
+		ret += this.class_name + " of " + this.aspect;
+		if (this.dead) {
 			ret += "'s Corpse"
-		}else if(this.ghost){
+		} else if (this.ghost) {
 			ret += "'s Ghost"
 		}
 		ret += " (" + this.chatHandle + ")"
 		return ret;
 	}
 
-	this.htmlTitleBasic = function(){
-			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
+	this.htmlTitleBasic = function () {
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
 
-	this.titleBasic = function(){
+	this.titleBasic = function () {
 		var ret = "";
 
-		ret+= this.class_name + " of " + this.aspect;
+		ret += this.class_name + " of " + this.aspect;
 		return ret;
 	}
 
 	//old method from 1.0
-	this.getRandomLevel = function(){
-		if(Math.seededRandom() > .5){
+	this.getRandomLevel = function () {
+		if (Math.seededRandom() > .5) {
 			return getRandomLevelFromAspect(this.aspect);
-		}else{
+		} else {
 			return getRandomLevelFromClass(this.class_name);
 		}
 	}
 
-//new method having to pick 16 levels before entering the medium
-	this.getNextLevel = function(){
-		this.level_index ++;
-		var ret= this.mylevels[this.level_index];
+	//new method having to pick 16 levels before entering the medium
+	this.getNextLevel = function () {
+		this.level_index++;
+		var ret = this.mylevels[this.level_index];
 		return ret;
 	}
 
 
-	this.getRandomQuest = function(){
-		if(this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false){ //three quests before denizen
+	this.getRandomQuest = function () {
+		if (this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false) { //three quests before denizen
 			//console.log("denizen quest")
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
-		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+		} else if ((this.landLevel < 9 || this.denizen_index >= 3) && this.denizenDefeated == false) { //can do more land quests if denizen kicked your ass. need to grind.
+			if (Math.seededRandom() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
 				return getRandomQuestFromAspect(this.aspect);
-			}else{
+			} else {
 				return getRandomQuestFromClass(this.class_name);
 			}
-		}else if(this.denizenDefeated){
+		} else if (this.denizenDefeated) {
 			//console.log("post denizen quests " +this.session.session_id);
 			//return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
-				return getRandomQuestFromAspect(this.aspect,true);
-			}else{
-				return getRandomQuestFromClass(this.class_name,true);
+			if (Math.seededRandom() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
+				return getRandomQuestFromAspect(this.aspect, true);
+			} else {
+				return getRandomQuestFromClass(this.class_name, true);
 			}
 		}
 
 	}
 
-	this.decideHemoCaste  =function (){
-		if(this.aspect != "Blood"){  //sorry karkat
+	this.decideHemoCaste = function () {
+		if (this.aspect != "Blood") { //sorry karkat
 			this.bloodColor = getRandomElementFromArray(bloodColors);
 		}
 		this.applyPossiblePsionics();
 	}
 
 	//expect it to be first in list, so this is only bad if you DON'T have mind control AND have a shit ton of fraymotifs.
-	this.canMindControl = function(){
-		for(var i = 0; i<this.fraymotifs.length; i++){
-			if(this.fraymotifs[i].name == "Mind Control") return this.fraymotifs[i].name;
+	this.canMindControl = function () {
+		for (var i = 0; i < this.fraymotifs.length; i++) {
+			if (this.fraymotifs[i].name == "Mind Control") return this.fraymotifs[i].name;
 		}
 		return false;
 	}
 
-	this.canGhostCommune = function(){
-		for(var i = 0; i<this.fraymotifs.length; i++){
-			if(this.fraymotifs[i].name == "Ghost Communing")return  this.fraymotifs[i].name;
+	this.canGhostCommune = function () {
+		for (var i = 0; i < this.fraymotifs.length; i++) {
+			if (this.fraymotifs[i].name == "Ghost Communing") return this.fraymotifs[i].name;
 		}
 		return false;
 	}
 
 	//psionics are less than game powers, so tier 1 only.
-	this.psionicList = function(){
+	this.psionicList = function () {
 		var psionics = [];
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
-		var f = new Fraymotif([],  "Telekinisis", 1)
-		f.effects.push(new FraymotifEffect("power",2,true));
+		var f = new Fraymotif([], "Telekinisis", 1)
+		f.effects.push(new FraymotifEffect("power", 2, true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		psionics.push(f);
 
-		var f = new Fraymotif([],  "Pyrokinisis", 1)
-		f.effects.push(new FraymotifEffect("power",2,true));
+		var f = new Fraymotif([], "Pyrokinisis", 1)
+		f.effects.push(new FraymotifEffect("power", 2, true));
 		f.flavorText = " Who knew shaving cream was so flammable? "
 		psionics.push(f);
 
-		var f = new Fraymotif([],  "Aquakinesis", 1)
-		f.effects.push(new FraymotifEffect("power",2,true));
+		var f = new Fraymotif([], "Aquakinesis", 1)
+		f.effects.push(new FraymotifEffect("power", 2, true));
 		f.flavorText = " A deluge begins damaging the ENEMY. "
 		psionics.push(f);
 
-		var f = new Fraymotif([],  "Mind Control", 1)
-		f.effects.push(new FraymotifEffect("freeWill",3,true));
-		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		var f = new Fraymotif([], "Mind Control", 1)
+		f.effects.push(new FraymotifEffect("freeWill", 3, true));
+		f.effects.push(new FraymotifEffect("freeWill", 3, false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
 		psionics.push(f);
 
 
-		var f = new Fraymotif([],  "Optic Blast", 1)
-		f.effects.push(new FraymotifEffect("power",2,true));
+		var f = new Fraymotif([], "Optic Blast", 1)
+		f.effects.push(new FraymotifEffect("power", 2, true));
 		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
 		psionics.push(f);
 
-		var f = new Fraymotif([],  "Ghost Communing", 1)
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		var f = new Fraymotif([], "Ghost Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity", 3, true));
+		f.effects.push(new FraymotifEffect("sanity", 3, false));
 		f.flavorText = " The souls of the dead start hassling all enemies. "
 		psionics.push(f);
 
-		var f = new Fraymotif([],  "Animal Communing", 1)
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		var f = new Fraymotif([], "Animal Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity", 3, true));
+		f.effects.push(new FraymotifEffect("sanity", 3, false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. "
 		psionics.push(f);
 
 		return psionics;
 	}
 
-	this.applyPossiblePsionics = function(){
-	   // console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
-		if(this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
+	this.applyPossiblePsionics = function () {
+		// console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
+		if (this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
 		//oh! low blood vocabulary!!! that'd be in quirks, i think.
 		//console.log("My blood color is: " + this.bloodColor);
-		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
+		var odds = 10 - bloodColors.indexOf(this.bloodColor); //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
-		for(var i = 0; i<powers.length; i++){
-			if(Math.seededRandom()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
+		for (var i = 0; i < powers.length; i++) {
+			if (Math.seededRandom() * 40 < odds) { //even burgundy bloods have only a 25% shot of each power.
 				this.fraymotifs.push(powers[i]);
 			}
 		}
 		//special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
-		if(this.bloodColor == "#631db4"){
-			var f = new Fraymotif([],  "Chucklevoodoos", 1)
-			f.effects.push(new FraymotifEffect("sanity",3,false));
-			f.effects.push(new FraymotifEffect("sanity",3,true));
+		if (this.bloodColor == "#631db4") {
+			var f = new Fraymotif([], "Chucklevoodoos", 1)
+			f.effects.push(new FraymotifEffect("sanity", 3, false));
+			f.effects.push(new FraymotifEffect("sanity", 3, true));
 			f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. "
 			this.fraymotifs.push(f);
-		}else if(this.bloodColor == "#658200"){
-			var f = new Fraymotif([],  "Limeade Refreshment", 1)
-			f.effects.push(new FraymotifEffect("sanity",1,false));
-			f.effects.push(new FraymotifEffect("sanity",1,true));
+		} else if (this.bloodColor == "#658200") {
+			var f = new Fraymotif([], "Limeade Refreshment", 1)
+			f.effects.push(new FraymotifEffect("sanity", 1, false));
+			f.effects.push(new FraymotifEffect("sanity", 1, true));
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
 			this.fraymotifs.push(f);
-		}else if(this.bloodColor == "#ffc3df"){
-		    var f = new Fraymotif([],  "'<font color='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1)
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,false));
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
-            f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
-            this.fraymotifs.push(f);
+		} else if (this.bloodColor == "#ffc3df") {
+			var f = new Fraymotif([], "'<font color='pink'>" + this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1)
+			f.effects.push(new FraymotifEffect("RELATIONSHIPS", 3, false));
+			f.effects.push(new FraymotifEffect("RELATIONSHIPS", 3, true));
+			f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
+			this.fraymotifs.push(f);
 		}
 	}
 
-	this.decideLusus = function(player){
-		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
+	this.decideLusus = function (player) {
+		if (this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4") {
 			this.lusus = getRandomElementFromArray(sea_lusus_objects);
-		}else{
+		} else {
 			this.lusus = getRandomElementFromArray(lusus_objects);
 		}
 	}
 
-	this.isVoidAvailable = function(){
+	this.isVoidAvailable = function () {
 		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
-		if(light && light.godTier) return false;
+		if (light && light.godTier) return false;
 		return true;
 	}
 
 	//classes only, at least for now
-	this.getPVPModifier = function(role){
-		if(role == "Attacker") return this.getAttackerModifier();
-		if(role == "Defender") return this.getDefenderModifier();
-		if(role == "Murderer") return this.getMurderousModifier();
+	this.getPVPModifier = function (role) {
+		if (role == "Attacker") return this.getAttackerModifier();
+		if (role == "Defender") return this.getDefenderModifier();
+		if (role == "Murderer") return this.getMurderousModifier();
 
 	}
 
-	this.renderable = function(){
+	this.renderable = function () {
 		return true;
 	}
 
 	//basically free will shit. choosing to kill a player despite not being crazy
-	this.getAttackerModifier = function(){
-		if(this.class_name == "Knight") return 1.0;
-		if(this.class_name == "Seer") return 0.67;
-		if(this.class_name == "Bard") return 2.0;
-		if(this.class_name == "Maid") return 0.33;
-		if(this.class_name == "Heir") return 0.5;
-		if(this.class_name == "Rogue") return 1.25;
-		if(this.class_name == "Page"){
-			if(this.godTier){
+	this.getAttackerModifier = function () {
+		if (this.class_name == "Knight") return 1.0;
+		if (this.class_name == "Seer") return 0.67;
+		if (this.class_name == "Bard") return 2.0;
+		if (this.class_name == "Maid") return 0.33;
+		if (this.class_name == "Heir") return 0.5;
+		if (this.class_name == "Rogue") return 1.25;
+		if (this.class_name == "Page") {
+			if (this.godTier) {
 				return 5.0;
-			}else{
+			} else {
 				return 1.0;
 			}
 		}
-		if(this.class_name == "Thief") return 1.5;
-		if(this.class_name == "Sylph") return 2.5;
-		if(this.class_name == "Prince") return 5.0;
-		if(this.class_name == "Witch") return 2.0;
-		if(this.class_name == "Mage") return 0.67;
+		if (this.class_name == "Thief") return 1.5;
+		if (this.class_name == "Sylph") return 2.5;
+		if (this.class_name == "Prince") return 5.0;
+		if (this.class_name == "Witch") return 2.0;
+		if (this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}
 
 
-
 	//defending yourself from an attack
-	this.getDefenderModifier = function(){
-		if(this.class_name == "Knight") return 2.5;
-		if(this.class_name == "Seer") return 0.67;
-		if(this.class_name == "Bard") return 0.5;
-		if(this.class_name == "Maid") return 3.0;
-		if(this.class_name == "Heir") return 2.0;
-		if(this.class_name == "Rogue") return 1.25;
-		if(this.class_name == "Page"){
-			if(this.godTier){
+	this.getDefenderModifier = function () {
+		if (this.class_name == "Knight") return 2.5;
+		if (this.class_name == "Seer") return 0.67;
+		if (this.class_name == "Bard") return 0.5;
+		if (this.class_name == "Maid") return 3.0;
+		if (this.class_name == "Heir") return 2.0;
+		if (this.class_name == "Rogue") return 1.25;
+		if (this.class_name == "Page") {
+			if (this.godTier) {
 				return 5.0;
-			}else{
+			} else {
 				return 1.0;
 			}
 		}
-		if(this.class_name == "Thief") return 0.8;
-		if(this.class_name == "Sylph") return 1.0;
-		if(this.class_name == "Prince") return 0.33;
-		if(this.class_name == "Witch") return 1.0;
-		if(this.class_name == "Mage") return 0.67;
+		if (this.class_name == "Thief") return 0.8;
+		if (this.class_name == "Sylph") return 1.0;
+		if (this.class_name == "Prince") return 0.33;
+		if (this.class_name == "Witch") return 1.0;
+		if (this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}
 
 	//being shit flippingly crazy AND initiating a fight
-	this.getMurderousModifier = function(){
-		if(this.class_name == "Knight") return 0.75;
-		if(this.class_name == "Seer") return 1.0;
-		if(this.class_name == "Bard") return 3.0;
-		if(this.class_name == "Maid") return 1.5;
-		if(this.class_name == "Heir") return 1.5;
-		if(this.class_name == "Rogue") return 1.0;
-		if(this.class_name == "Page"){
-			if(this.godTier){
+	this.getMurderousModifier = function () {
+		if (this.class_name == "Knight") return 0.75;
+		if (this.class_name == "Seer") return 1.0;
+		if (this.class_name == "Bard") return 3.0;
+		if (this.class_name == "Maid") return 1.5;
+		if (this.class_name == "Heir") return 1.5;
+		if (this.class_name == "Rogue") return 1.0;
+		if (this.class_name == "Page") {
+			if (this.godTier) {
 				return 5.0;
-			}else{
+			} else {
 				return 1.0;
 			}
 		}
-		if(this.class_name == "Thief") return 1.0;
-		if(this.class_name == "Sylph") return 1.5;
-		if(this.class_name == "Prince") return 1.5;
-		if(this.class_name == "Witch") return 1.5;
-		if(this.class_name == "Mage") return 1.5;
+		if (this.class_name == "Thief") return 1.0;
+		if (this.class_name == "Sylph") return 1.5;
+		if (this.class_name == "Prince") return 1.5;
+		if (this.class_name == "Witch") return 1.5;
+		if (this.class_name == "Mage") return 1.5;
 		return 1.0;
 	}
 
 
-	this.getDenizen = function(){
+	this.getDenizen = function () {
 		return this.denizen.name; //<--convineint that it wasn't hard to upgrade.
 	}
 
-	this.didDenizenKillYou = function(){
-		if(this.causeOfDeath.indexOf(this.denizen.name) != -1){
+	this.didDenizenKillYou = function () {
+		if (this.causeOfDeath.indexOf(this.denizen.name) != -1) {
 			return true; //also return true for minions. this is intentional.
 		}
 		return false;
 	}
 
 	//more likely if lots of people hate you
-	this.justDeath = function(){
+	this.justDeath = function () {
 		var ret = false;
 
 		//impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
-		if(this.didDenizenKillYou() && !this.grimDark <= 2){
+		if (this.didDenizenKillYou() && !this.grimDark <= 2) {
 			return false;
-		}else if(this.grimDark > 2){
+		} else if (this.grimDark > 2) {
 			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: " + this.session.session_id)
 			return true; //always just if the denizen puts down a corrupt player.
 		}
 
 
 		//if much less friends than enemies.
-		if(this.getFriends().length < this.getEnemies().length){
-			if(Math.seededRandom() > .9){ //just deaths are rarer without things like triggers.
+		if (this.getFriends().length < this.getEnemies().length) {
+			if (Math.seededRandom() > .9) { //just deaths are rarer without things like triggers.
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
 
 
-			if((this.murderMode || this.grimDark > 2)){
+			if ((this.murderMode || this.grimDark > 2)) {
 				var rand = Math.seededRandom()
 				//console.log("rand is: " + rand)
-				if(rand > .2){
+				if (rand > .2) {
 					//console.log(" just death for: " + this.title() + "rand is: " + rand)
 					ret = true;
 				}
 			}
-		}else{  //you are a good person. just corrupt.
+		} else { //you are a good person. just corrupt.
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.5){
+			if ((this.murderMode || this.grimDark > 2) && Math.seededRandom() > .5) {
 				ret = true;
 			}
 		}
@@ -912,131 +969,129 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	//more likely if lots of people like you
-	this.heroicDeath = function(){
+	this.heroicDeath = function () {
 		var ret = false;
 
 		//it's not heroic derping to death against a minion or whatever, or in a solo fight.
-		if(this.didDenizenKillYou() || this.causeOfDeath == "from a Bad Break."){
+		if (this.didDenizenKillYou() || this.causeOfDeath == "from a Bad Break.") {
 			return false;
 		}
 
 		//if far more enemies than friends.
-		if(this.getFriends().length > this.getEnemies().length ){
-			if(Math.seededRandom() > .6){
+		if (this.getFriends().length > this.getEnemies().length) {
+			if (Math.seededRandom() > .6) {
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.2){
+			if (curSessionGlobalVar.kingStrength <= 0 && Math.seededRandom() > .2) {
 				ret = true;
 			}
-		}else{ //unlikely hero
-			if(Math.seededRandom() > .8){
+		} else { //unlikely hero
+			if (Math.seededRandom() > .8) {
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.4){
+			if (curSessionGlobalVar.kingStrength <= 0 && Math.seededRandom() > .4) {
 				ret = true;
 			}
 		}
 
-		if(ret){
+		if (ret) {
 			//console.log("heroic death");
 		}
 		return ret;
 	}
 
 
-
-	this.hasInteractionEffect = function(){
-		return this.class_name == "Prince" || this.class_name == "Bard"|| this.class_name == "Witch"|| this.class_name == "Sylph"|| this.class_name == "Rogue"|| this.class_name == "Thief"
+	this.hasInteractionEffect = function () {
+		return this.class_name == "Prince" || this.class_name == "Bard" || this.class_name == "Witch" || this.class_name == "Sylph" || this.class_name == "Rogue" || this.class_name == "Thief"
 	}
 
-	this.associatedStatsInteractionEffect = function(player){
-		if(this.hasInteractionEffect()){ //don't even bother if you don't have an interaction effect.
-			for(var i = 0; i<this.associatedStats.length; i++){
+	this.associatedStatsInteractionEffect = function (player) {
+		if (this.hasInteractionEffect()) { //don't even bother if you don't have an interaction effect.
+			for (var i = 0; i < this.associatedStats.length; i++) {
 				this.processStatInteractionEffect(player, this.associatedStats[i]);
 			}
 		}
 	}
 
 
-	this.processStatInteractionEffect = function(player, stat){
-		var powerBoost = this.power/20;
-		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
-			powerBoost = powerBoost *  2 //sylph and witch get their primary boost here, so make it a good one.
+	this.processStatInteractionEffect = function (player, stat) {
+		var powerBoost = this.power / 20;
+		if (this.class_name == "Witch" || this.class_name == "Sylph") {
+			powerBoost = powerBoost * 2 //sylph and witch get their primary boost here, so make it a good one.
 		}
-		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
-		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
-		    powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
+		var powerBoost = this.modPowerBoostByClass(powerBoost, stat);
+		if (this.class_name == "Rogue" || this.class_name == "Thief") {
+			powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
 			player.modifyAssociatedStat((-1 * powerBoost), stat);
-			if(this.isActive()){ //modify me
+			if (this.isActive()) { //modify me
 				this.modifyAssociatedStat(powerBoost, stat);
-			}else{  //modify others.
-				for(var i = 0; i<this.session.players.length; i++){
-					this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
+			} else { //modify others.
+				for (var i = 0; i < this.session.players.length; i++) {
+					this.session.players[i].modifyAssociatedStat(powerBoost / this.session.players.length, stat);
 				}
 			}
-		}else{
-			if(this.isActive()){ //modify me
+		} else {
+			if (this.isActive()) { //modify me
 				this.modifyAssociatedStat(powerBoost, stat);
-			}else{  //modify others.
+			} else { //modify others.
 				player.modifyAssociatedStat(powerBoost, stat);
 			}
 		}
 	}
 
-	this.interactionEffect = function(player){
+	this.interactionEffect = function (player) {
 
 		this.associatedStatsInteractionEffect(player);
 
 		//no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
 		r1 = this.getRelationshipWith(player);
-		if(r1){
+		if (r1) {
 			r1.moreOfSame();
 		}
 
 	}
 
 	//SBURB is not a mystery to these classes/aspects.  TODO MAKE THIS AN ACTUAL ASSOCIATED STAT
-	this.knowsAboutSburb = function(){
+	this.knowsAboutSburb = function () {
 		//time might not innately get it, but they have future knowledge
 		var rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
 		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
 
-	this.performEctobiology = function(session){
+	this.performEctobiology = function (session) {
 		session.ectoBiologyStarted = true;
 		playersMade = findPlayersWithoutEctobiologicalSource(session.players);
 		setEctobiologicalSource(playersMade, session.session_id)
 		return playersMade;
 	}
 
-	this.isActive = function(){
+	this.isActive = function () {
 		return active_classes.indexOf(this.class_name) != -1;
 	}
 
 
-
 	//each player knows how to generate their own guardian.
-	this.makeGuardian =function(){
+	this.makeGuardian = function () {
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
 		var possibilities = available_classes_guardians;
-		if(possibilities.length == 0) possibilities = classes;
+		if (possibilities.length == 0) possibilities = classes;
 		//console.log("class names available for guardians is: " + possibilities)
 		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
-        available_classes_guardians.removeFromArray(guardian.class_name)
+		available_classes_guardians.removeFromArray(guardian.class_name)
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
-		if(guardian.isTroll){
+		if (guardian.isTroll) {
 			guardian.quirk = randomTrollSim(guardian) //not same quirk as guardian
-		}else{
+		} else {
 			guardian.quirk = randomHumanSim(guardian);
 		}
 
 		guardian.bloodColor = player.bloodColor;
 		guardian.lusus = player.lusus;
-		if(guardian.isTroll == true){ //trolls always use lusus.
+		if (guardian.isTroll == true) { //trolls always use lusus.
 			guardian.object_to_prototype = player.object_to_prototype;
 		}
 		guardian.hairColor = player.hairColor;
@@ -1047,129 +1102,726 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		guardian.level_index = 5; //scratched kids start more leveled up
 		guardian.power = 50;
 		guardian.leader = player.leader;
-		if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
+		if (Math.seededRandom() > 0.5) { //have SOMETHING in common with your ectorelative.
 			guardian.interest1 = player.interest1;
-		}else{
+		} else {
 			guardian.interest2 = player.interest2;
 		}
-		guardian.initializeDerivedStuff();//redo levels and land based on real aspect
+		guardian.initializeDerivedStuff(); //redo levels and land based on real aspect
 		//this.guardians.push(guardian); //sessions don't keep track of this anymore
 		player.guardian = guardian;
-		guardian.guardian = this;//goes both ways.
+		guardian.guardian = this; //goes both ways.
 	}
 
 
-
-	this.associatedStatsIncreasePower = function(powerBoost){
+	this.associatedStatsIncreasePower = function (powerBoost) {
 		//modifyAssociatedStat
-		for(var i = 0; i< this.associatedStats.length; i++){
+		for (var i = 0; i < this.associatedStats.length; i++) {
 			this.processStatPowerIncrease(powerBoost, this.associatedStats[i]);
 		}
 	}
 
-	this.modPowerBoostByClass = function(powerBoost,stat){
+	this.resetPlayersAvailability = function (players) {
+		for (var i = 0; i < players.length; i++) {
+			players[i].usedFraymotifThisTurn = false;
+		}
+	}
+
+	//if i abscond fight is over
+	//if all living players abscond, fight is over
+	this.fightOverAbscond = function (div, players) {
+		//console.log("checking if fight is over beause of abscond " + this.playersAbsconded.length)
+		if (this.iAbscond) {
+			return true;
+		}
+		if (this.playersAbsconded.length == 0) return false;
+
+		var living = findLivingPlayers(players);
+		if (living.length == 0) return false; //technically, they havent absconded
+		for (var i = 0; i < living.length; i++) {
+			//console.log("has: " + living[i].title() + " run away?")
+			if (this.playersAbsconded.indexOf(living[i]) == -1) {
+				return false; //found living player that hasn't yet absconded.
+			}
+		}
+		return true;
+
+	}
+
+	//returns true or false.
+	this.fightNeedsToEnd = function (div, players, numTurns) {
+
+		if (numTurns > 20 && Math.seededRandom() < .05) {
+			this.summonAssHoleMcGee(div, players, numTurns);
+			return true;
+		}
+
+		if (numTurns > 30) {
+			this.summonAuthor(div, players, numTurns);
+			return true;
+		}
+		return false;
+
+	}
+	//render this.
+	//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
+	this.summonDoomedTimeClone = function (div, players, numTurns) {
+		//console.log("summoning a doomed time clone to this fight. " +this.session.session_id)
+		var timePlayer = findAspectPlayer(this.session.players, "Time");
+		var doomedTimeClone = makeDoomedSnapshot(timePlayer);
+		players.push(doomedTimeClone);
+		if (players.indexOf(timePlayer) != -1) {
+			if (timePlayer.dead) {
+				var living = findLivingPlayers(this.session.players);
+				if (living.length == 0) {
+					//rip knight of time that made me realize this could be a thing.
+					div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from an alternate timeline. They know that everyone is already dead. They know there is nothing they can do. They've tried already. They've tried so many times. They can't bring themselves to give up, but they can't force themselves to watch their friends die again, either. Maybe if they just learn how to kill this asshole, they can go back and do it RIGHT next time. ");
+				} else {
+					div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is, well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
+				}
+
+			} else {
+				div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, I mean, obviously, they are right there...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+			}
+		} else {
+			div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+		}
+		var divID = (div.attr("id")) + "doomTimeArrival" + players.join("") + numTurns;
+		var canvasHTML = "<br><canvas id='canvas" + divID + "' width='" + canvasWidth + "' height=" + canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas" + divID);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawTimeGears(pSpriteBuffer, doomedTimeClone);
+		drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, 0, 0)
+		timePlayer.doomedTimeClones.push(doomedTimeClone);
+		timePlayer.sanity += -10;
+		timePlayer.flipOut("their own doomed time clones")
+		return players
+
+	}
+
+	//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
+	//which ALSO means i'm not gonna bother picking a "winner". that would be work, I'm lazy, and also caliborn wouldn't care about that.
+	this.summonAssHoleMcGee = function (div, players, numTurns) {
+		console.log("!!!!!!!!!!!!!!!!!This is stupid. Summon asshole mcgee in session: " + this.session.session_id);
+		div.append("<Br><Br>THIS IS STuPID. EVERYBODY INVOLVED. IN THIS STuPID. STuPID FIGHT. IS NOW DEAD. SuCK IT.  tumut")
+		var living = this.getLivingMinusAbsconded(players); //dosn't matter if you absconded.
+		for (var i = 0; i < living.length; i++) {
+			var p = living[i];
+			p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
+		}
+
+	}
+
+
+	this.healPlayers = function (div, players) {
+		for (var i = 0; i < players.length; i++) {
+			var player = players[i];
+			if (!player.doomed && !player.dead && player.currentHP < player.hp) player.currentHP = player.hp;
+		}
+	}
+
+	this.playerdecideWhatToDo = function (div, player, players) {
+		if (player.usedFraymotifThisTurn) return; //already did something.
+		if (this.dead == true || this.getStat("currentHP" <= 0)) return // they are dead, stop beating a dead corpse.
+		div.append(player.describeBuffs());
+		//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
+		if (!this.willPlayerAbscond(div, player, players)) {
+			var undrainedPacts = removeDrainedGhostsFromPacts(player.ghostPacts);
+			if (this.playerHelpGhostRevive(div, player, players)) { //MOST players won't do this
+				//actually, if that method returned true, it wrote to the screen all on it's own. so dumb. why can't i be consistent?
+			} else if (undrainedPacts.length > 0) {
+				var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)[0]); //maybe later denizen can do ghost attac, but not for now
+				if (!didGhostAttack && !this.useFraymotif(div, player, players, [this])) {
+					this.aggrieve(div, player, this);
+				}
+			} else if (!this.useFraymotif(div, player, players, [this])) {
+				this.aggrieve(div, player, this);
+			}
+		}
+		this.processDeaths(div, players, [this]);
+	}
+
+	//only do attack if i don't expect to one shot the enemy
+	//return false if i don't do ghsot attack
+	this.ghostAttack = function (div, player, ghost) {
+		if (!ghost) return false;
+		if (player.power < this.getStat("currentHP")) {
+			//console.log("ghost attack in: " + this.session.session_id)
+
+			this.currentHP += Math.round(-1 * (ghost.power * 5 + player.power)); //not just one attack from the ghost
+			div.append("<Br><Br> The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. ");
+
+			this.drawGhostAttack(div, player, ghost);
+			ghost.causeOfDrain = player.title();
+			//this.processDeaths(div, player, this)
+			return true;
+		}
+		return false;
+	}
+
+	this.willPlayerAbscond = function (div, player, players) {
+		var playersInFight = this.getLivingMinusAbsconded(players)
+		if (!this.abscondable) return false;
+		if (player.doomed) return false; //doomed players accept their fate.
+		var reasonsToLeave = 0;
+		var reasonsToStay = 2; //grist man.
+		reasonsToStay += this.getFriendsFromList(playersInFight);
+		var hearts = this.getHearts();
+		var diamonds = this.getDiamonds();
+		for (var i = 0; i < hearts.length; i++) {
+			if (playersInFight.indexOf(hearts[i] != -1)) reasonsToStay++; //extra reason to stay if they are your quadrant.
+		}
+		for (var i = 0; i < diamonds.length; i++) {
+			if (playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay++; //extra reason to stay if they are your quadrant.
+		}
+		reasonsToStay += player.power / this.getStat("currentHP"); //if i'm about to finish it off.
+		reasonsToLeave += 2 * this.getStat("power") / player.getStat("currentHP"); //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+
+		//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
+		if (reasonsToLeave > reasonsToStay * 2) {
+			player.sanity += -10;
+			player.flipOut("how terrifying " + this.htmlTitle() + " was");
+			if (player.mobility > this.mobility) {
+				//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
+				div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
+				this.playersAbsconded.push(player);
+				this.remainingPlayersHateYou(div, player, playersInFight);
+				return true;
+			} else {
+				div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
+				return false;
+			}
+		} else if (reasonsToLeave > reasonsToStay) {
+			if (player.mobility > this.mobility) {
+				//console.log(" player actually absconds: " + this.session.session_id)
+				div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ")
+				this.playersAbsconded.push(player);
+				this.remainingPlayersHateYou(div, player, playersInFight);
+				return true;
+			} else {
+				div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
+				return false;
+			}
+		}
+		return false;
+	}
+
+	this.remainingPlayersHateYou = function (div, player, players) {
+		if (players.length == 1) {
+			return null;
+		}
+		div.append(" The remaining players are not exactly happy to be abandoned. ")
+		for (var i = 0; i < players.length; i++) {
+			var p = players[i];
+			if (p != player && this.playersAbsconded.indexOf(p) == -1) { //don't be a hypocrite and hate them if you already ran.
+				var r = p.getRelationshipWith(player);
+				if (r) r.value += -5; //could be a sprite, after all.
+			}
+		}
+	}
+
+
+	//draw ghost on top of player, ghost lightning.
+	this.drawGhostAttack = function (div, player, ghost) {
+		var canvasId = div.attr("id") + "attack" + player.chatHandle + ghost.chatHandle + player.power + ghost.power
+		var canvasHTML = "<br><canvas id='" + canvasId + "' width='" + canvasWidth + "' height=" + canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(canvasId);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer, player)
+		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(gSpriteBuffer, ghost)
+		//drawSpriteTurnways(gSpriteBuffer,ghost) //KR says looks bad.
+
+
+		drawWhatever(canvas, "drain_lightning.png");
+
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 250, 0)
+		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+		return canvas;
+	}
+
+	this.poseAsATeam = function (div, players) {
+		//don't pose sprites
+		var poseable = [];
+		for (var i = 0; i < players.length; i++) {
+			if (players[i].renderable()) poseable.push(players[i]);
+		}
+		ohgodplz++;
+		var divID = (div.attr("id")) + ohgodplz + players[0].id;
+		var ch = canvasHeight;
+		if (poseable.length > 6) {
+			ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID + "' width='" + canvasWidth + "' height=" + ch + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas" + divID);
+		poseAsATeam(canvasDiv, poseable, 2000);
+
+		if (players[0].dead && players[0].denizen && players[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
+	}
+
+	this.ending = function (div, players) {
+		this.resetEveryonesFraymotifs(players);
+
+		this.iAbscond = false;
+		this.playersInteract(players);
+		this.healPlayers(div, players);
+
+
+		this.playersAbsconded = [];
+		this.poseAsATeam(div, players);
+	}
+
+	this.resetEveryonesFraymotifs = function (players) {
+		this.resetFraymotifs();
+		this.buffs = [];
+		for (var i = 0; i < players.length; i++) {
+			players[i].buffs = [];
+			players[i].resetFraymotifs();
+		}
+	}
+
+	//every pair of players (even they died or ran, they were still here.)
+	//regular interaction and power interaction, just like it was a quest.
+	this.playersInteract = function (players) {
+		if (this.name == "Black Queen" || this.name == "Black King") {
+			return; //whatever, when it's ALL the players too much is going on AND this won't effect things for very long. games over, man.
+		}
+
+		for (var i = 0; i < players.length; i++) {
+			var player1 = players[i];
+			for (var j = 0; j < players.length; j++) {
+				var player2 = players[j];
+				if (player1 != player2) { //sorry time clones, can't buff your player. cause ALL players hae 'clones' in this double for loop
+					player1.interactionEffect(player2); //opposite will happen eventually in this double loop.
+				}
+			}
+		}
+	}
+
+	this.fightOver = function (div, players) {
+		var living = this.getLivingMinusAbsconded(players);
+		if (living.length == 0 && players.length > this.playersAbsconded.length) {
+			var dead = findDeadPlayers(players)
+			if (dead.length == 1) {
+				div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + dead[0].htmlTitle() + " is dead.<br> ");
+			} else {
+				div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead or fled.<br> ");
+			}
+
+			return true;
+		} else if (this.getStat("currentHP") <= 0 || this.dead) {
+			div.append(" <Br><br> <img src = 'images/sceneIcons/victory_icon.png'>The fight is over. " + this.htmlTitle() + " is dead. <br>");
+			return true;
+		} //TODO have alternate win conditions for denizens???
+		return false;
+	}
+
+	this.givePlayersGrist = function (players) {
+		for (var i = 0; i < players.length; i++) {
+			players.grist += this.grist / players.length;
+		}
+	}
+
+	this.playersTurn = function (div, players) {
+		for (var i = 0; i < players.length; i++) { //check all players, abscond or living status can change.
+			var player = players[i]
+			///console.log("It is the " + player.titleBasic() + "'s turn. '");
+			if (!player.dead && this.getStat("currentHP") > 0 && this.playersAbsconded.indexOf(player) == -1) {
+				this.playerdecideWhatToDo(div, player, players); //
+			}
+		}
+
+		var dead = findDeadPlayers(players);
+		//give dead a chance to autoRevive
+		for (var i = 0; i < dead.length; i++) {
+			if (!dead[i].doomed) this.tryAutoRevive(div, dead[i]);
+		}
+	}
+
+	//doomed players are just easier to target.
+	this.chooseTarget = function (players) {
+		//TODO more likely to get light, less likely to get void
+		var living = this.getLivingMinusAbsconded(players);
+		var doomed = findDoomedPlayers(living);
+
+		var ret = getRandomElementFromArray(doomed);
+		if (ret) {
+			//console.log("targeting a doomed player.")
+			return ret;
+		}
+		//console.log("targeting slowest player out of: " + living.length)
+		//todo more likely to target light, less void.
+		ret = findAspectPlayer(players, "Light");
+		//can attack light players corpse up to 5 times, randomly.
+		if (ret && ret.dead && (Math.seededRandom() > 5 || ret.currentHP < -1 * this.getStat("power") * 5)) ret = null; //only SOMETIMES target light player corpses. after all, that's SUPER lucky for the living.
+		if (ret) return ret;
+		return findLowestMobilityPlayer(living);
+	}
+
+
+	//denizen and king/queen will never flee. but jack and planned mini bosses can.
+	//flee if you are losing. mobility needs to be high enough. mention if you try to flee and get cut off.
+	this.willIAbscond = function (div, players, numTurns) {
+		if (!this.canAbscond || numTurns < 2) return false; //can't even abscond. also, don't run away after starting the fight, asshole.
+		var playerPower = 0;
+		var living = this.getLivingMinusAbsconded(players)
+		for (var i = 0; i < living.length; i++) {
+			playerPower += living[i].power;
+		}
+		//console.log("playerPower is: " + playerPower)
+		if (playerPower > this.getStat("currentHP") * 2) {
+			this.iAbscond = true;
+			//console.log("absconding when turn number is: " +numTurns);
+			return true;
+		}
+		return false;
+	}
+
+	this.processAbscond = function (div, players) {
+		if (this.iAbscond) {
+			//console.log("game entity abscond: " + this.session.session_id);
+			div.append("<Br><img src = 'images/sceneIcons/abscond_icon.png'> The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
+			return;
+		} else {
+			//console.log("players abscond: " + this.session.session_id);
+			div.append("<Br><img src = 'images/sceneIcons/abscond_icon.png'> The strife is over due to a lack of player presence. ");
+			return;
+		}
+
+	}
+
+
+	this.strife = function (div, players, numTurns) {
+		console.log("Starting strife between ", this, "and players ", players.join(","));
+
+		this.resetPlayersAvailability(players);
+		if (numTurns == 0) {
+
+			div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
+		}
+		numTurns += 1;
+
+		if (this.fightNeedsToEnd(div, players, numTurns)) {
+			this.ending(div, players, numTurns);
+			return;
+		}
+
+		//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
+		div.append("<br><Br>")
+		//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
+		if (getAverageMobility(players) > this.getStat("mobility")) { //players turn
+			if (!this.fightOverAbscond(div, players)) this.playersTurn(div, players, numTurns);
+			if (this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players, numTurns);
+		} else { //my turn
+			if (this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players, numTurns);
+			if (!this.fightOverAbscond(div, players)) this.playersTurn(div, players, numTurns);
+		}
+
+		if (this.fightOver(div, players)) {
+			this.ending(div, players);
+			return;
+		} else {
+			if (this.fightOverAbscond(div, players)) {
+				this.processAbscond(div, players);
+				this.ending(div, players);
+				return;
+			}
+			return this.strife(div, players, numTurns);
+		}
+	}
+
+	this.checkForAPulse = function (player, attacker) {
+		if (player.getStat("currentHP") <= 0) {
+			//console.log("Checking hp to see if" + player.htmlTitleHP() +"  is  dead");
+			var cod = "fighting the " + attacker.htmlTitle();
+			if (this.name == "Jack") {
+				cod = "after being shown too many stabs from Jack";
+			} else if (this.name == "Black King") {
+
+				cod = "fighting the Black King";
+			}
+			player.makeDead(cod);
+			//console.log("Returning that " + player.htmlTitleHP() +"  is  dead");
+			return false;
+		}
+		//console.log("Returning that " + player.htmlTitleHP() +"  is not dead");
+		return true;
+	}
+
+	//return true if you did.
+	//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players. lol
+	this.useFraymotif = function (div, owner, allies, enemies) {
+		var living_enemies = this.getLivingMinusAbsconded(enemies);
+		var living_allies = this.getLivingMinusAbsconded(allies)
+		if (Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
+		var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, living_allies, enemies);
+		if (owner.crowned) { //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
+			usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, living_allies, enemies))
+		}
+		if (usableFraymotifs.length == 0) return false;
+
+		var mine = owner.getStat("sanity")
+		var theirs = getAverageSanity(living_enemies)
+		if (mine + 200 < theirs && Math.seededRandom() < 0.5) {
+			console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() + " against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+			div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
+			return false;
+		}
+		mine = owner.getStat("freeWill")
+		theirs = getAverageFreeWill(living_enemies)
+		if (mine + 200 < theirs && Math.seededRandom() < 0.5) {
+			console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() + " against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+			div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
+			return false;
+		}
+
+		var chosen = usableFraymotifs[0];
+		for (var i = 0; i < usableFraymotifs.length; i++) {
+			var f = usableFraymotifs[i];
+			if (f.tier > chosen.tier) {
+				chosen = f; //more stronger is more better (refance)
+			} else if (f.tier == chosen.tier && f.aspects.length > chosen.aspects.length) {
+				chosen = f; //all else equal, prefer the one with more members.
+			}
+		}
+
+
+		div.append("<Br><br>" + chosen.useFraymotif(owner, living_allies, living_enemies) + "<br><Br>");
+		chosen.usable = false;
+		return true;
+	}
+
+	//hopefully either player or gameEntity can call this.
+	this.aggrieve = function (div, offense, defense) {
+		//mobility, luck hp, and power are used here.
+		var ret = "<br><Br> The " + offense.htmlTitleHP() + " targets the " + defense.htmlTitleHP() + ". ";
+		if (defense.dead) ret += " Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!"
+		div.append(ret);
+
+		//luck dodge
+		//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
+		//console.log("gonna roll for luck.")
+		if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
+			console.log("Luck counter: " + defense.htmlTitleHP() + this.session.session_id);
+			div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!");
+			offense.currentHP += -1 * offense.getStat("power") / 10; //damaged by your own power.
+			//this.processDeaths(div, offense, defense)
+			return;
+		} else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
+			console.log("Luck dodge: " + defense.htmlTitleHP() + this.session.session_id);
+			div.append("The attack misses completely after an unlucky distraction.");
+			return;
+		}
+		//mobility dodge
+		var rand = getRandomInt(1, 100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
+		if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 && rand > 25) {
+			console.log("Mobility counter: " + defense.htmlTitleHP() + this.session.session_id);
+			ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP());
+			if (defense.getStat("currentHP") > 0) {
+				ret += ". They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in."
+				offense.currentHP += -1 * defense.getStat("power");
+			} else {
+				ret += ". They miss pretty damn hard. "
+			}
+			div.append(ret + " ");
+			//this.processDeaths(div, offense, defense)
+
+			return;
+		} else if (defense.getStat("mobility") > offense.getStat("mobility") * 5 + 100 && rand > 25) {
+			console.log("Mobility dodge: " + defense.htmlTitleHP() + this.session.session_id);
+			div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
+			return;
+		}
+		//base damage
+		var hit = offense.getStat("power");
+		offenseRoll = offense.rollForLuck();
+		defenseRoll = defense.rollForLuck();
+		//critical/glancing hit odds.
+		if (defenseRoll > offenseRoll * 2) { //glancing blow.
+			//console.log("Glancing Hit: " + this.session.session_id);
+			hit = hit / 2;
+			div.append(" The attack manages to not hit anything too vital. ");
+		} else if (offenseRoll > defenseRoll * 2) {
+			//console.log("Critical hit.")
+			////console.log("Critical Hit: " + this.session.session_id);
+			hit = hit * 2;
+			div.append(" Ouch. That's gonna leave a mark. ");
+		} else {
+			//console.log("a hit.")
+			div.append(" A hit! ");
+		}
+
+
+		defense.currentHP += -1 * hit;
+		//this.processDeaths(div, offense, defense)
+	}
+
+	//7/4/17 modded so thta either offense of defense can be multiple things. needed cause fraymotifs can kill multiple ppl
+	this.processDeaths = function (div, offense, defense) {
+		var dead_o = [];
+		var dead_d = [];
+		for (var i = 0; i < offense.length; i++) {
+			var o = offense[i]
+			if (!o.dead) { //if you are already dead, don't bother.
+				for (var j = 0; j < defense.length; j++) {
+					var d = defense[j];
+					if (!d.dead) {
+						var o_alive = this.checkForAPulse(o, d);
+						o.interactionEffect(d);
+						if (!this.checkForAPulse(d, o)) {
+							dead_d.push(d);
+						}
+						if (!this.checkForAPulse(o, d)) {
+							dead_o.push(o);
+						}
+					}
+				}
+			}
+		}
+		var ret = "";
+		if (dead_o.length > 1) {
+			ret = " The " + getPlayersTitlesHP(dead_o) + "are dead. "
+		} else if (dead_o.length == 1) {
+			ret += " The " + getPlayersTitlesHP(dead_o) + "is dead. "
+		}
+
+		if (dead_d.length > 1) {
+			ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. "
+		} else if (dead_d.length == 1) {
+			if (dead_d[0].getStat("currentHP" > 0)) alert("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
+			ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. "
+		}
+
+		div.append(ret);
+	}
+
+	//higher the free will, smarter the ai. more likely to do special things.
+	this.myTurn = function (div, players, numTurns) {
+		//console.log("Hp during my turn is: " + this.getStat("currentHP"))
+		//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
+		//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
+		var living_enemies = this.getLivingMinusAbsconded(players);
+		if (living_enemies.length == 0) return; //there is no one left to fight
+
+		div.append(this.describeBuffs());
+
+		if (!this.willIAbscond(div, players, numTurns) && !this.useFraymotif(div, this, [this], players)) {
+			var target = this.chooseTarget(players)
+			if (target) this.aggrieve(div, this, target);
+		}
+		this.processDeaths(div, [this], players);
+	}
+
+	this.modPowerBoostByClass = function (powerBoost, stat) {
 		switch (this.class_name) {
 			case "Knight":
-				if(stat.multiplier > 0){
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 2;
-				}else{
+				} else {
 					powerBoost = powerBoost * 0.5
 				}
 				break;
-            case "Scout":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 2;
-                }else{
-                    powerBoost = powerBoost * 0.5
-                }
-                break;
-            case "Guide":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 2;
-                }else{
-                    powerBoost = powerBoost * 0.5
-                }
-                break;
-			case  "Seer":
-				if(stat.multiplier > 0){
+			case "Scout":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 2;
-				}else{
+				} else {
+					powerBoost = powerBoost * 0.5
+				}
+				break;
+			case "Guide":
+				if (stat.multiplier > 0) {
+					powerBoost = powerBoost * 2;
+				} else {
+					powerBoost = powerBoost * 0.5
+				}
+				break;
+			case "Seer":
+				if (stat.multiplier > 0) {
+					powerBoost = powerBoost * 2;
+				} else {
 					powerBoost = powerBoost * 2.5
 				}
 				break;
-			case  "Bard":
-				if(stat.multiplier > 0){
+			case "Bard":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * -0.5; //good things invert to bad.
-				}else{
+				} else {
 					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
 				}
 				break;
-			case  "Heir":
+			case "Heir":
 				powerBoost = powerBoost * 1.5;
 				break;
-			case  "Maid":
+			case "Maid":
 				powerBoost = powerBoost * 1.5;
 				break;
-			case  "Rogue":
+			case "Rogue":
 				powerBoost = powerBoost * 0.5;
 				break;
-			case  "Page":
-				if(stat.multiplier > 0){
+			case "Page":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 2;
-				}else{
+				} else {
 					powerBoost = powerBoost * 0.5
 				}
 				break;
-			case  "Thief":
+			case "Thief":
 				powerBoost = powerBoost * 0.5;
 				break;
-			case  "Sylph":
-				if(stat.multiplier > 0){
+			case "Sylph":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 0.5;
-				}else{
+				} else {
 					powerBoost = powerBoost * -0.5
 				}
 				break;
-			case  "Prince":
-				if(stat.multiplier > 0){
+			case "Prince":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * -0.5; //good things invert to bad.
-				}else{
+				} else {
 					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
 				}
 				break;
-			case  "Witch":
-				if(stat.multiplier > 0){
+			case "Witch":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 0.5;
-				}else{
-					powerBoost = powerBoost *-0.5
+				} else {
+					powerBoost = powerBoost * -0.5
 				}
 				break;
-			case  "Mage":
-				if(stat.multiplier > 0){
+			case "Mage":
+				if (stat.multiplier > 0) {
 					powerBoost = powerBoost * 2;
-				}else{
+				} else {
 					powerBoost = powerBoost * 2.5
 				}
 				break;
 
-			case  "Sage":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 1;
-                }else{
-                    powerBoost = powerBoost * 0.25
-                }
-                break;
+			case "Sage":
+				if (stat.multiplier > 0) {
+					powerBoost = powerBoost * 1;
+				} else {
+					powerBoost = powerBoost * 0.25
+				}
+				break;
 
-            case  "Scribe":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 1;
-                }else{
-                    powerBoost = powerBoost * 0.25
-                }
-                break;
+			case "Scribe":
+				if (stat.multiplier > 0) {
+					powerBoost = powerBoost * 1;
+				} else {
+					powerBoost = powerBoost * 0.25
+				}
+				break;
 
-			case  "Waste":
-				powerBoost = powerBoost * 0;  //wastes WASTE their abilities, until the cataclysm.
+			case "Waste":
+				powerBoost = powerBoost * 0; //wastes WASTE their abilities, until the cataclysm.
 				break;
 			default:
 				console.log('What the hell kind of class is ' + this.class_name + '???');
@@ -1178,42 +1830,42 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return powerBoost;
 	}
 
-	this.resetFraymotifs = function(){
-		for(var i = 0; i<this.fraymotifs.length; i++){
+	this.resetFraymotifs = function () {
+		for (var i = 0; i < this.fraymotifs.length; i++) {
 			this.fraymotifs[i].usable = true;
 		}
 	}
 
-	this.processStatPowerIncrease = function(powerBoost, stat){
-		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
-		if(this.isActive()){ //modify me
+	this.processStatPowerIncrease = function (powerBoost, stat) {
+		var powerBoost = this.modPowerBoostByClass(powerBoost, stat);
+		if (this.isActive()) { //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
-		}else{  //modify others.
-			powerBoost = 1* powerBoost; //to make up for passives being too nerfed. 1 for you
-			this.modifyAssociatedStat(powerBoost* 0.5, stat); //half for me
-			for(var i = 0; i<this.session.players.length; i++){
-				this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
+		} else { //modify others.
+			powerBoost = 1 * powerBoost; //to make up for passives being too nerfed. 1 for you
+			this.modifyAssociatedStat(powerBoost * 0.5, stat); //half for me
+			for (var i = 0; i < this.session.players.length; i++) {
+				this.session.players[i].modifyAssociatedStat(powerBoost / this.session.players.length, stat);
 			}
 		}
 	}
 
 
-	this.increasePower = function(){
-		if(Math.seededRandom() >.9){
+	this.increasePower = function () {
+		if (Math.seededRandom() > .9) {
 			this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
 		}
 		var powerBoost = 1;
 
-		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
+		if (this.class_name == "Page") { //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;
 		}
 
 
-		if(this.godTier){
-			powerBoost = powerBoost * 20;  //god tiers are ridiculously strong.
+		if (this.godTier) {
+			powerBoost = powerBoost * 20; //god tiers are ridiculously strong.
 		}
 
-		if(this.denizenDefeated){
+		if (this.denizenDefeated) {
 			powerBoost = powerBoost * 2; //permanent doubling of stats forever.
 		}
 
@@ -1221,39 +1873,38 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
-		if(this.godTier || Math.seededRandom() >.85){
+		if (this.godTier || Math.seededRandom() > .85) {
 			this.hp += 5;
 			this.currentHP += 5;
 		}
-		if(this.power > 0) this.power = Math.round(this.power);
+		if (this.power > 0) this.power = Math.round(this.power);
 
 	}
 
-	this.shortLand = function(){
+	this.shortLand = function () {
 		return this.land.match(/\b(\w)/g).join('').toUpperCase();
 	}
 
-	this.htmlTitle = function(){
+	this.htmlTitle = function () {
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
 	}
 
 
-
-	this.htmlTitleBasic = function(){
+	this.htmlTitleBasic = function () {
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
 
-	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP"))+ "hp, " + Math.round(this.getStat("power")) + " power)</font>"
+	this.htmlTitleHP = function () {
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
 	}
 
-	this.generateBlandRelationships = function(friends){
-		for(var i = 0; i<friends.length; i++){
-			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
+	this.generateBlandRelationships = function (friends) {
+		for (var i = 0; i < friends.length; i++) {
+			if (friends[i] != this) { //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
 				var r = randomBlandRelationship(friends[i])
-				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
+				if (this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d") {
 					r.value = -20; //biological imperitive to fight for throne.
 					this.sanity += -100;
 					friends[i].sanity += -100;
@@ -1263,20 +1914,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.generateRelationships = function(friends){
-	//	console.log(this.title() + " generating a relationship with: " + friends.length);
-		for(var i = 0; i<friends.length; i++){
-			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
+	this.generateRelationships = function (friends) {
+		//	console.log(this.title() + " generating a relationship with: " + friends.length);
+		for (var i = 0; i < friends.length; i++) {
+			if (friends[i] != this) { //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
 				var r = randomRelationship(friends[i])
-				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
+				if (this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d") {
 					r.value = -20; //biological imperitive to fight for throne.
 					this.sanity += -10;
 					friends[i].sanity += -10;
 				}
 				this.relationships.push(r);
-			}else{
+			} else {
 				//console.log(this.title() + "Not generating a relationship with: " + friends[i].title());
 			}
 		}
@@ -1284,55 +1935,55 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	}
 
-	this.checkBloodBoost = function(players){
-		if(this.aspect == "Blood"){
-			for(var i = 0; i<players.length; i++){
+	this.checkBloodBoost = function (players) {
+		if (this.aspect == "Blood") {
+			for (var i = 0; i < players.length; i++) {
 				players[i].boostAllRelationships();
 			}
 		}
 	}
 
-	this.nullAllRelationships = function(){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.nullAllRelationships = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
 			this.relationships[i].value = 0;
 			this.relationships[i].saved_type = this.relationships[i].neutral;
 		}
 	}
 	//you like people more
-	this.boostAllRelationships = function(){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.boostAllRelationships = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
 			this.relationships[i].increase();
 		}
 	}
 
-	this.boostAllRelationshipsBy = function(boost){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.boostAllRelationshipsBy = function (boost) {
+		for (var i = 0; i < this.relationships.length; i++) {
 			this.relationships[i].value += boost;
 		}
 	}
 
 	//you like people less
-	this.damageAllRelationships = function(){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.damageAllRelationships = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
 			this.relationships[i].decrease();
 		}
 	}
 
-	this.boostAllRelationshipsWithMeBy = function(boost){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.boostAllRelationshipsWithMeBy = function (boost) {
+		for (var i = 0; i < this.relationships.length; i++) {
 			var player = this.relationships[i].target
 			var r = this.getRelationshipWith(player)
-			if(r){
+			if (r) {
 				r.value += boost;
 			}
 		}
 	}
 	//people like you more
-	this.boostAllRelationshipsWithMe = function(){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.boostAllRelationshipsWithMe = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
 			var player = this.relationships[i].target
 			var r = this.getRelationshipWith(player)
-			if(r){
+			if (r) {
 				r.increase();
 			}
 		}
@@ -1344,57 +1995,57 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//she'll help me make sure i don't make everything boring implmeenting luck.
 	//luck can absolutely be negative. thems the breaks.
 	//if i pass a stat, then i want you to only look at one luck stat not the other.
-	this.rollForLuck = function(stat){
-		if(!stat){
-		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
-		}else{
-		    //don't care if it's min or max, just compare it to zero.
-		    return getRandomInt(0, this.getStat(stat));
+	this.rollForLuck = function (stat) {
+		if (!stat) {
+			return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+		} else {
+			//don't care if it's min or max, just compare it to zero.
+			return getRandomInt(0, this.getStat(stat));
 		}
 
 	}
 
 	//people like you less
-	this.damageAllRelationshipsWithMe = function(){
-		for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+	this.damageAllRelationshipsWithMe = function () {
+		for (var i = 0; i < curSessionGlobalVar.players.length; i++) {
 			var r = this.getRelationshipWith(curSessionGlobalVar.players[i])
-			if(r){
+			if (r) {
 				r.decrease();
 			}
 		}
 	}
 
-	this.getAverageRelationshipValue = function(){
-		if(this.relationships.length == 0) return 0;
+	this.getAverageRelationshipValue = function () {
+		if (this.relationships.length == 0) return 0;
 		var ret = 0;
-		for(var i = 0; i< this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			ret += this.relationships[i].value;
 		}
-		return ret/this.relationships.length;
+		return ret / this.relationships.length;
 	}
 
 	//and they need to be alive.
-	this.hasDiamond = function(){
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].saved_type == this.relationships[i].diamond && !this.relationships[i].target.dead ){
+	this.hasDiamond = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].saved_type == this.relationships[i].diamond && !this.relationships[i].target.dead) {
 				return this.relationships[i].target;
 			}
 		}
 		return null;
 	}
 
-	this.hasDeadDiamond = function(){
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].saved_type == this.relationships[i].diamond && this.relationships[i].target.dead ){
+	this.hasDeadDiamond = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].saved_type == this.relationships[i].diamond && this.relationships[i].target.dead) {
 				return this.relationships[i].target;
 			}
 		}
 		return null;
 	}
 
-	this.hasDeadHeart = function(){
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].saved_type == this.relationships[i].heart && this.relationships[i].target.dead ){
+	this.hasDeadHeart = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].saved_type == this.relationships[i].heart && this.relationships[i].target.dead) {
 				return this.relationships[i].target;
 			}
 		}
@@ -1402,89 +2053,88 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 
-
-	this.getRelationshipWith = function(player){
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].target == player){
+	this.getRelationshipWith = function (player) {
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].target == player) {
 				return this.relationships[i];
 			}
 		}
 	}
 
-	this.getWhoLikesMeBestFromList = function(potentialFriends){
+	this.getWhoLikesMeBestFromList = function (potentialFriends) {
 		var bestRelationshipSoFar = this.relationships[0];
 		var friend = bestRelationshipSoFar.target;
-		for(var i = 0; i<potentialFriends.length; i++){
-			var p =  potentialFriends[i];
-			if(p!=this){
+		for (var i = 0; i < potentialFriends.length; i++) {
+			var p = potentialFriends[i];
+			if (p != this) {
 				var r = p.getRelationshipWith(this);
-				if(r && r.value > bestRelationshipSoFar.value){
+				if (r && r.value > bestRelationshipSoFar.value) {
 					bestRelationshipSoFar = r;
 					friend = p;
 				}
 			}
 		}
 		//can't be my best friend if they're an enemy
-		if(bestRelationshipSoFar.value > 0 && potentialFriends.indexOf(friend) != -1){
+		if (bestRelationshipSoFar.value > 0 && potentialFriends.indexOf(friend) != -1) {
 			return friend;
 		}
 	}
 
-	this.getWhoLikesMeLeastFromList = function(potentialFriends){
+	this.getWhoLikesMeLeastFromList = function (potentialFriends) {
 		var worstRelationshipSoFar = this.relationships[0];
 		var enemy = worstRelationshipSoFar.target;
-		for(var i = 0; i<potentialFriends.length; i++){
-			var p =  potentialFriends[i];
-			if(p != this){
+		for (var i = 0; i < potentialFriends.length; i++) {
+			var p = potentialFriends[i];
+			if (p != this) {
 				var r = p.getRelationshipWith(this);
-				if(r && r.value < worstRelationshipSoFar.value){
+				if (r && r.value < worstRelationshipSoFar.value) {
 					worstRelationshipSoFar = r;
 					enemy = p;
 				}
 			}
 		}
 		//can't be my worst enemy if they're a friend.
-		if(worstRelationshipSoFar.value < 0 && potentialFriends.indexOf(enemy) != -1){
+		if (worstRelationshipSoFar.value < 0 && potentialFriends.indexOf(enemy) != -1) {
 			return enemy;
 		}
 	}
 
-	this.hasRelationshipDrama = function(){
-		for(var i = 0; i<this.relationships.length; i++){
+	this.hasRelationshipDrama = function () {
+		for (var i = 0; i < this.relationships.length; i++) {
 			this.relationships[i].type(); //check to see if there is a relationship change.
-			if(this.relationships[i].drama){
+			if (this.relationships[i].drama) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	this.getRelationshipDrama = function(){
+	this.getRelationshipDrama = function () {
 		var ret = [];
-		for(var i = 0; i<this.relationships.length; i++){
+		for (var i = 0; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.drama){
+			if (r.drama) {
 				ret.push(r);
 			}
 		}
 		return ret;
 	}
 
-	this.getChatFontColor = function(){
-		if(this.isTroll){
+	this.getChatFontColor = function () {
+		if (this.isTroll) {
 			return this.bloodColor;
-		}else{
+		} else {
 			return getColorFromAspect(this.aspect);
 		}
 	}
 
-	this.getFriendsFromList = function(potentialFriends){
+	this.getFriendsFromList = function (potentialFriends) {
 		var ret = [];
-		for(var i = 0; i<potentialFriends.length; i++){
-			var p =  potentialFriends[i];
-			if(p!=this){
+		for (var i = 0; i < potentialFriends.length; i++) {
+			var p = potentialFriends[i];
+			if (p != this) {
 				var r = this.getRelationshipWith(potentialFriends[i]);
-				if(r.value > 0){
+				if (r && r.value > 0) {
 					ret.push(p);
 				}
 			}
@@ -1492,13 +2142,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ret;
 	}
 
-	this.getEnemiesFromList = function(potentialEnemies){
+	this.getEnemiesFromList = function (potentialEnemies) {
 		var ret = [];
-		for(var i = 0; i<potentialEnemies.length; i++){
-			var p =  potentialEnemies[i];
-			if(p!=this){
+		for (var i = 0; i < potentialEnemies.length; i++) {
+			var p = potentialEnemies[i];
+			if (p != this) {
 				var r = this.getRelationshipWith(potentialEnemies[i]);
-				if(r.value < 0){
+				if (r.value < 0) {
 					ret.push(p);
 				}
 			}
@@ -1506,11 +2156,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ret;
 	}
 
-	this.getLowestRelationshipValue = function(){
+	this.getLowestRelationshipValue = function () {
 		var worstRelationshipSoFar = this.relationships[0];
-		for(var i = 1; i<this.relationships.length; i++){
+		for (var i = 1; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.value < worstRelationshipSoFar.value){
+			if (r.value < worstRelationshipSoFar.value) {
 				worstRelationshipSoFar = r;
 			}
 		}
@@ -1520,74 +2170,72 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//checks array of buffs, and adds up all buffs that effect a given stat.
 	//useful so combat can now how to describe status.
-	this.getTotalBuffForStat = function(statName){
-	    var ret = 0;
-	    for(var i = 0; i<this.buffs.length; i++){
-	        var b = this.buffs[i];
-	        if(b.name == statName) ret += b.value;
-	    }
-	    return ret;
+	this.getTotalBuffForStat = function (statName) {
+		var ret = 0;
+		for (var i = 0; i < this.buffs.length; i++) {
+			var b = this.buffs[i];
+			if (b.name == statName) ret += b.value;
+		}
+		return ret;
 	}
 
-	this.humanWordForBuffNamed = function(statName){
-        if(statName == "MANGRIT") return "powerful"
-        if(statName == "hp") return "sturdy"
-        if(statName == "RELATIONSHIPS") return "friendly"
-        if(statName == "mobility") return "fast"
-        if(statName == "sanity") return "calm"
-        if(statName == "freeWill") return "willful"
-        if(statName == "maxLuck") return "lucky"
-        if(statName == "minLuck") return "lucky"
-        if(statName == "alchemy") return "creative"
+	this.humanWordForBuffNamed = function (statName) {
+		if (statName == "MANGRIT") return "powerful"
+		if (statName == "hp") return "sturdy"
+		if (statName == "RELATIONSHIPS") return "friendly"
+		if (statName == "mobility") return "fast"
+		if (statName == "sanity") return "calm"
+		if (statName == "freeWill") return "willful"
+		if (statName == "maxLuck") return "lucky"
+		if (statName == "minLuck") return "lucky"
+		if (statName == "alchemy") return "creative"
 	}
 
 	//used for strifes.
-	this.describeBuffs = function(){
-	    var ret = [];
-	    var allStats = this.allStats();
-	    for(var i = 0; i<allStats.length; i++){
-	        var b = this.getTotalBuffForStat(allStats[i]);
-	        //only say nothing if equal to zero
-	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
-	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
-	    }
-	    if(ret.length == 0) return "";
-	    //console.log("buffs printing out in: " + this.session.session_id);
-	    return "<Br><Br>" +this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
+	this.describeBuffs = function () {
+		var ret = [];
+		var allStats = this.allStats();
+		for (var i = 0; i < allStats.length; i++) {
+			var b = this.getTotalBuffForStat(allStats[i]);
+			//only say nothing if equal to zero
+			if (b > 0) ret.push("more " + this.humanWordForBuffNamed(allStats[i]));
+			if (b < 0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+		}
+		if (ret.length == 0) return "";
+		//console.log("buffs printing out in: " + this.session.session_id);
+		return "<Br><Br>" + this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
 	}
 
 	//remember that hp and currentHP are different things.
-	this.getStat = function(statName){
-		var ret =  0;
-		if(statName == "RELATIONSHIPS"){ //relationships, why you so cray cray???
+	this.getStat = function (statName) {
+		var ret = 0;
+		if (statName == "RELATIONSHIPS") { //relationships, why you so cray cray???
 
-			for(var i = 0; i<this.relationships.length; i++){
-                ret += this.relationships[i].value;
-            }
-		} else if(statName == "power" ){
-		    ret += this[statName];
-		    ret += this.permaBuffs["MANGRIT"] //needed because if i mod power directly, it effects all future progress in an unbalanced way.
-		}else{
-		    ret += this[statName]
+			for (var i = 0; i < this.relationships.length; i++) {
+				ret += this.relationships[i].value;
+			}
+		} else if (statName == "power") {
+			ret += this[statName];
+			ret += this.permaBuffs["MANGRIT"] //needed because if i mod power directly, it effects all future progress in an unbalanced way.
+		} else {
+			ret += this[statName]
 		}
 
-		for(var i = 0; i<this.buffs.length; i++){
+		for (var i = 0; i < this.buffs.length; i++) {
 			var b = this.buffs[i];
-			if(b.name == statName) ret += b.value;
+			if (b.name == statName) ret += b.value;
 		}
 
-		if(statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
+		if (statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
 		return Math.round(ret);
 	}
 
 
-
-
-	this.getHighestRelationshipValue = function(){
+	this.getHighestRelationshipValue = function () {
 		var bestRelationshipSoFar = this.relationships[0];
-		for(var i = 1; i<this.relationships.length; i++){
+		for (var i = 1; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.value > bestRelationshipSoFar.value){
+			if (r.value > bestRelationshipSoFar.value) {
 				bestRelationshipSoFar = r;
 			}
 		}
@@ -1595,243 +2243,284 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 
-	this.getBestFriend = function(){
+	this.getBestFriend = function () {
 		var bestRelationshipSoFar = this.relationships[0];
-		for(var i = 1; i<this.relationships.length; i++){
+		for (var i = 1; i < this.relationships.length; i++) {
 			var r = this.relationships[i];
-			if(r.value > bestRelationshipSoFar.value){
+			if (r.value > bestRelationshipSoFar.value) {
 				bestRelationshipSoFar = r;
 			}
 		}
 		return bestRelationshipSoFar.target;
 	}
 
-	this.getBestFriendFromList = function(potentialFriends, debugCallBack){
+	this.getBestFriendFromList = function (potentialFriends, debugCallBack) {
 		var bestRelationshipSoFar = this.relationships[0];
-		for(var i = 0; i<potentialFriends.length; i++){
-			var p =  potentialFriends[i];
-			if(p!=this){
+		for (var i = 0; i < potentialFriends.length; i++) {
+			var p = potentialFriends[i];
+			if (p != this) {
 				var r = this.getRelationshipWith(p);
-				if(!r){
+				if (!r) {
 					//console.log("Couldn't find relationships between " + this.chatHandle + " and " + p.chatHandle);
 					//console.log(debugCallBack)
 					//console.log(potentialFriends);
 					//console.log(this);
 				}
-				if(r.value > bestRelationshipSoFar.value){
+				if (r.value > bestRelationshipSoFar.value) {
 					bestRelationshipSoFar = r;
 				}
 			}
 		}
 		//can't be my best friend if they're an enemy
 		//I SHOULD NOT HAVE A RELATIONSHIP WITH MYSELF. but if i do, don't return it.
-		if(bestRelationshipSoFar.value > 0 && bestRelationshipSoFar.target != this){
+		if (bestRelationshipSoFar.value > 0 && bestRelationshipSoFar.target != this) {
 			return bestRelationshipSoFar.target;
 		}
 	}
 
-	this.getWorstEnemyFromList = function(potentialFriends){
+	this.getWorstEnemyFromList = function (potentialFriends) {
 		var worstRelationshipSoFar = this.relationships[0];
-		for(var i = 0; i<potentialFriends.length; i++){
-			var p =  potentialFriends[i];
-			if(p!=this){
+		for (var i = 0; i < potentialFriends.length; i++) {
+			var p = potentialFriends[i];
+			if (p != this) {
 				var r = this.getRelationshipWith(potentialFriends[i]);
-				if(r.value < worstRelationshipSoFar.value){
+				if (r.value < worstRelationshipSoFar.value) {
 					worstRelationshipSoFar = r;
 				}
 			}
 		}
 		//can't be my worst enemy if they're a friend.
 		//I SHOULD NOT HAVE A RELATIONSHIP WITH MYSELF. but if i do, don't return it.
-		if(worstRelationshipSoFar.value < 0 && worstRelationshipSoFar.target != this){
+		if (worstRelationshipSoFar.value < 0 && worstRelationshipSoFar.target != this) {
 			return worstRelationshipSoFar.target;
 		}
 	}
 
-	this.getFriends = function(){
+	this.getFriends = function () {
 		var ret = [];
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].value > 0){
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].value > 0) {
 				ret.push(this.relationships[i].target);
 			}
 		}
 		return ret;
 	}
 
-	this.getEnemies = function(){
+	this.getEnemies = function () {
 		var ret = [];
-		for(var i = 0; i<this.relationships.length; i++){
-			if(this.relationships[i].value < 0){
-				ret.push( this.relationships[i].target);
+		for (var i = 0; i < this.relationships.length; i++) {
+			if (this.relationships[i].value < 0) {
+				ret.push(this.relationships[i].target);
 			}
 		}
 		return ret;
 	}
 
-	this.highInit = function(){
-		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
+	this.highInit = function () {
+		return (this.class_name == "Rogue" || this.class_name == "Sage" || this.class_name == "Waste" || this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid" || this.class_name == "Mage" || this.class_name == "Sylph" || this.class_name == "Prince")
 	}
 
-	this.initializeLuck = function(){
-		this.minLuck = getRandomInt(0,-10); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(10,1);   //max needs to be more than min.
-		if(this.trickster && this.aspect != "Doom"){
+	this.initializeLuck = function () {
+		this.minLuck = getRandomInt(0, -10); //middle of the road.
+		this.maxLuck = this.minLuck + getRandomInt(10, 1); //max needs to be more than min.
+		if (this.trickster && this.aspect != "Doom") {
 			this.minLuck = 11111111111;
 			this.maxLuck = 11111111111;
 		}
 
 	}
 
-	this.decideTroll = function decideTroll(player){
-		if(this.session.getSessionType() == "Human"){
+	this.decideTroll = function decideTroll(player) {
+		if (this.session.getSessionType() == "Human") {
 			this.hairColor = getRandomElementFromArray(human_hair_colors);
 			return;
 		}
 
-		if(this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
+		if (this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" && Math.seededRandom() > 0.5)) {
 			this.isTroll = true;
 			this.hairColor = "#000000"
 			this.decideHemoCaste();
 			this.decideLusus();
 			this.object_to_prototype = this.lusus;
-		}else{
+		} else {
 			this.hairColor = getRandomElementFromArray(human_hair_colors);
 		}
 	}
 
-	this.initializeFreeWill = function(){
-		this.freeWill = getRandomInt(-10,10);
-		if(this.trickster && this.aspect != "Doom"){
+	this.initializeFreeWill = function () {
+		this.freeWill = getRandomInt(-10, 10);
+		if (this.trickster && this.aspect != "Doom") {
 			this.freeWill = 11111111111;
 		}
 	}
 
-	this.initializeHP= function(){
-		this.hp = getRandomInt(40,60);
+	this.initializeHP = function () {
+		this.hp = getRandomInt(40, 60);
 		this.currentHP = this.hp;
-		if(this.trickster && this.aspect != "Doom"){
+		if (this.trickster && this.aspect != "Doom") {
 			this.currentHP = 11111111111;
 			this.hp = 11111111111;
 		}
 
-		if(this.isTroll && this.bloodColor != "#ff0000"){
+		if (this.isTroll && this.bloodColor != "#ff0000") {
 			this.currentHP += bloodColorToBoost(this.bloodColor);
 			this.hp += bloodColorToBoost(this.bloodColor);
 		}
 	}
 
-	this.initSpriteCanvas = function(){
+	this.initSpriteCanvas = function () {
 		//console.log("Initializing derived stuff.")
-		this.spriteCanvasID = this.id+"spriteCanvas";
-		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+		this.spriteCanvasID = this.id + "spriteCanvas";
+		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID + "' width='" + 400 + "' height=" + 300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)
 	}
 
-	this.renderSelf = function(){
-		if(!this.spriteCanvasID) this.initSpriteCanvas();
+	this.renderSelf = function () {
+		if (!this.spriteCanvasID) this.initSpriteCanvas();
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 
-		var ctx = canvasDiv.getContext("2d");
-		this.clearSelf();
-		//var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(document.getElementById("sprite_template"));
-		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteFromScratch(pSpriteBuffer, this);
-		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
-		//this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
-		//this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+		if (canvasDiv) {
+			var ctx = canvasDiv.getContext("2d");
+			this.clearSelf();
+			//var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(document.getElementById("sprite_template"));
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteFromScratch(pSpriteBuffer, this);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, 0, 0)
+			//this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
+			//this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+		}
 	}
 
-	this.clearSelf = function(){
+	this.clearSelf = function () {
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 		var ctx = canvasDiv.getContext("2d");
 		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height)
 	}
 
-	this.initializeMobility = function(){
-		this.mobility = getRandomInt(0,10);
-		if(this.trickster && this.aspect != "Doom"){
+	this.initializeMobility = function () {
+		this.mobility = getRandomInt(0, 10);
+		if (this.trickster && this.aspect != "Doom") {
 			this.mobility = 11111111111;
 		}
 	}
 
-	this.initializeSanity = function(){
-		this.sanity = getRandomInt(-10,10);
+	this.initializeSanity = function () {
+		this.sanity = getRandomInt(-10, 10);
 	}
 
 	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
-	this.initializeRelationships = function(){
-		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart"){
-		for(var k = 0; k <this.relationships.length; k++){
+	this.initializeRelationships = function () {
+		if (this.trickster && this.aspect != "Doom" && this.aspect != "Heart") {
+			for (var k = 0; k < this.relationships.length; k++) {
 				var r = this.relationships[k];
 				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
 				r.saved_type = r.goodBig;
 			}
 		}
 
-		if(this.isTroll && this.bloodColor == "#99004d"){
-			for(var i = 0; i<this.relationships.length; i++){
+		if (this.isTroll && this.bloodColor == "#99004d") {
+			for (var i = 0; i < this.relationships.length; i++) {
 				//needs to be part of this in ADDITION to initialization because what about custom players now.
 				var r = this.relationships[i];
-				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
+				if (this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d") {
 					r.value = -20; //biological imperitive to fight for throne.
 					this.sanity += -10;
 					r.target.sanity += -10;
 				}
 			}
 		}
-        console.log("initializing relationships")
-		if(this.robot || this.grimDark>1){ //you can technically start grimDark
-			for(var k = 0; k <this.relationships.length; k++){
-					var r = this.relationships[k];
-					r.value = 0; //robots are tin cans with no feelings
-					r.saved_type = r.neutral;
-					r.old_type = r.neutral;
-				}
+		console.log("initializing relationships")
+		if (this.robot || this.grimDark > 1) { //you can technically start grimDark
+			for (var k = 0; k < this.relationships.length; k++) {
+				var r = this.relationships[k];
+				r.value = 0; //robots are tin cans with no feelings
+				r.saved_type = r.neutral;
+				r.old_type = r.neutral;
+			}
 		}
 	}
 
-	this.getNewFraymotif = function(helper){
+	//returns true if the player can help somebody revive. auto false if they are the wrong claspect.
+	this.playerHelpGhostRevive = function (div, player, players) {
+		if (player.aspect != "Life" && player.aspect != "Doom") return false;
+		if (player.class_name != "Rogue" && player.class_name != "Maid") return false;
+		var dead = findDeadPlayers(players);
+		dead = this.removeAllNonPlayers(dead);
+		if (dead.length == 0) return false;
+		console.log(dead.length + " need be helping!!!")
+		var deadPlayer = getRandomElementFromArray(dead) //heal random 'cause oldest could be doomed time clone'
+		if (deadPlayer.doomed) return false; //doomed players can't be healed. sorry.
+		//alright. I'm the right player. there's a dead player in this battle. now for the million boondollar question. is there an undrained ghost?
+		var ghost = this.session.afterLife.findAnyUndrainedGhost(player);
+		var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+		if (!ghost || ghost == myGhost) return false;
+		console.log("helping a corpse revive during a battle in session: " + this.session.session_id)
+		ghost.causeOfDrain = deadPlayer.titleBasic();
+		var text = "<Br><Br>The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
+		if (player.class_name == "Rogue") {
+			text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitleBasic() + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
+		} else if (player.class_name == "Maid") {
+			text += " The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitleBasic() + " in order to revive and continue their fight. It will be a while before the ghost recovers.";
+		}
+		div.append(text);
+		var canvas = drawReviveDead(div, deadPlayer, ghost, player.aspect);
+		if (canvas) {
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer, player)
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0)
+		}
+		removeFromArray(myGhost, this.session.afterLife.ghosts);
+		deadPlayer.makeAlive();
+		if (player.aspect == "Life") {
+			player.hp += 100; //i won't let you die again.
+		} else if (player.aspect == "Doom") {
+			player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+			div.append("The prophecy is fulfilled. ")
+		}
+	}
+
+	this.getNewFraymotif = function (helper) {
 		var f;
-		if(this.godTier){
+		if (this.godTier) {
 			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 3);
-		}else if (this.denizenDefeated){
+		} else if (this.denizenDefeated) {
 			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 2);
-		}else{
+		} else {
 			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 1);
 		}
 		this.fraymotifs.push(f);
 		return f;
 	}
 
-	this.initializePower = function(){
+	this.initializePower = function () {
 		this.power = 0;
-		if(this.trickster && this.aspect != "Doom"){
+		if (this.trickster && this.aspect != "Doom") {
 			this.power = 11111111111;
 		}
 
-		if(this.robot){
+		if (this.robot) {
 			this.power += 100; //robots are superior
 		}
 
-		if(this.isTroll && this.bloodColor != "#ff0000"){
+		if (this.isTroll && this.bloodColor != "#ff0000") {
 			this.power += bloodColorToBoost(this.bloodColor);
 		}
 	}
 
 
-	this.toDataStrings = function(includeChatHandle){
+	this.toDataStrings = function (includeChatHandle) {
 		var ch = "";
-		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
-		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
+		if (includeChatHandle) ch = sanitizeString(this.chatHandle);
+		var ret = "" + sanitizeString(this.causeOfDrain) + "," + sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
 		return ret;
 	}
 
 	//not compressed
-	this.toOCDataString = function(){
-	    //for now, only extentsion sequence is for classpect. so....
-	   // var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
-	    var x = ""; //come back later to fix this. this.toDataBytes needs to not be a string.
-		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
+	this.toOCDataString = function () {
+		//for now, only extentsion sequence is for classpect. so....
+		// var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
+		var x = ""; //come back later to fix this. this.toDataBytes needs to not be a string.
+		return "b=" + this.toDataBytes() + "&s=" + this.toDataStrings(true) + x;
 	}
 
 	//for now, only type is 1, which is class + aspect.
@@ -1839,40 +2528,40 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	    TODO COMEBACK L8R AND FIX THIS.  needs to return bytes, not string
 	    so byte builder can handle makign the joing x string for mulitple players
 	*/
-	this.toDataBytesX = function(){
-        var builder = new ByteBuilder();
-        var j = this.toJSON();
-        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
-            builder.appendExpGolomb(0) //for length
-            return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
-        }
-        builder.appendExpGolomb(2) //for length
-        builder.appendByte(j.class_name);
-        builder.appendByte(j.aspect);
-        return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
+	this.toDataBytesX = function () {
+		var builder = new ByteBuilder();
+		var j = this.toJSON();
+		if (j.class_name <= 15 && j.aspect <= 15) { //if NEITHER have need of extension, just return size zero
+			builder.appendExpGolomb(0) //for length
+			return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
+		}
+		builder.appendExpGolomb(2) //for length
+		builder.appendByte(j.class_name);
+		builder.appendByte(j.aspect);
+		return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 
-    //values for extension string should overwrite existing values.
-    //takes in a reader because it acts as a stream, not a byte array
-    //read will read "next thing", all player has to do is know how to handle self.
-	this.readInExtensionsString = function(reader){
-	    console.log("reading in extension string")
-	    //just inverse of encoding process.
-	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
-	    console.log("num features is: " + numFeatures);
-	    console.log(["read bytes is: ",reader]);
+	//values for extension string should overwrite existing values.
+	//takes in a reader because it acts as a stream, not a byte array
+	//read will read "next thing", all player has to do is know how to handle self.
+	this.readInExtensionsString = function (reader) {
+		console.log("reading in extension string")
+		//just inverse of encoding process.
+		var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
+		console.log("num features is: " + numFeatures);
+		console.log(["read bytes is: ", reader]);
 
-	     if(numFeatures > 0){
-	      var cid = reader.readByte();
-	      console.log("Class Name ID : " + cid)
-	      this.class_name = intToClassName(cid);
-	      }
-	    if(numFeatures > 1){
+		if (numFeatures > 0) {
+			var cid = reader.readByte();
+			console.log("Class Name ID : " + cid)
+			this.class_name = intToClassName(cid);
+		}
+		if (numFeatures > 1) {
 			var aid = reader.readByte();
 			console.log("Aspect ID : " + aid)
 			this.aspect = intToAspect(aid);
-		} 
-	    //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
+		}
+		//as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
 	}
 
 
@@ -1889,7 +2578,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		I am the l337est asshole in the world
 	*/
-	this.toDataBytes = function(){
+	this.toDataBytes = function () {
 		var json = this.toJSON(); //<-- gets me data in pre-compressed format.
 		var buffer = new ArrayBuffer(11);
 		var ret = ""; //gonna return as a string of chars.
@@ -1897,16 +2586,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		uint8View[0] = json.hairColor >> 16 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
 		uint8View[1] = json.hairColor >> 8
 		uint8View[2] = json.hairColor >> 0
-		uint8View[3] = (json.class_name << 4) + json.aspect  //when I do fanon classes + aspect, use this same scheme, but have binary for "is fanon", so I know 1 isn't page, but waste (or whatever)
+		uint8View[3] = (json.class_name << 4) + json.aspect //when I do fanon classes + aspect, use this same scheme, but have binary for "is fanon", so I know 1 isn't page, but waste (or whatever)
 		uint8View[4] = (json.victimBlood << 4) + json.bloodColor
-		uint8View[5] = (json.interest1Category <<4) + json.interest2Category
-		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.godTier << 2) + (json.murderMode <<1) + (json.leftMurderMode) //shit load of single bit variables.
-		uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny <<4) + (json.favoriteNumber)
+		uint8View[5] = (json.interest1Category << 4) + json.interest2Category
+		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.godTier << 2) + (json.murderMode << 1) + (json.leftMurderMode) //shit load of single bit variables.
+		uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny << 4) + (json.favoriteNumber)
 		uint8View[8] = json.leftHorn
 		uint8View[9] = json.rightHorn
 		uint8View[10] = json.hair
 		//console.log(uint8View);
-		for(var i = 0; i<uint8View.length; i++){
+		for (var i = 0; i < uint8View.length; i++) {
 			ret += String.fromCharCode(uint8View[i]);
 		}
 		return encodeURIComponent(ret).replace(/#/g, '%23').replace(/&/g, '%26');
@@ -1914,23 +2603,46 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	//initial step before binary compression
-	this.toJSON = function(){
+	this.toJSON = function () {
 		var moon = 0;
-		if(this.moon == "Prospit") moon =1;
-		var json = {aspect: aspectToInt(this.aspect), class_name: classNameToInt(this.class_name), favoriteNumber: this.quirk.favoriteNumber, hair: this.hair,  hairColor: hexColorToInt(this.hairColor), isTroll: this.isTroll ? 1 : 0, bloodColor: bloodColorToInt(this.bloodColor), leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: interestCategoryToInt(this.interest1Category), interest2Category: interestCategoryToInt(this.interest2Category), interest1: this.interest1, interest2: this.interest2, robot: this.robot ? 1 : 0, moon: moon,causeOfDrain: this.causeOfDrain,victimBlood: bloodColorToInt(this.victimBlood), godTier: this.godTier ? 1 : 0, isDreamSelf:this.isDreamSelf ? 1 : 0, murderMode:this.murderMode ? 1 : 0, leftMurderMode:this.leftMurderMode ? 1 : 0,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath, dead: this.dead ? 1 : 0, godDestiny: this.godDestiny ? 1 : 0 };
+		if (this.moon == "Prospit") moon = 1;
+		var json = {
+			aspect: aspectToInt(this.aspect),
+			class_name: classNameToInt(this.class_name),
+			favoriteNumber: this.quirk.favoriteNumber,
+			hair: this.hair,
+			hairColor: hexColorToInt(this.hairColor),
+			isTroll: this.isTroll ? 1 : 0,
+			bloodColor: bloodColorToInt(this.bloodColor),
+			leftHorn: this.leftHorn,
+			rightHorn: this.rightHorn,
+			interest1Category: interestCategoryToInt(this.interest1Category),
+			interest2Category: interestCategoryToInt(this.interest2Category),
+			interest1: this.interest1,
+			interest2: this.interest2,
+			robot: this.robot ? 1 : 0,
+			moon: moon,
+			causeOfDrain: this.causeOfDrain,
+			victimBlood: bloodColorToInt(this.victimBlood),
+			godTier: this.godTier ? 1 : 0,
+			isDreamSelf: this.isDreamSelf ? 1 : 0,
+			murderMode: this.murderMode ? 1 : 0,
+			leftMurderMode: this.leftMurderMode ? 1 : 0,
+			grimDark: this.grimDark,
+			causeOfDeath: this.causeOfDeath,
+			dead: this.dead ? 1 : 0,
+			godDestiny: this.godDestiny ? 1 : 0
+		};
 		return json;
 	}
 
-	this.toString = function(){
-		return (this.class_name+this.aspect).replace(/'/g, '');; //no spaces.
+	this.toString = function () {
+		return (this.class_name + this.aspect).replace(/'/g, '');; //no spaces.
 	}
 
 
-
-
-
 	//if it's part of player json, need to copy it over.
-	this.copyFromPlayer = function(replayPlayer){
+	this.copyFromPlayer = function (replayPlayer) {
 		//console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
 		//console.log("Overriding player from a replay Player. ")
 		//console.log(replayPlayer)
@@ -1948,7 +2660,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.interest2Category = replayPlayer.interest2Category;
 		this.causeOfDrain = replayPlayer.causeOfDrain;
 		this.causeOfDeath = replayPlayer.causeOfDeath;
-		if(replayPlayer.chatHandle != ""){
+		if (replayPlayer.chatHandle != "") {
 			this.chatHandle = replayPlayer.chatHandle;
 			this.deriveChatHandle = false;
 		}
@@ -1962,7 +2674,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = replayPlayer.dead;
 		this.victimBlood = replayPlayer.victimBlood
 		this.robot = replayPlayer.robot;
-		this.fraymotifs = [];  //whoever you were before, you don't have those psionics anymore
+		this.fraymotifs = []; //whoever you were before, you don't have those psionics anymore
 		this.applyPossiblePsionics(); //now you have new psionics
 		//console.log("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
 		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
@@ -1971,45 +2683,45 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 
-	this.initialize = function(){
+	this.initialize = function () {
 		this.initializeStats();
 		this.initializeSprite();
-		this.initializeDerivedStuff();  //TODO handle troll derived stuff. like quirk.
+		this.initializeDerivedStuff(); //TODO handle troll derived stuff. like quirk.
 	}
 
 
-	this.initializeDerivedStuff = function(){
-		var tmp =getRandomLandFromPlayer(this);
+	this.initializeDerivedStuff = function () {
+		var tmp = getRandomLandFromPlayer(this);
 		this.land1 = tmp[0]
 		this.land2 = tmp[1];
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
-		if(this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
-		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+		if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.class_name, this.aspect, this.interest1, this.interest2);
+		this.mylevels = getLevelArray(this); //make them ahead of time for echeladder graphic
 
-		if(this.isTroll){
-			if(!this.quirk) this.quirk = randomTrollSim(this)  //if i already have a quirk it was defined already. don't override it.
-			this.sanity += -10;//trolls are slightly less stable
+		if (this.isTroll) {
+			if (!this.quirk) this.quirk = randomTrollSim(this) //if i already have a quirk it was defined already. don't override it.
+			this.sanity += -10; //trolls are slightly less stable
 
-		}else{
-			if(!this.quirk) this.quirk = randomHumanSim(this);
+		} else {
+			if (!this.quirk) this.quirk = randomHumanSim(this);
 		}
 	}
 
-	this.initializeSprite = function(){
-		this.sprite = new GameEntity(session, "sprite",null); //unprototyped.
+	this.initializeSprite = function () {
+		this.sprite = new GameEntity(session, "sprite", null); //unprototyped.
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-		this.sprite.setStats(0,0,10,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
+		this.sprite.setStats(0, 0, 10, 0, 0, 0, 0, false, false, [], 1000); //same as denizen minion, but empty power
 		this.sprite.doomed = true
 		this.sprite.sprite = true;
 	}
 
-	this.allStats = function(){
-		return ["power", "hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+	this.allStats = function () {
+		return ["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
 	}
 
 
 	//sum to 0
-	this.intializeAssociatedClassStatReferences = function(){
+	this.intializeAssociatedClassStatReferences = function () {
 		return //don't do this for now, too confusing.
 		var allStats = this.allStats().slice(0); //make copy
 		allStats = allStats.concat("MANGRIT")
@@ -2020,49 +2732,49 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("hp", 0.5));
 				this.associatedStats.push(new AssociatedStat("freeWill", -1));
 				break;
-			case  "Seer":
+			case "Seer":
 				this.associatedStats.push(new AssociatedStat("freeWill", 0.9));
 				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.9));
 				break;
-			case  "Bard":
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 1));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1));
+			case "Bard":
+				this.associatedStats.push(new AssociatedStat(getRandomElementFromArray(allStats), 1));
+				this.associatedStats.push(new AssociatedStat(getRandomElementFromArray(allStats), -1));
 				break;
-			case  "Heir":
+			case "Heir":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
 				this.associatedStats.push(new AssociatedStat("minLuck", 0.5));
 				this.associatedStats.push(new AssociatedStat("freeWill", -1));
 				break;
-			case  "Maid":
+			case "Maid":
 				this.associatedStats.push(new AssociatedStat("sanity", 1));
 				this.associatedStats.push(new AssociatedStat("minLuck", -1));
 				break;
-			case  "Rogue":
+			case "Rogue":
 				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
 				this.associatedStats.push(new AssociatedStat("sanity", -0.5));
 				break;
-			case  "Page":
+			case "Page":
 				this.associatedStats.push(new AssociatedStat("mobility", -0.5));
 				this.associatedStats.push(new AssociatedStat("hp", 0.5));
 				break;
-			case  "Thief":
+			case "Thief":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
 				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.5));
 				break;
-			case  "Sylph":
+			case "Sylph":
 				this.associatedStats.push(new AssociatedStat("hp", 0.5));
 				this.associatedStats.push(new AssociatedStat("sanity", -0.5));
 				break;
-			case  "Prince":
+			case "Prince":
 				this.associatedStats.push(new AssociatedStat("MANGRIT", 1));
 				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
-			case  "Witch":
+			case "Witch":
 				this.associatedStats.push(new AssociatedStat("MANGRIT", 0.5));
 				this.associatedStats.push(new AssociatedStat("freeWill", 0.5));
 				this.associatedStats.push(new AssociatedStat("sanity", -1));
 				break;
-			case  "Mage":
+			case "Mage":
 				this.associatedStats.push(new AssociatedStat("freeWill", 1));
 				this.associatedStats.push(new AssociatedStat("hp", -1));
 				break;
@@ -2071,166 +2783,166 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.getOnlyAspectAssociatedStats = function(){
+	this.getOnlyAspectAssociatedStats = function () {
 		var ret = [];
-		for(var i = 0; i<this.associatedStats.length; i++){
-			if(this.associatedStats[i].isFromAspect) ret.push(this.associatedStats[i])
+		for (var i = 0; i < this.associatedStats.length; i++) {
+			if (this.associatedStats[i].isFromAspect) ret.push(this.associatedStats[i])
 		}
 		return ret;
 	}
 
-	this.getOnlyPositiveAspectAssociatedStats = function(){
+	this.getOnlyPositiveAspectAssociatedStats = function () {
 		var ret = [];
-		for(var i = 0; i<this.associatedStats.length; i++){
-			if(this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier > 0) ret.push(this.associatedStats[i])
+		for (var i = 0; i < this.associatedStats.length; i++) {
+			if (this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier > 0) ret.push(this.associatedStats[i])
 		}
 		return ret;
 	}
 
-	this.getOnlyNegativeAspectAssociatedStats = function(){
+	this.getOnlyNegativeAspectAssociatedStats = function () {
 		var ret = [];
-		for(var i = 0; i<this.associatedStats.length; i++){
-			if(this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier < 0) ret.push(this.associatedStats[i])
+		for (var i = 0; i < this.associatedStats.length; i++) {
+			if (this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier < 0) ret.push(this.associatedStats[i])
 		}
 		return ret;
 	}
 
 	//sum to 1
-	this.intializeAssociatedAspectStatReferences = function(){
+	this.intializeAssociatedAspectStatReferences = function () {
 		var allStats = this.allStats().slice(0);
-        allStats = allStats.concat("MANGRIT")
-        allStats.removeFromArray("power"); //can't buff power directly
+		allStats = allStats.concat("MANGRIT")
+		allStats.removeFromArray("power"); //can't buff power directly
 
 		switch (this.aspect) {
 			case "Blood":
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2,true));
-				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -2,true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2, true));
+				this.associatedStats.push(new AssociatedStat("sanity", 1, true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -2, true));
 				break;
-			case  "Mind":
-				this.associatedStats.push(new AssociatedStat("freeWill", 2,true));
-				this.associatedStats.push(new AssociatedStat("minLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1,true)); //LUCK DO3SN'T M4TT3R!!!
+			case "Mind":
+				this.associatedStats.push(new AssociatedStat("freeWill", 2, true));
+				this.associatedStats.push(new AssociatedStat("minLuck", 1, true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1, true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1, true)); //LUCK DO3SN'T M4TT3R!!!
 				break;
-			case  "Rage":
-				this.associatedStats.push(new AssociatedStat("MANGRIT", 2,true));
-				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
-				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
+			case "Rage":
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 2, true));
+				this.associatedStats.push(new AssociatedStat("mobility", 1, true));
+				this.associatedStats.push(new AssociatedStat("sanity", -1, true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1, true));
 				break;
-			case  "Void":
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 3,true)); //really good at one thing
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));  //hit to another thing.
-				this.associatedStats.push(new AssociatedStat( "minLuck", -1,true));  //hit to another thing.
+			case "Void":
+				this.associatedStats.push(new AssociatedStat(getRandomElementFromArray(allStats), 3, true)); //really good at one thing
+				this.associatedStats.push(new AssociatedStat(getRandomElementFromArray(allStats), -1, true)); //hit to another thing.
+				this.associatedStats.push(new AssociatedStat("minLuck", -1, true)); //hit to another thing.
 				break;
-			case  "Time":
-				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
-				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
-				this.associatedStats.push(new AssociatedStat("freeWill", -2,true));
+			case "Time":
+				this.associatedStats.push(new AssociatedStat("minLuck", 2, true));
+				this.associatedStats.push(new AssociatedStat("mobility", 1, true));
+				this.associatedStats.push(new AssociatedStat("freeWill", -2, true));
 				break;
-			case  "Heart":
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 1,true));
+			case "Heart":
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 1, true));
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest1));
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest2));
 				break;
-			case  "Breath":
-				this.associatedStats.push(new AssociatedStat("mobility", 2,true));
-				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
-				this.associatedStats.push(new AssociatedStat("hp", -1,true));
-				this.associatedStats.push(new AssociatedStat( "RELATIONSHIPS", -1,true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
+			case "Breath":
+				this.associatedStats.push(new AssociatedStat("mobility", 2, true));
+				this.associatedStats.push(new AssociatedStat("sanity", 1, true));
+				this.associatedStats.push(new AssociatedStat("hp", -1, true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1, true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
 				break;
-			case  "Light":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
-				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
-				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
-				this.associatedStats.push(new AssociatedStat("hp", -1,true));
+			case "Light":
+				this.associatedStats.push(new AssociatedStat("maxLuck", 2, true));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1, true));
+				this.associatedStats.push(new AssociatedStat("sanity", -1, true));
+				this.associatedStats.push(new AssociatedStat("hp", -1, true));
 				break;
-			case  "Space":
-				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
-				this.associatedStats.push(new AssociatedStat("hp", 1,true));
-				this.associatedStats.push(new AssociatedStat("mobility", -2,true));
+			case "Space":
+				this.associatedStats.push(new AssociatedStat("alchemy", 2, true));
+				this.associatedStats.push(new AssociatedStat("hp", 1, true));
+				this.associatedStats.push(new AssociatedStat("mobility", -2, true));
 				break;
-			case  "Hope":
-				this.associatedStats.push(new AssociatedStat("sanity", 2,true));
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));
+			case "Hope":
+				this.associatedStats.push(new AssociatedStat("sanity", 2, true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1, true));
+				this.associatedStats.push(new AssociatedStat(getRandomElementFromArray(allStats), -2, true));
 				break;
-			case  "Life":
-				this.associatedStats.push(new AssociatedStat("hp", 2,true));
-				this.associatedStats.push(new AssociatedStat("MANGRIT", 1,true));
-				this.associatedStats.push(new AssociatedStat("alchemy", -2,true));
+			case "Life":
+				this.associatedStats.push(new AssociatedStat("hp", 2, true));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 1, true));
+				this.associatedStats.push(new AssociatedStat("alchemy", -2, true));
 				break;
-			case  "Doom":  //fool, doom will toot as it pleases
-				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
-				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
-				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
-				this.associatedStats.push(new AssociatedStat("hp", -1,true));
+			case "Doom": //fool, doom will toot as it pleases
+				this.associatedStats.push(new AssociatedStat("alchemy", 2, true));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1, true));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1, true));
+				this.associatedStats.push(new AssociatedStat("hp", -1, true));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
 		}
 	}
 
-	this.voidDescription = function(){
-		for(var i = 0; i<this.associatedStats.length; i++){
+	this.voidDescription = function () {
+		for (var i = 0; i < this.associatedStats.length; i++) {
 			var stat = this.associatedStats[i];
-			if(stat.multiplier >= 3) return "SO " + this.getEmphaticDescriptionForStatNamed(stat.name);
+			if (stat.multiplier >= 3) return "SO " + this.getEmphaticDescriptionForStatNamed(stat.name);
 		}
 		return "SO BLAND";
 	}
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"]
 
-	this.getEmphaticDescriptionForStatNamed = function(statName){
-		if(this.highInit()){
-			if(statName == "MANGRIT") return "STRONG"
-			if(statName == "hp") return "STURDY"
-			if(statName == "RELATIONSHIPS") return "FRIENDLY"
-			if(statName == "mobility") return "FAST"
-			if(statName == "sanity") return "CALM"
-			if(statName == "freeWill") return "WILLFUL"
-			if(statName == "maxLuck") return "LUCKY"
-			if(statName == "minLuck") return "LUCKY"
-			if(statName == "alchemy") return "CREATIVE"
-		}else{
-			if(statName == "MANGRIT") return "WEAK"
-			if(statName == "hp") return "FRAGILE"
-			if(statName == "RELATIONSHIPS") return "AGGRESSIVE"
-			if(statName == "mobility") return "SLOW"
-			if(statName == "sanity") return "CRAZY"
-			if(statName == "freeWill") return "GULLIBLE"
-			if(statName == "maxLuck") return "UNLUCKY"
-			if(statName == "minLuck") return "UNLUCKY"
-			if(statName == "alchemy") return "BORING"
+	this.getEmphaticDescriptionForStatNamed = function (statName) {
+		if (this.highInit()) {
+			if (statName == "MANGRIT") return "STRONG"
+			if (statName == "hp") return "STURDY"
+			if (statName == "RELATIONSHIPS") return "FRIENDLY"
+			if (statName == "mobility") return "FAST"
+			if (statName == "sanity") return "CALM"
+			if (statName == "freeWill") return "WILLFUL"
+			if (statName == "maxLuck") return "LUCKY"
+			if (statName == "minLuck") return "LUCKY"
+			if (statName == "alchemy") return "CREATIVE"
+		} else {
+			if (statName == "MANGRIT") return "WEAK"
+			if (statName == "hp") return "FRAGILE"
+			if (statName == "RELATIONSHIPS") return "AGGRESSIVE"
+			if (statName == "mobility") return "SLOW"
+			if (statName == "sanity") return "CRAZY"
+			if (statName == "freeWill") return "GULLIBLE"
+			if (statName == "maxLuck") return "UNLUCKY"
+			if (statName == "minLuck") return "UNLUCKY"
+			if (statName == "alchemy") return "BORING"
 		}
 		return "CONFUSING";
 	}
 
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
-	this.getInterestAssociatedStats = function(interest){
-		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2, true)];
-		if(music_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1, true),new AssociatedStat("maxLuck",1, true)];
-		if(culture_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",-1, true),new AssociatedStat("hp",-1, true)]; //SBURB is NOT high art.
-		if(writing_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",2, true)];  //they know how stories go.
-		if(technology_interests.indexOf(interest) != -1) return [new AssociatedStat("alchemy",2, true)];
-		if(social_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",2, true)];
-		if(romantic_interests.indexOf(interest) != -1)return [new AssociatedStat("RELATIONSHIPS",2, true)];
-		if(academic_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",-2, true)]; //dont' get so caught up in how the old rules worked
-		if(comedy_interests.indexOf(interest) != -1) return [new AssociatedStat("minLuck",-1, true),new AssociatedStat("maxLuck",1, true)]; //hilarious (to SBURB) pratfalls abound.
-		if(domestic_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1, true),new AssociatedStat("RELATIONSHIPS",1, true)];
-		if(athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT",2, true)]; //so STRONG
-		if(terrible_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS",-1, true), new AssociatedStat("sanity",-1, true)];
-		if(fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck",1, true),new AssociatedStat("alchemy",1, true)];
-		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT",1, true),new AssociatedStat("hp",1, true)];
+	this.getInterestAssociatedStats = function (interest) {
+		if (pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility", 2, true)];
+		if (music_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity", 1, true), new AssociatedStat("maxLuck", 1, true)];
+		if (culture_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity", -1, true), new AssociatedStat("hp", -1, true)]; //SBURB is NOT high art.
+		if (writing_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill", 2, true)]; //they know how stories go.
+		if (technology_interests.indexOf(interest) != -1) return [new AssociatedStat("alchemy", 2, true)];
+		if (social_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity", 2, true)];
+		if (romantic_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS", 2, true)];
+		if (academic_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill", -2, true)]; //dont' get so caught up in how the old rules worked
+		if (comedy_interests.indexOf(interest) != -1) return [new AssociatedStat("minLuck", -1, true), new AssociatedStat("maxLuck", 1, true)]; //hilarious (to SBURB) pratfalls abound.
+		if (domestic_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity", 1, true), new AssociatedStat("RELATIONSHIPS", 1, true)];
+		if (athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT", 2, true)]; //so STRONG
+		if (terrible_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS", -1, true), new AssociatedStat("sanity", -1, true)];
+		if (fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck", 1, true), new AssociatedStat("alchemy", 1, true)];
+		if (justice_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT", 1, true), new AssociatedStat("hp", 1, true)];
 	}
 
 
 	//care about highInit(), and also interestCategories.
-	this.initializeAssociatedStats = function(){
-		for(var i = 0; i<this.associatedStats.length; i++){
-			if(this.highInit()){
+	this.initializeAssociatedStats = function () {
+		for (var i = 0; i < this.associatedStats.length; i++) {
+			if (this.highInit()) {
 				this.modifyAssociatedStat(10, this.associatedStats[i]);
-			}else{
+			} else {
 				this.modifyAssociatedStat(-10, this.associatedStats[i]);
 			}
 		}
@@ -2241,21 +2953,21 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//up to who calls me to pick a sane value. (modified by class as appropriate)
 	//you don't have to own the associated stat for it to modify you. A sylph will call this for each player in the party, for example
 	//and pass their own stat, but it will mod the player's stat. don't worry about it.
-	this.modifyAssociatedStat = function(modValue, stat){
-		if(!stat) return;
+	this.modifyAssociatedStat = function (modValue, stat) {
+		if (!stat) return;
 		//modValue * stat.multiplier.
-		if(stat.name == "RELATIONSHIPS"){
-			for(var i = 0; i<this.relationships.length; i++){
-				this.relationships[i].value += (modValue/this.relationships.length) * stat.multiplier;  //stop having relationship values on the scale of 100000
+		if (stat.name == "RELATIONSHIPS") {
+			for (var i = 0; i < this.relationships.length; i++) {
+				this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier; //stop having relationship values on the scale of 100000
 			}
-		}else if(stat.name == "MANGRIT"){
+		} else if (stat.name == "MANGRIT") {
 			this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
-		}else {
-         	this[stat.name] += modValue * stat.multiplier;
-        }
+		} else {
+			this[stat.name] += modValue * stat.multiplier;
+		}
 	}
 
-	this.initializeInterestStats = function(){
+	this.initializeInterestStats = function () {
 		//getInterestAssociatedStats
 		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest1));
 		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest2));
@@ -2263,8 +2975,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
-	this.initializeStats = function(){
-		if(this.trickster && this.aspect == "Doom") this.trickster == false; //doom players break rules
+	this.initializeStats = function () {
+		if (this.trickster && this.aspect == "Doom") this.trickster == false; //doom players break rules
 		this.associatedStats = []; //this might be called multiple times, wipe yourself out.
 		this.intializeAssociatedAspectStatReferences();
 		this.intializeAssociatedClassStatReferences();
@@ -2277,36 +2989,36 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeSanity();
 
 		this.initializeAssociatedStats();
-		this.initializeInterestStats();  //takes the place of old random intial stats.
+		this.initializeInterestStats(); //takes the place of old random intial stats.
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
-		if(this.class_name == "Witch" || luck < -9){
+		if (this.class_name == "Witch" || luck < -9) {
 			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
 			//console.log("disastor")
-		}else if(luck > 25){
+		} else if (luck > 25) {
 			this.object_to_prototype = getRandomElementFromArray(fortune_objects);
 			//console.log("fortune")
 		}
-		if(luck>5){
-			this.godDestiny =true;
+		if (luck > 5) {
+			this.godDestiny = true;
 		}
 		this.currentHP = this.hp; //could have been altered by associated stats
 
-		if(this.class_name == "Waste"){
-		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???
-            f.effects.push(new FraymotifEffect("power",3,true));
-            f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. "
-            this.fraymotifs.push(f);
-		}else if(this.class_name == "Null"){
-            var f = new Fraymotif([],  "What class???", 1)
-            f.effects.push(new FraymotifEffect("power",1,true));
-            f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. "
-            this.fraymotifs.push(f);
+		if (this.class_name == "Waste") {
+			var f = new Fraymotif([], "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???
+			f.effects.push(new FraymotifEffect("power", 3, true));
+			f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. "
+			this.fraymotifs.push(f);
+		} else if (this.class_name == "Null") {
+			var f = new Fraymotif([], "What class???", 1)
+			f.effects.push(new FraymotifEffect("power", 1, true));
+			f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. "
+			this.fraymotifs.push(f);
 
-            var f = new Fraymotif([],  "Nulzilla", 2)
-            f.effects.push(new FraymotifEffect("power",1,true));
-            f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  "
-            this.fraymotifs.push(f);
+			var f = new Fraymotif([], "Nulzilla", 2)
+			f.effects.push(new FraymotifEffect("power", 1, true));
+			f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  "
+			this.fraymotifs.push(f);
 		}
 	}
 
@@ -2320,33 +3032,33 @@ why the fuck does trying to decode a URI that is null, return the string "null"
 why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
-function getReplayers(){
-//	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
+function getReplayers() {
+	//	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
 	available_classes_guardians = classes.slice(0); //if there are replayers, then i need to reset guardian classes
 	var b = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
 	var x = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("x")));
-	if(!b||!s) return [];
-	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
+	if (!b || !s) return [];
+	if (b == "null" || s == "null") return []; //why was this necesassry????????????????
 	//console.log("b is");
 	//console.log(b)
 	//console.log("s is ")
 	//console.log(s)
-	return dataBytesAndStringsToPlayers(b,s,x);
+	return dataBytesAndStringsToPlayers(b, s, x);
 }
 
-function syncReplayNumberToPlayerNumber(replayPlayers){
-	if(curSessionGlobalVar.players.length == replayPlayers.length || replayPlayers.length == 0) return; //nothing to do.
+function syncReplayNumberToPlayerNumber(replayPlayers) {
+	if (curSessionGlobalVar.players.length == replayPlayers.length || replayPlayers.length == 0) return; //nothing to do.
 
-	if(replayPlayers.length < curSessionGlobalVar.players.length ){ //gotta destroy some players (you monster);
+	if (replayPlayers.length < curSessionGlobalVar.players.length) { //gotta destroy some players (you monster);
 		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length))
 		return;
-	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
+	} else if (replayPlayers.length > curSessionGlobalVar.players.length) {
 		var numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
 		//console.log("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded)
-		for(var i = 0; i< numNeeded; i++){
+		for (var i = 0; i < numNeeded; i++) {
 			// console.log("making new player: " + i)
-			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
+			curSessionGlobalVar.players.push(randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
 		//console.log("Number of players is now: " + curSessionGlobalVar.players.length)
 		return;
@@ -2354,10 +3066,10 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 }
 
 //this code is needed to make sure replay players have guardians.
-function redoRelationships(players){
+function redoRelationships(players) {
 	var guardians = [];
 	console.log("redoing relationships")
-	for(var j = 0; j<players.length; j++){
+	for (var j = 0; j < players.length; j++) {
 		var p = players[j];
 		guardians.push(p.guardian)
 		p.relationships = [];
@@ -2365,7 +3077,7 @@ function redoRelationships(players){
 		p.initializeRelationships();
 	}
 
-	for(var j = 0; j<guardians.length; j++){
+	for (var j = 0; j < guardians.length; j++) {
 		var p = guardians[j]
 		p.relationships = [];
 		p.generateRelationships(guardians);
@@ -2373,158 +3085,158 @@ function redoRelationships(players){
 	}
 }
 
-function initializePlayers(players,session){
+function initializePlayers(players, session) {
 	var replayPlayers = getReplayers();
-	if(replayPlayers.length == 0 && session) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
+	if (replayPlayers.length == 0 && session) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
 	syncReplayNumberToPlayerNumber(replayPlayers);
-	for(var i = 0; i<players.length; i++){
-		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
-		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
+	for (var i = 0; i < players.length; i++) {
+		if (replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+		if (players[i].land) { //don't reinit aliens, their stats stay how they were cloned.
 			players[i].initialize();
 			players[i].guardian.initialize();
-			if(replayPlayers[i]){
+			if (replayPlayers[i]) {
 				players[i].quirk.favoriteNumber = parseInt(replayPlayers[i].quirk.favoriteNumber) //has to be after initialization
-				if(players[i].isTroll){
+				if (players[i].isTroll) {
 					players[i].quirk.makeTrollQuirk(players[i]); //redo quirk
-				}else{
+				} else {
 					players[i].quirk.makeHumanQuirk(players[i]);
 				}
 			}
 		}
 	}
-	if(replayPlayers.length > 0){
-		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
-	    //oh because it makes replayed sessions with scratches crash.
+	if (replayPlayers.length > 0) {
+		redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
+		//oh because it makes replayed sessions with scratches crash.
 	}
 
 }
 
-function initializePlayersNoDerived(players,session){
+function initializePlayersNoDerived(players, session) {
 	var replayPlayers = getReplayers();
-	for(var i = 0; i<players.length; i++){
-		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+	for (var i = 0; i < players.length; i++) {
+		if (replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initializeStats();
 		players[i].initializeSprite();
 	}
 
 	//might not be needed.   futureJadedResearcher (FJR) has begun pestering pastJadedResearcher(PJR).  FJR: Yeah, no shit sherlock
-	if(replayPlayers.length > 0){
-		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
+	if (replayPlayers.length > 0) {
+		redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
 		//oh because it makes replayed sessions with scratches crash.
 	}
 }
 
-function getColorFromAspect(aspect){
+function getColorFromAspect(aspect) {
 	var color = "";
-	if(aspect == "Space"){
+	if (aspect == "Space") {
 		color = "#00ff00";
-	}else if(aspect == "Time"){
+	} else if (aspect == "Time") {
 		color = "#ff0000";
-	}else if(aspect == "Breath"){
+	} else if (aspect == "Breath") {
 		color = "#3399ff";
-	}else if(aspect == "Doom"){
+	} else if (aspect == "Doom") {
 		color = "#003300";
-	}else if(aspect == "Blood"){
+	} else if (aspect == "Blood") {
 		color = "#993300";
-	}else if(aspect == "Heart"){
+	} else if (aspect == "Heart") {
 		color = "#ff3399";
-	}else if(aspect == "Mind"){
+	} else if (aspect == "Mind") {
 		color = "#3da35a";
-	}else if(aspect == "Light"){
+	} else if (aspect == "Light") {
 		color = "#ff9933";
-	}else if(aspect == "Void"){
+	} else if (aspect == "Void") {
 		color = "#000066";
-	}else if(aspect == "Rage"){
+	} else if (aspect == "Rage") {
 		color = "#9900cc";
-	}else if(aspect == "Hope"){
+	} else if (aspect == "Hope") {
 		color = "#ffcc66";
-	}else if(aspect == "Life"){
+	} else if (aspect == "Life") {
 		color = "#494132";
-	}else{
-	    color = "#efefef"
+	} else {
+		color = "#efefef"
 	}
 	return color;
 }
 
-function getShirtColorFromAspect(aspect){
+function getShirtColorFromAspect(aspect) {
 	var color = "";
-	if(aspect == "Space"){
+	if (aspect == "Space") {
 		color = "#030303";
-	}else if(aspect == "Time"){
+	} else if (aspect == "Time") {
 		color = "#b70d0e";
-	}else if(aspect == "Breath"){
+	} else if (aspect == "Breath") {
 		color = "#0087eb";
-	}else if(aspect == "Doom"){
+	} else if (aspect == "Doom") {
 		color = "#204020";
-	}else if(aspect == "Blood"){
+	} else if (aspect == "Blood") {
 		color = "#3d190a";
-	}else if(aspect == "Heart"){
+	} else if (aspect == "Heart") {
 		color = "#6b0829";
-	}else if(aspect == "Mind"){
+	} else if (aspect == "Mind") {
 		color = "#3da35a";
-	}else if(aspect == "Light"){
+	} else if (aspect == "Light") {
 		color = "#ff7f00";
-	}else if(aspect == "Void"){
+	} else if (aspect == "Void") {
 		color = "#000066";
-	}else if(aspect == "Rage"){
+	} else if (aspect == "Rage") {
 		color = "#9900cc";
-	}else if(aspect == "Hope"){
+	} else if (aspect == "Hope") {
 		color = "#ffe094";
-	}else if(aspect == "Life"){
+	} else if (aspect == "Life") {
 		color = "#ccc4b5";
-	}else{
-	    color = "#ffffff"
+	} else {
+		color = "#ffffff"
 	}
 	return color;
 }
 
-function getDarkShirtColorFromAspect(aspect){
+function getDarkShirtColorFromAspect(aspect) {
 	var color = "";
-	if(aspect == "Space"){
+	if (aspect == "Space") {
 		color = "#242424";
-	}else if(aspect == "Time"){
+	} else if (aspect == "Time") {
 		color = "#970203";
-	}else if(aspect == "Breath"){
+	} else if (aspect == "Breath") {
 		color = "#0070ED";
-	}else if(aspect == "Doom"){
+	} else if (aspect == "Doom") {
 		color = "#11200F";
-	}else if(aspect == "Blood"){
+	} else if (aspect == "Blood") {
 		color = "#2C1207";
-	}else if(aspect == "Heart"){
+	} else if (aspect == "Heart") {
 		color = "#6B0829";
-	}else if(aspect == "Mind"){
+	} else if (aspect == "Mind") {
 		color = "#3DA35A";
-	}else if(aspect == "Light"){
+	} else if (aspect == "Light") {
 		color = "#D66E04";
-	}else if(aspect == "Void"){
+	} else if (aspect == "Void") {
 		color = "#02285B";
-	}else if(aspect == "Rage"){
+	} else if (aspect == "Rage") {
 		color = "#1E0C47";
-	}else if(aspect == "Hope"){
+	} else if (aspect == "Hope") {
 		color = "#E8C15E";
-	}else if(aspect == "Life"){
+	} else if (aspect == "Life") {
 		color = "#CCC4B5";
-	}else{
-	    color = "#eeeeee"
+	} else {
+		color = "#eeeeee"
 	}
 	return color;
 }
 
-function getFontColorFromAspect(aspect){
+function getFontColorFromAspect(aspect) {
 	return "<font color='" + getColorFromAspect(aspect) + "'> ";
 }
 
-function blankPlayerNoDerived(session){
+function blankPlayerNoDerived(session) {
 	var k = prototyping_objects[0];
 	var gd = true;
 	var m = "Prospit";
 	var id = Math.seed;
-	var p =  new Player(session,"Page","Void",k,m,gd,id);
+	var p = new Player(session, "Page", "Void", k, m, gd, id);
 	p.interest1 = interests[0];
 	p.interest2 = interests[0]
 	p.baby = 1
 	p.hair = 1
-	p.leftHorn =  1
+	p.leftHorn = 1
 	p.rightHorn = 1
 	p.quirk = new Quirk();
 	p.quirk.capitalization = 1;
@@ -2534,7 +3246,7 @@ function blankPlayerNoDerived(session){
 	return p;
 }
 
-function randomPlayerNoDerived(session, c, a){
+function randomPlayerNoDerived(session, c, a) {
 	var k = getRandomElementFromArray(prototyping_objects);
 
 
@@ -2542,19 +3254,19 @@ function randomPlayerNoDerived(session, c, a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = Math.seed;
-	var p =  new Player(session,c,a,k,m,gd,id);
+	var p = new Player(session, c, a, k, m, gd, id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
-	p.baby = getRandomInt(1,3)
+	p.baby = getRandomInt(1, 3)
 
 
-	p.hair = getRandomInt(1,p.maxHairNumber);
+	p.hair = getRandomInt(1, p.maxHairNumber);
 	//hair color in decideTroll.
-	p.leftHorn =  getRandomInt(1,p.maxHornNumber);
+	p.leftHorn = getRandomInt(1, p.maxHornNumber);
 	p.rightHorn = p.leftHorn;
-	if(Math.seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,p.maxHornNumber);
+	if (Math.seededRandom() > .7) { //preference for symmetry
+		p.rightHorn = getRandomInt(1, p.maxHornNumber);
 	}
 	p.initializeStats();
 	p.initializeSprite();
@@ -2564,7 +3276,7 @@ function randomPlayerNoDerived(session, c, a){
 
 }
 
-function randomPlayerWithClaspect(session, c,a){
+function randomPlayerWithClaspect(session, c, a) {
 	//console.log("random player");
 
 	var k = getRandomElementFromArray(prototyping_objects);
@@ -2574,78 +3286,79 @@ function randomPlayerWithClaspect(session, c,a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = Math.seed;
-	var p =  new Player(session,c,a,k,m,gd,id);
+	var p = new Player(session, c, a, k, m, gd, id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
 	p.initialize();
 
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
-	p.baby = getRandomInt(1,3)
+	p.baby = getRandomInt(1, 3)
 
 
-	p.hair = getRandomInt(1,p.maxHairNumber); //hair color in decide troll
-	p.leftHorn =  getRandomInt(1,46);
+	p.hair = getRandomInt(1, p.maxHairNumber); //hair color in decide troll
+	p.leftHorn = getRandomInt(1, 46);
 	p.rightHorn = p.leftHorn;
-	if(Math.seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,46);
+	if (Math.seededRandom() > .7) { //preference for symmetry
+		p.rightHorn = getRandomInt(1, 46);
 	}
 
 
 	return p;
 
 }
-function randomPlayer(session){
+
+function randomPlayer(session) {
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(session,c,a);
+	return randomPlayerWithClaspect(session, c, a);
 
 }
 
-function randomPlayerWithoutRemoving(session){
+function randomPlayerWithoutRemoving(session) {
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	//removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	//removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(session,c,a);
+	return randomPlayerWithClaspect(session, c, a);
 
 }
 
-function randomSpacePlayer(session){
+function randomSpacePlayer(session) {
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[0];
-	return randomPlayerWithClaspect(session,c,a);
+	return randomPlayerWithClaspect(session, c, a);
 }
 
-function randomTimePlayer(session){
+function randomTimePlayer(session) {
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[1];
-	return randomPlayerWithClaspect(session,c,a);
+	return randomPlayerWithClaspect(session, c, a);
 }
 
-function findAspectPlayer(playerList, aspect){
-	for(var i= 0; i<playerList.length; i++){
+function findAspectPlayer(playerList, aspect) {
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.aspect == aspect){
+		if (p.aspect == aspect) {
 			//console.log("Found " + aspect + " player");
 			return p;
 		}
 	}
 }
 
-function findAllAspectPlayers(playerList, aspect){
+function findAllAspectPlayers(playerList, aspect) {
 	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.aspect == aspect){
+		if (p.aspect == aspect) {
 			//console.log("Found " + aspect + " player");
 			ret.push(p)
 		}
@@ -2654,20 +3367,20 @@ function findAllAspectPlayers(playerList, aspect){
 }
 
 
-function getLeader(playerList){
-	for(var i= 0; i<playerList.length; i++){
+function getLeader(playerList) {
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.leader){
+		if (p.leader) {
 			return p;
 		}
 	}
 }
 
 //in combo sessions, mibht be more than one rage player, for example.
-function findClaspectPlayer(playerList, class_name, aspect){
-	for(var i= 0; i<playerList.length; i++){
+function findClaspectPlayer(playerList, class_name, aspect) {
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.class_name == class_name && p.aspect == aspect){
+		if (p.class_name == class_name && p.aspect == aspect) {
 			//console.log("Found " + class_name + " player");
 			return p;
 		}
@@ -2675,140 +3388,140 @@ function findClaspectPlayer(playerList, class_name, aspect){
 }
 
 
-function findClassPlayer(playerList, class_name){
-	for(var i= 0; i<playerList.length; i++){
+function findClassPlayer(playerList, class_name) {
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.class_name == class_name){
+		if (p.class_name == class_name) {
 			//console.log("Found " + class_name + " player");
 			return p;
 		}
 	}
 }
 
-function findStrongestPlayer(playerList){
+function findStrongestPlayer(playerList) {
 	var strongest = playerList[0];
 
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.power > strongest.power){
+		if (p.power > strongest.power) {
 			strongest = p;
 		}
 	}
 	return strongest;
 }
 
-function findDeadPlayers(playerList){
+function findDeadPlayers(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.dead){
+		if (p.dead) {
 			ret.push(p);
 		}
 	}
 	return ret;
 }
 
-function findDoomedPlayers(playerList){
+function findDoomedPlayers(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.doomed){
+		if (p.doomed) {
 			ret.push(p);
 		}
 	}
 	return ret;
 }
 
-function findLivingPlayers(playerList){
+function findLivingPlayers(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(!p.dead){
+		if (!p.dead) {
 			ret.push(p);
 		}
 	}
 	return ret;
 }
 
-function getPartyPower(party){
+function getPartyPower(party) {
 	var ret = 0;
-	for(var i = 0; i<party.length; i++){
+	for (var i = 0; i < party.length; i++) {
 		ret += party[i].power;
 	}
 	return ret;
 }
 
-function getPlayersTitlesHP(playerList){
+function getPlayersTitlesHP(playerList) {
 	//console.log(playerList)
-	if(playerList.length == 0){
+	if (playerList.length == 0) {
 		return "";
 	}
-		var ret = playerList[0].htmlTitleHP();
-		for(var i = 1; i<playerList.length; i++){
-			ret += " and " + playerList[i].htmlTitleHP();
-		}
-		return ret;
+	var ret = playerList[0].htmlTitleHP();
+	for (var i = 1; i < playerList.length; i++) {
+		ret += " and " + playerList[i].htmlTitleHP();
+	}
+	return ret;
 }
 
-function getPlayersTitlesNoHTML(playerList){
+function getPlayersTitlesNoHTML(playerList) {
 	//console.log(playerList)
-	if(playerList.length == 0){
+	if (playerList.length == 0) {
 		return "";
 	}
-		var ret = playerList[0].title();
-		for(var i = 1; i<playerList.length; i++){
-			ret += " and " + playerList[i].title();
-		}
-		return ret;
+	var ret = playerList[0].title();
+	for (var i = 1; i < playerList.length; i++) {
+		ret += " and " + playerList[i].title();
+	}
+	return ret;
 }
 
-function getPlayersTitles(playerList){
+function getPlayersTitles(playerList) {
 	//console.log(playerList)
-	if(playerList.length == 0){
+	if (playerList.length == 0) {
 		return "";
 	}
-		var ret = playerList[0].htmlTitle();
-		for(var i = 1; i<playerList.length; i++){
-			ret += " and " + playerList[i].htmlTitle();
-		}
-		return ret;
+	var ret = playerList[0].htmlTitle();
+	for (var i = 1; i < playerList.length; i++) {
+		ret += " and " + playerList[i].htmlTitle();
+	}
+	return ret;
 }
 
-function partyRollForLuck(players){
+function partyRollForLuck(players) {
 	var ret = 0;
-	for(var i = 0; i<players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].rollForLuck();
 	}
-	return ret/players.length;
+	return ret / players.length;
 }
 
-function getPlayersTitlesBasic(playerList){
-	if(playerList.length == 0){
+function getPlayersTitlesBasic(playerList) {
+	if (playerList.length == 0) {
 		return "";
 	}
-		var ret = playerList[0].htmlTitleBasic();
-		for(var i = 1; i<playerList.length; i++){
-			ret += " and " + playerList[i].htmlTitleBasic();
-		}
-		return ret;
+	var ret = playerList[0].htmlTitleBasic();
+	for (var i = 1; i < playerList.length; i++) {
+		ret += " and " + playerList[i].htmlTitleBasic();
 	}
+	return ret;
+}
 
-function findPlayersWithDreamSelves(playerList){
+function findPlayersWithDreamSelves(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.dreamSelf && !p.isDreamSelf){
+		if (p.dreamSelf && !p.isDreamSelf) {
 			ret.push(p);
 		}
 	}
 	return ret;
 }
 
-function findPlayersWithoutDreamSelves(playerList){
+function findPlayersWithoutDreamSelves(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(!p.dreamSelf || p.isDreamSelf){ //if you ARE your dream self, then when you go to sleep....
+		if (!p.dreamSelf || p.isDreamSelf) { //if you ARE your dream self, then when you go to sleep....
 			ret.push(p);
 		}
 	}
@@ -2817,11 +3530,11 @@ function findPlayersWithoutDreamSelves(playerList){
 
 
 //don't override existing source
-function setEctobiologicalSource(playerList,source){
-	for(var i= 0; i<playerList.length; i++){
+function setEctobiologicalSource(playerList, source) {
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		var g  = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
-		if(p.ectoBiologicalSource == null){
+		var g = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
+		if (p.ectoBiologicalSource == null) {
 			p.ectoBiologicalSource = source;
 			g.ectoBiologicalSource = source;
 		}
@@ -2829,11 +3542,11 @@ function setEctobiologicalSource(playerList,source){
 }
 
 
-function findPlayersWithoutEctobiologicalSource(playerList){
+function findPlayersWithoutEctobiologicalSource(playerList) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
-		if(p.ectoBiologicalSource == null){
+		if (p.ectoBiologicalSource == null) {
 			ret.push(p);
 		}
 	}
@@ -2842,186 +3555,196 @@ function findPlayersWithoutEctobiologicalSource(playerList){
 
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
-function clonePlayer(player, session, isGuardian){
+function clonePlayer(player, session, isGuardian) {
 	var clone = new Player();
-	for(var propertyName in player) {
-		if(propertyName == "guardian"){
-			if(!isGuardian){ //no infinite recursion, plz
+	for (var propertyName in player) {
+		if (propertyName == "guardian") {
+			if (!isGuardian) { //no infinite recursion, plz
 				clone.guardian = clonePlayer(player.guardian, session, true);
 				clone.guardian.guardian = clone;
+			}
+		} else if (propertyName == "relationships") {
+			clone.relationships = cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
+		} else {
+			clone[propertyName] = player[propertyName]
 		}
-	}else if(propertyName == "relationships"){
-		clone.relationships = cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
-	}else{
-				clone[propertyName] = player[propertyName]
-	}
 	}
 	return clone;
 }
 
-function findPlayersFromSessionWithId(playerList, source){
+function findPlayersFromSessionWithId(playerList, source) {
 	ret = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
 		//if it' snull, you could be from here, but not yet ectoborn
-		if(p.ectoBiologicalSource == source || p.ectoBiologicalSource == null){
+		if (p.ectoBiologicalSource == source || p.ectoBiologicalSource == null) {
 			ret.push(p);
 		}
 	}
 	return ret;
 }
 
-function findBadPrototyping(playerList){
-	for(var i= 0; i<playerList.length; i++){
-		if(playerList[i].object_to_prototype.power >= 200){
+function findBadPrototyping(playerList) {
+	for (var i = 0; i < playerList.length; i++) {
+		if (playerList[i].object_to_prototype.power >= 200) {
 			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}
 }
 
-function findHighestMobilityPlayer(playerList){
+function findHighestMobilityPlayer(playerList) {
 	var ret = playerList[0];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i]
-		if(p.mobility > ret.mobility){
+		if (p.mobility > ret.mobility) {
 			ret = p;
 		}
 	}
 	return ret;
 }
 
-function findLowestMobilityPlayer(playerList){
+function findLowestMobilityPlayer(playerList) {
 	var ret = playerList[0];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i]
-		if(p.mobility < ret.mobility){
+		if (p.mobility < ret.mobility) {
 			ret = p;
 		}
 	}
 	return ret;
 }
 
-function findGoodPrototyping(playerList){
-	for(var i= 0; i<playerList.length; i++){
-		if(playerList[i].object_to_prototype.illegal ==true){
+function findGoodPrototyping(playerList) {
+	for (var i = 0; i < playerList.length; i++) {
+		if (playerList[i].object_to_prototype.illegal == true) {
 			//console.log("found good")
 			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}
 }
 
-function getGuardiansForPlayers(playerList){
+function getGuardiansForPlayers(playerList) {
 	var tmp = [];
-	for(var i= 0; i<playerList.length; i++){
+	for (var i = 0; i < playerList.length; i++) {
 		var g = playerList[i].guardian;
 		tmp.push(g);
 	}
 	return tmp;
 }
 
-function sortPlayersByFreeWill(players){
+function sortPlayersByFreeWill(players) {
 	return players.sort(compareFreeWill)
 }
 
-function compareFreeWill(a,b) {
-  return b.getStat("freeWill") - a.getStat("freeWill");
+function compareFreeWill(a, b) {
+	return b.getStat("freeWill") - a.getStat("freeWill");
 }
 
-function getAverageMinLuck(players){
-	if(players.length == 0) return 0;
+function getAverageMinLuck(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("minLuck");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAverageMaxLuck(players){
-	if(players.length == 0) return 0;
+function getAverageMaxLuck(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("maxLuck");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAverageSanity(players){
-	if(players.length == 0) return 0;
+function getAverageSanity(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("sanity");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAverageHP(players){
-	if(players.length == 0) return 0;
+function getAverageHP(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("hp");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAverageMobility(players){
-	if(players.length == 0) return 0;
+function getAverageMobility(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("mobility");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAverageRelationshipValue(players){
-	if(players.length == 0) return 0;
+function getAverageRelationshipValue(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getAverageRelationshipValue();
 	}
-	return Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getAveragePower(players){
-	if(players.length == 0) return 0;
+function getAveragePower(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("power");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
-function getPVPQuip(deadPlayer, victor, deadRole, victorRole){
-	if(victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)){
+function getPVPQuip(deadPlayer, victor, deadRole, victorRole) {
+	if (victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)) {
 		return "Which is pretty much how you expected things to go down between a " + deadPlayer.class_name + " and a " + victor.class_name + " in that exact situation. ";
-	}else{
+	} else {
 		return "Which is weird because you would expect the " + deadPlayer.class_name + " to have a clear advantage. Guess echeladder rank really does matter?";
 	}
 }
 
-function getAverageFreeWill(players){
-	if(players.length == 0) return 0;
+this.removeAllNonPlayers = function(players){
+			var ret = [];
+			for(var i = 0; i< players.length; i++){
+				var p = players[i];
+				if(!p.carapacian && !p.sprite && !p.consort) ret.push(p);
+			}
+			return ret;
+}
+
+
+function getAverageFreeWill(players) {
+	if (players.length == 0) return 0;
 	var ret = 0;
-	for(var i = 0; i< players.length; i++){
+	for (var i = 0; i < players.length; i++) {
 		ret += players[i].getStat("freeWill");
 	}
-	return  Math.round(ret/players.length);
+	return Math.round(ret / players.length);
 }
 
 //need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
-function AssociatedStat(statName, multiplier, isFromAspect){
+function AssociatedStat(statName, multiplier, isFromAspect) {
 	this.name = statName
 	this.multiplier = multiplier;
 	this.isFromAspect = isFromAspect;
-	this.toString= function(){
+	this.toString = function () {
 		var tmp = ""
-		if(this.isFromAspect) tmp = " (from Aspect) "
-		return "["+statName + " x " +this.multiplier + tmp+"]";
+		if (this.isFromAspect) tmp = " (from Aspect) "
+		return "[" + statName + " x " + this.multiplier + tmp + "]";
 	}
 }
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
-function Buff(statName, buff){
+function Buff(statName, buff) {
 	this.name = statName;
 	this.value = buff;
 }

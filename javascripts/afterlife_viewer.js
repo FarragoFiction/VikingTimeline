@@ -14,10 +14,10 @@ window.onload = function() {
 	}
 }
 
-function renderSingleGhost(ghost,i){
+function renderSingleGhost(session, ghost,i){
 	console.log("rendering ghost")
 	var div = $("#afterlifeViewer")
-	var html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
+	var html = "<br><div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ". They are now locked into endless combat.";
 	if(ghost.causeOfDrain){
 		html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. "
 	}
@@ -31,12 +31,32 @@ function renderSingleGhost(ghost,i){
 	drawSprite(pSpriteBuffer,ghost)
 
 	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+	abQuickHax(ghost, session);
+}
 
+//quick, everyone fight everyone else
+function abQuickHax(ghost, session){
+    var div = $("#afterlifeViewer")
+    var everyoneButMe = [];
+    for(var i = 0; i<playersGlobalVar.length; i++){
+         var player  = playersGlobalVar[i];
+         player.initialize(); //look ghosts respawn and have amnesia, don't worry about it
+         player.session = session;
+        player.dead = false;
+        if(player.currentHP <= 0) {
+                player.currentHP = 85;
+        }
+         if(player != ghost){
+            everyoneButMe.push(player);
+         }
+    }
+    ghost.strife(div, everyoneButMe,0);
 }
 
 function renderGhosts(){
+    var session =  new Session(85);
 	for(var i = 0; i< playersGlobalVar.length; i++){
-		renderSingleGhost(playersGlobalVar[i], i);
+		renderSingleGhost(session, playersGlobalVar[i], i);
 	}
 }
 
