@@ -1007,14 +1007,14 @@ function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#1B41D0"  )
+  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering yearnfulNode" + " [YN] --", "ab.png", "jr.png", "AB:", "YN:", "#ff0000", "#1B41D0"  )
 }
 
 function  drawChatJRAB(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvas, chat, "-- yearnfulNode [YN] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "JR:", "AB:", "#1B41D0", "#ff0000"  )
+  drawChatNonPlayer(canvas, chat, "-- yearnfulNode [YN] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "YN:", "AB:", "#1B41D0", "#ff0000"  )
 }
 
 
@@ -2404,7 +2404,7 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 	var lineHeight = ctx.measureText("M").width * 1.2;
     var lines = chat.split("\n");
 	var playerStart = player.chatHandleShort()
-	var jrStart = "JR: "
+	var jrStart = "YN: "
  	for (var i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
 		var ct = lines[i].trim();

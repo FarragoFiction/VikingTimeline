@@ -18,8 +18,9 @@ sessionsSimulated = [];
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 
 function newsposts(main){
-
+    writeNewspost(main,"10/2/2020", "I HATE ALL THESE HAIRS. THEY MAKE ME SO ANGRY. THE LACK OF VIKING HATS IS ALSO ALARMING.");
 	writeNewspost(main,"9/2/2020", "FINALLY. A TIMELINE WORTHY OF MY TIME. <br><br> LET'S BEGIN.");
+
 
 }
 

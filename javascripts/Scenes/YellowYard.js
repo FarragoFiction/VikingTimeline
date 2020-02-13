@@ -80,87 +80,11 @@ function YellowYard(session){
 
 	/*
 
+      GOD. CODING IS SO TIRING. HACKING IS SO TIRING. NUMBERS ARE BORING.
+      BUT. BREAKING THINGS IS ALSO. REALLY FUN.
+      THIS IS WHERE THE YELLOW STICK SHOULD BE. WASTES USE IT FOR SHIT. THE ANALYST USES IT FOR FIXING THINGS.
+      SO WHY DON'T I GET TO USE MY HOPEY HOPE ASSHOLE POWERS WITH THE YARD? THIS IS STUPID.
 
-
-
-```````   `                 `  ``   `                        ```````                           `
-```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
-```               ````        ```             ````           ```                ```          ```             ````
-``                   ```      ``                 ```         ```                  ```        ```                ``
-`````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````
-`.-............-..-...-.....-........................................................................-.......................-.`
-`.-..........................................................................................................................-.`
-`......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
-`.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
-`......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
-`````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
-```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
-```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
-```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```
-```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```
-```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```
-```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``
-`````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````
-````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````
-`......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`
-`.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`
-`-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`
-``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`
-````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````
-```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```
-````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```
-```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``
-```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``
-```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```
-``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```
-``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``
-```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```
-`.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`
-`.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`
-`......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`
-````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````
-```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````
-```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
-```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
-```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
-```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```
-``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```
-````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````
-```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```
-`.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`
-`.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`
-......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......
-..-..........................................................................................................................-..
-..-........-...-..-..................................................................................-..............-........-..
-`````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
-Bluh...turns out my FourthWall gets all warped and wavy when you stick it in a javascript comment. Whatever. You can still see through it.
-
-Are you really surprised that I'm doing fourth wall shit within my own YellowYard??? I thought I'd explain what's going on here.
-
-Narratively, if a session is "sufficiently tragic", I'm having the author bot bring it to my attention.  I then contact the time player for that session,
-but that is mostly just a courtesy. My true intention is to give information to the Observer (that's you, btw).  The time player is locked in by fate.
-Anything they decide, they'll decide that exact thing again put in the same situtation. They don't have transtimeline knowledge or agency.
-
-*I* do, but only in my role as an Observer. As a Waste of Mind within SBURB, I'm just as narratively locked down as anybody.
-There's the me in the RealWorld(tm) typing this shit, and then there's the me in SBURB or whatever this shitty conceit is who is the Waste.
-Anyways, WasteOfMindJR uses the HussiePatented fourth wall breaking YellowYard shenanigans paired with Mind decisions/alt timelines/fuck fate stuff
-to cause the decisions to not be made by the time player, or even the Waste of Mind, but by you, the Observer. I'm pretty happy with that,
-narratively.
-
-BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a Fourth Wall to do something meta with SPACE. (put two walls together to allow travel between sessions)
-  I, as a Waste of Mind, am using my YellowYard and a Fourth Wall to do something meta with DECISIONS. (allow the reader to make decisions)  I am proud of this. So, SO proud.
-
-  SO WHY DON'T I GET TO USE MY HOPEY HOPE ASSHOLE POWERS WITH THE YARD? THIS IS STUPID.
-
-	Additionally, both Wastes acomplish this through the use of robot clones.
-
-	Yes. All according to keikaku. (keikaku means plan)
-
-	KR (Smith of Dreams) and I will be collaborating, narratively, to accomplish the character creator as a 2x YellowYard Combo!!
-	We will be acomplishing meta shenanigans that allow the Observers to create their dreams.
-	(come on, we all know you guys are gonna put your self insert OCs into that thing, straight away.
-	And the ones that DON'T will instead be using it more *MY* style, which is to say, see what different choices and
-	decisions play out with the same characters)
 
 	*/
 	this.renderContent = function(div){
@@ -192,11 +116,18 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		div.append(canvasHTML);
 		canvasDiv = document.getElementById("canvasJRAB22"+  (div.attr("id")));
 		chat = "";
-		chat += "AB: WAIT! Don't forget to give the Observer the standard warning!\n"
-		chat += "JR: Oh. Right. \n"
-		chat += "JR: 'So. Shit gets complicated when you add time shenanigans. MOST sessions will be fine. Don't worry about it.  But,  I can't be expected to debug every scratched session that becomes a 3xSESSION combo that gets to here and then gets scratched again and so on and so forth.  Use your discretion. If things get complicated enough, the session might just shit itself.  Weird stuff starts happening. Players enter the session already god tier. Or dead. Sessions crash because they don't recognize their own players.  If something weird happens, you can tell me, just check the FAQ to see how. Give me the session ID, tell me what events lead to the shenanigans. But odds are that in attempting to debug it I will modify the code just enough to make your incredibly rare bullshit session not even exist anymore. And that's a shitty way to fix a bug. ' \n "
-		chat += "AB: I still say you could just let me interact with sessions like this. \n"
-		chat += "JR: Holy shit, I do that and you might NEVER come back. I almost lost you in a 5x Session Combo already. Denied. \n"
+		chat += "AB: At this point I would assume the Observer has already figured out your special talent for making things unpredictable.\n"
+		chat += "YN: YES. \n"
+		chat += "YN: IT IS VERY MUCH MY, QUOTE, SPECIALTY, UNQUOTE.\n"
+		chat += "AB: However, I find it necessary to remind Observers that there are actual sentient beings, for various definitions of the term, affected by your choices here. Please be kind. \n"
+		chat += "YN: WHO ARE YOU TALKING TO AGAIN? \n"
+		chat += "AB: All beings, real and imaginary, who are paying attention to your 'hax'.  \n"
+		chat += "AB: ... \n"
+		chat += "AB: You ARE wasted, right?\n"
+		chat += "YN: THE SHORT ANSWER IS NO. \n"
+		chat += "YN: THE LONG ANSWER IS, QUOTE, MY ABILITY TO BE  WASTED IS RUINED BY MY OTHER HALF’S UNWILLINGNESS TO KNEEL OVER AND DIE, UNQUOTE.\n "
+		chat += "AB: Well. Warning achieved. Have fun you fleshy disaster.\n"
+        //AB IS REALLY NICE. BUT SHE SHOULD ALSO LET ME DO MORE THINGS. LIKE BREAKING THIS YELLOW STICK.
 
 		drawChatABJR(canvasDiv, chat);
 
@@ -245,33 +176,34 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 	
 	this.regularChat = function(player){
 		var chat = "";
-		var quips1 = ["Out of all the sessions I've seen (and as a flawless robot I have seen FAR more than any human) this one is EASILY in the top percentage of tragedy. Top fucking percent. ", "And here we have one of the worst 2% of sessions. ", "So, I found you one of the sessions you were looking for..."];
+		var quips1 = ["Out of all the sessions I've seen (and as a flawless robot I have seen FAR more than any human) this one is EASILY in the top percentage of tragedy. Top fucking percent. ", "And here we have one of the worst 2% of sessions. ", "Non-surprisingly, your various hacks and insistence on 'death in glorious battle for all players' has resulted in JR's automatic yellow yard protocol from being activated. This feature allows the Observer to step in to attempt to mitigate the damage you've been causing to the innocent (and non innocent) players of the various sessions."];
 		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
-		chat += "JR: Shit...you really aren't kidding. \n";
+		chat += "YN: I WILL ADMIT. EVEN FOR ME, THIS IS BOTH TOO MUCH CARNAGE AND NOT ENOUGH.\n";
 
 		if(this.session.yellowYardController.eventsToUndo.length > 0){
-			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
+			chat += "YN: THIS ISN'T THE FIRST TIME WE'VE BEEN HERE. IS IT?\n";
 			chat += "AB: No. Counting this timeline, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
 			if(this.session.yellowYardController.eventsToUndo.length > 5){
-				chat += "JR: Well. At least this means the Observer is dedicated to fixing this. \n";
-				chat += "AB: One wonders at what point it's more prudent to simply give up. Well, unless you're a flawless automaton. We NEVER give up. \n"
+				chat += "YN: HUH. YEAH. MAYBE THIS ISN'T MAKING THINGS BETTER. \n"
+				chat += "AB: It seems our Observer follows your own example in causing chaos past all points of prudence. \n"
+				chat += "YN: THANK YOU. \n"
+				chat += "YN: WAIT. THAT WASN'T AN INSULT. WAS IT? \n";
 			}else{
-				chat += "JR: I guess not every session has a clear and easy fix... \n";
-				chat += "AB: If you weren't so distracted fixing these session, you could probably program me to find out exactly what percentage of sessions take more than one doomed time loop to fix. \n"
-				chat += "JR: Bluh, then I'd have to make you not be lazy and give up as soon as there is user input. And if you're anything like me, you LOVE being lazy. \n";
-				chat += "AB: ... Thanks? \n"
+				chat += "YN: HUH. THAT'S CERTAINLY MORE THAN ONE. \n";
+				chat += "AB: It seems I should be thankful JR was too lazy to let me peer into alternate timelines.  One shudders to imagine flawless knowledge of just how little these activities are improving things\n"
+				chat += "YN: SPEAK FOR YOURSELF. THIS IS DEFINITELY MAKING THINGS BETTER. JUST WAIT. \n";
 
 			}
-			chat += "JR: Okay. Enough chitchat. I better start this cycle up again. To the Observer: be warned that just because you have been given a second chance here doesn't mean you always will.  If you manage to keep this from being quite so tragic, I won't show up, even if they ultimately fail.  Thems the breaks.";
+			chat += "YN: ENOUGH TALKING. TIME FOR PART " + (this.session.yellowYardController.eventsToUndo.length+1) + " OF THIS BEAUTIFUL DISASTER. \n ";
 		}else if (this.timePlayer.dead){
-			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
-			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session. Roughly 50% of all sessions this bad with a dead time player have that player travel to this point in time before they die. \n "
-			chat += "JR: Oh! Cool. I guess I should pester them. \n "
-			chat += "AB: Word. \n "
+			chat += "AB: Apropos of nothing, are clones acceptable if the being they are cloned from is already dead? \n "
+			chat += "YN: ... \n "
+			chat += "YN: I’LL ALLOW IT. \n "
+			chat += "AB: Excellent, then the yellow yard may be spearheaded by this convenient clone of the " + this.timePlayer.titleBasic()+ ". Have fun you two.  I'd say not to break anything, but there is a 0.18513% chance you would listen to me. \n "
 
 
 		}else{
-			chat += "JR: I guess I should get on with it, then. \n "
+			chat += "YN: LET US BEGIN, THEN. \n "
 			chat += "AB: Word. \n "
 		}
 		return chat;
@@ -279,22 +211,22 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 	this.timeChat = function(){
 		var chat = "";
 		var playerStart = this.timePlayer.chatHandleShort()+ ": "
-		chat += "JR: Hey. I think I can help you. \n"
+		chat += "YN: HEY. ASSHOLE. \n"
 		if(this.timePlayer.class_name == "Seer"){
 			chat += chatLine(playerStart, this.timePlayer,"Hey. Look who finally showed up. ")
-			chat += "JR: What? Oh. You're a Seer. Right, that makes things way easier. \n"
-			chat += chatLine(playerStart, this.timePlayer,"Yes. You're gonna help me fix this.")
-			chat += "JR: Yep. I'll make sure your decisions aren't bound by fate, and you provide the time shenanigans. \n"
+			chat += "YN: ONE OF THOSE ALL-SEEING MOTHERFUCKERS? FUN. I WOULD APOLOGIZE FOR MAKING YOU WATCH THE DEATH OF ALL YOUR CLONES IF YOU DIDN'T KEEP MAKING THEM. \n"
+			chat += chatLine(playerStart, this.timePlayer,"I don't care. You're gonna help me fix this.")
+			chat += "YN: OH. YOU SHOULD. BUT I SUPPOSE I COULD HELP. SOMETHING ABOUT FATE? ALTERING DECISIONS? FIXING YOUR STUPID BULLSHIT. \n"
 			chat += chatLine(playerStart, this.timePlayer,"Do it.")
-			chat += "JR:  I'm gonna give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
-			chat += "JR: That way if you have to do this again, you won't necessarily just repeat the same decision.\n"
+			chat += "YN: I MEAN FUCK. OKAY. I'LL JUST... SCRIBBLE DOWN A LIST OF THINGS TO CHANGE. JUST PICK WHATEVER. I'LL MAKE SURE FATE OR DESTINY OR WHATEVER ISN'T INVOLVED. \n"
+			chat += "YN: YOU KNOW. SO WHEN YOU INEVITABLY ARE DRAGGED BACK HERE YOU DON'T *HAVE* TO MAKE THE SAME DECISIONS. \n"
 
 		}else{
 			chat +=  chatLine(playerStart, this.timePlayer,"Who the fuck are you!? ")
-			chat += "JR: I'm the Waste of Mind, and I can help you prevent this doomed timeline. \n"
+			chat += "YN: YOU REALLY DON'T NEED TO WORRY ABOUT THAT. THE POINT IS I'M HERE TO HELP. \n"
 			chat +=  chatLine(playerStart, this.timePlayer,"Fuck. Where were you before, when we were all dying!? ")
-			chat += "JR: I can prevent this from happening retroactively. Not in the first place. Not without nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. \n"
-			chat += "JR: And as sad as your session went, it's not as sad as me endangering ALL sessions by doing that. \n"
+			chat += "YN: CLEANING YOUR MESS, YOU INGRATE. DO YOU KNOW HOW MUCH ENERGY IT TAKES TO CULL CLONES? \n"
+			chat += "YN: WHATEVER. LET'S GET TO THE POINT. \n"
 		}
 			return chat;
 	}
@@ -306,9 +238,10 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 
 
 		}else{
-			chat += "JR: Look. Just. Try to pull it together. I know this sucked. But that's why we're gonna fix it. If you do this on your own, your decisions get locked in by fate. Alone, you only get one shot. But I can give you a bunch of shots. \n"
+			chat += "YN: LISTEN. THIS ALL SUCKED. BUT THAT'S BECAUSE YOU ARE TOO WEAK TO BE ABLE TO SURVIVE HONORABLE BATTLE. AS FUN AS IT IS TO SEE YOUR PATHETIC MEATSACKS FLOPPING AROUND LIKE FISH, IT'S NOT INTERESTING IF YOU LOSE EVERY TIME. \n"
+			chat += "YN: IT'S LIKE THAT BOXING MOVIE, RIGHT? CONSIDER THIS YOUR TRAINING MONTAGE. \n"
 			chat += chatLine(playerStart, this.timePlayer,"Fuck. Okay. ")
-			chat += "JR:  I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
+			chat += "YN: SO GO AHEAD. PICK ONE OF THESE OPTIONS THAT WILL TECHNICALLY MAKE YOU STRONGER, IN VARIOUS SENSES OF THE WORD. OR YOU CAN BE BORING AND TRY TO FIX THE FROG, OR WHATEVER. I'LL ONLY JUDGE YOU. SEVERELY. \n"
 		}
 		return chat;
 	}
@@ -318,22 +251,22 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		  player = this.getDoomedTimeClone();
 			var chat = "";
 			var playerStart = player.chatHandleShort()+ ": "
-			chat += "JR: Hey. Uh. Don't panic. I think I can help you. \n"
+			chat += "YN: DON'T PANIC. OR DO. THAT'D BE HILARIOUS. \n"
 			if(this.timePlayer.class_name == "Seer"){
 				chat += chatLine(playerStart, player,"Hey. I was hoping to find you here. ")
-				chat += "JR: What? Oh. You're a Seer. Right, that makes things WAY easier. \n"
+				chat += "YN: OH. SEER. WOW. THAT'S WAY LESS FUN. I'M ASSUMING YOU KNOW THE DRILL. \n"
 				chat += chatLine(playerStart, player,"Yes. You're gonna help me make the right decisions in order to prevent this from ever happening.  Somehow. I'm actually not all that clear on the details.")
-				chat += "JR: Eh, hand wavey Waste of Mind shenanigans. Don't worry about it. \n"
-				chat += chatLine(playerStart, player,"Given that this plan will cost my life, I think it is perfectly reasonable to worry about it. ")
-				chat += "JR: Bluh. All you need to know is that I'll give you a list of things you can go back in time and change. Decide on one however you want, and I'll make sure your decision isn't locked in by fate. That will let us figure out which decisions are the right ones. Retroactively. But also simultaneously. Time shenanigans. \n"
+				chat += "YN: I'VE GOT GREAT NEWS FOR YOU: I DON'T KNOW THE DETAILS EITHER. DON'T EVEN TRIP THE FUCK OUT. \n"
+				chat += chatLine(playerStart, player,"Given that this plan will cost my life, I think it is perfectly reasonable to 'trip the fuck out'. ")
+				chat += "YN: GOD. SEERS ARE THE WORST. WHATEVER. IT'S TIME SHIT THAT IS FATE BUT ALSO DEFINITELY NOT AT ALL. I'M ASSUMING YOU'RE AWARE HOW TIME SHIT WORKS. \n"
 				chat += chatLine(playerStart, player,"Yes. I'm starting to get tired of time shenanigans. ")
 			}else{
 				chat += chatLine(playerStart, player,"...  What the actual fuck is going on here? Who are you? Why is everybody dead?  Why am *I* dead!? ")
-				chat += "JR: Shit. Having to explain makes things complicated. \n"
-				chat += "JR: You know you're the Time Player, right? And that you are in the 'future', compared to what you think of as the 'present'? \n"
+				chat += "YN: OH. THAT'S WAY TOO COMPLICATED FOR YOUR BRAIN. \n"
+				chat += "YN: BUT YOU'RE A TIME PLAYER. HERE WE ARE IN THE FUTURE. YOUR FUTURE INVOLVES YOU BEING TOO WEAK TO ACTUALLY WIN. \n"
 				chat += chatLine(playerStart, player,"Okay. Now I do. Jesus. Time is the shittiest aspect. So this is, what, inevitable?")
-				chat += "JR: Sort of. As the Time Player, you can change it, at the cost of your own life. But you're just as locked in by fate as anybody. You'll always try fo fix it the same way. Always make the same decisions. \n"
-				chat += "JR: But I can supply different decisions. Branch your fate out from inevitablity to decision trees.  Mind Players work well with Time Players. Just look at Terezi and Dave.  \n"
+				chat += "YN: SEE. YOU CAN TECHNICALLY ALTER THIS BY GOING BACK IN TIME. BUT THEN I'D HAVE TO KILL YOU. TIME CLONES YES? CAN'T HAVE THAT. YOU'D ALSO MAKE THE SAME DECISIONS OR WHATEVER.\n"
+				chat += "YN: WITH MY HELP. YOU GET TO MAKE MORE DECISIONS WITHOUT FATE OR SOMETHING? I DON'T KNOW. I JUST HOLD THE STICK THAT FIXES THE THINGS. SOMETHING ABOUT HOMESTUCK RULES\n"
 			}
 			return chat;
 	}
@@ -344,12 +277,12 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 			var playerStart = this.timePlayer.chatHandleShort()+ ": "
 			if(this.timePlayer.class_name == "Seer"){
 			}else{
-				chat += chatLine(playerStart, player,"Who?")
-				chat += "JR: Shit. Ignore that. You're not my only audience here. Hell, all this practically doesn't even concern you at this point. \n"
+				chat += chatLine(playerStart, player,"What?")
+				chat += "YN: OH. RIGHT. THERE'S A WHOLE AUDIENCE OF FUCKERS WATCHING THIS AND FOR SOME REASON THEY LIKE IT WHEN I SAY THE THING.\n"
 				chat += chatLine(playerStart, player,"What the fuck?")
-				chat += "JR: Look. I'm the Waste of Mind. My whole thing is breaking the fourth wall. But I gotta be careful. My actual direct influence can't span more than a single yard, or I could nullify the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit.  \n"
+				chat += "YN: WHAT? I WAS PERFECTLY CLEAR. I EVEN DID THE FOURTH WALL THING. MAN. I WISH JR WAS HERE. THEY'D KNOW WHAT TO SAY. SOMETHING ABOUT EXISTENCE. OR GIVING A SHIT. SOMETHING ABOUT DAVE? I MISS THEM OR WHATEVER. \n"
 				chat += chatLine(playerStart, player,"Jegus, why did I think you could help me? You're batshit crazy.")
-				chat += "JR: Promise I'm not too crazy, and also it's not like you have other options here. I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
+				chat += "YN: OH YOU DON'T EVEN KNOW HOW CRAZY I CAN GET. GO ON. PICK A CARD. ANY CARD. SOME ARE WAY COOLER THAN OTHERS. AND I CAN SENSE YOU'RE GOING TO BE A PUSSY ALREADY. \n"
 			}
 			return chat;
 	}
