@@ -1,0 +1,108 @@
+@font-face {
+    font-family: nunito;
+    src: url("../Fonts/nunito/Nunito-Regular.ttf");
+}
+
+.whiteCenterThingy{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+#book{
+    position: relative;
+}
+
+#bookbg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#left-arrow{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    bottom: 60px;
+    left: 182px;
+}
+
+#right-arrow{
+}
+.clickableTOC{
+    cursor: pointer;
+}
+
+.arrow{
+    cursor: pointer;
+    position: absolute;
+    bottom: 60px;
+    right: 182px;
+}
+
+.page{
+  font-family: 'nunito', sans-serif;
+  position: absolute;
+  top: 41px;
+  width: 300px;
+  height: 500px;
+  overflow: hidden;
+}
+
+#leftnumber{
+    position: absolute;
+    bottom: 60px;
+    left: 165px;
+}
+
+#rightnumber{
+    position: absolute;
+    bottom: 60px;
+    right: 165px;
+}
+
+#leftpage{
+    left: 170px;
+}
+
+#rightpage{
+    left: 525px;
+}
+
+
+#header{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.spriteImgNoLayers{
+
+}
+
+.spriteParent{
+	width: 400px;
+	height: 300px;
+	display: inline-block;
+	position: relative;
+	border: 1px solid black;
+}
+
+.spriteParentNoSize{
+	display: inline-block;
+	position: relative;
+	border: 1px solid black;
+}
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+.intro{
+	width:885px;
+}
+
+
+.void{
+	display: none;
+	background-color: #000066;
+	color: #ffffff;
+}

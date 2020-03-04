@@ -1,0 +1,12 @@
+Yes. It seems my suprior robotic intellect can leverage JR's shitty past code in order to help a Viking take notes.
+
+I can also leverage new lines, without the need for messy break tags.
+
+Additionally, it seems that images are allowed.
+
+<img src = 'images/ab.png'>
+
+Todo:
+
+
+<li> allow table of contents to have clickable links that lead to their page number.

@@ -1,0 +1,6 @@
+<font color = "red">
+				It seems you have asked about JR's automatic rare session finder. This is an application designed
+				to find sessions that are strange, interesting and otherwise noteworthy without having to
+				read hundreds of thousands of words.  The algorithms are guaranteed to be <b id = "percentBullshit">85%</b>
+				 indistinguishable from the actual, readable sessions, based on some
+				statistical analysis I basically just pulled out of my ass right now.</font>
