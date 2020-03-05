@@ -264,7 +264,7 @@ function restartSession(){
 
 
 function tick(){
-	//console.log("Tick: " + curSessionGlobalVar.timeTillReckoning)
+	console.log("Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
