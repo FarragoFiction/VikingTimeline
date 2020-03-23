@@ -2,7 +2,7 @@
 
 var folder = "VikingPages/";
 var currentLeftPage = 0;
-var tableOfContents = ["abishappy.txt", "test1.txt", "test2.txt"];
+var tableOfContents = ["vikingintro.txt"];
 var leftPageDiv;
 var rightPageDiv;
 var leftNumDiv;
