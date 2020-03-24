@@ -3,7 +3,7 @@ function LateWithStarBux(session){
 	this.canRepeat = true; //THE MAN IS ALWAYS LATE. ALWAYS.
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.bulliedPlayer;
-	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches", "Paladins", "Sheep", "Feasts", "Boats", "Vessels", "Sigils",];
+	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches", "Paladins", "Sheep", "Feasts", "Boats", "Vessels", "Sigils","Powers","Rangers","Minerals","Refrances","Raiders","Empires","Conflicts","Berserkers","Slaughters","Heathens","Heretics","Tidings","Longships","Raids","Skalds","Elders","Voyagers","Mist","Wrestling","Giants","Elves","Dwarves","Norns","Axes","Tomahawks","Bows","Fleets","Ice","Icebergs","Snow","Pines"];
 
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
