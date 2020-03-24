@@ -2,6 +2,7 @@ function Reckoning(session){
 	this.canRepeat = false;
 	this.session=session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.

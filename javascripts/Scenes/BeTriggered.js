@@ -4,6 +4,7 @@ function BeTriggered(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.triggeredPlayers = [];
 	this.triggers = [];
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
