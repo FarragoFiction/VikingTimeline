@@ -3,11 +3,17 @@ function LateWithStarBux(session){
 	this.canRepeat = true; //THE MAN IS ALWAYS LATE. ALWAYS.
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.bulliedPlayer;
-	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches",];
+	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches", "Paladins", "Sheep", "Feasts", "Boats", "Vessels", "Sigils",];
 
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
-        this.bulliedPlayer.land = "Realm of " + getRandomElementFromArray(this.bitchinLands) + " and " + getRandomElementFromArray(this.bitchinLands); //pick from this list pls
+        if(Math.seededRandom() > .5){
+          this.bulliedPlayer.land = "Realm of " + getRandomElementFromArray(this.bitchinLands) + " and " + getRandomElementFromArray(this.bitchinLands); //pick from this list pls
+          return "A PALADYN shows up and makes the " + this.bulliedPlayer.htmlTitle() + " have the land "+ this.bulliedPlayer.land + " or " + this.bulliedPlayer.shortLand() + ".";
+        }else{
+          this.bulliedPlayer.chatHandle = getRandomElementFromArray(this.bitchinLands).toLowerCase() + getRandomElementFromArray(this.bitchinLands); //pick from this list pls x2
+         return "A PALADYN shows up and makes the " + this.bulliedPlayer.htmlTitle() + " have the chathandle " + this.bulliedPlayer.chatHandleShort() + ".";
+        }
     }
 
 
@@ -28,13 +34,12 @@ function LateWithStarBux(session){
 }
 
 	this.renderContent = function(div){
-		this.doshit();
 		div.append("<br> <img src = 'images/sceneIcons/paladyn_icon.png'>"+this.content());
 	}
 
 	this.content = function(){
 
-	    return "A PALADYN shows up and makes the " + this.bulliedPlayer.htmlTitle() + " have the land "+ this.bulliedPlayer.land + " or " + this.bulliedPlayer.shortLand() + ".";
+	    return this.doshit();
 
 	    //fucking... okay, how to make this work
 	}
