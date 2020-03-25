@@ -41,7 +41,32 @@ function LateWithStarBux(session){
 
 	this.renderContent = function(div){
 		div.append("<br> <img src = 'images/sceneIcons/paladyn_icon.png'>"+this.content());
+        var player2 = getLeader(findLivingPlayers(	this.session.players));
+        if (player2 != this.bulliedPlayer){
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_" + this.bulliedPlayer.chatHandle;
+        		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+        		div.append(canvasHTML);
+        		//different format for canvas code
+        		var canvasDiv = document.getElementById("canvas"+ divID);
+        				chatText = this.normalConvo(div, this.bulliedPlayer, player2);
+		drawChat(canvasDiv, this.bulliedPlayer, player2, chatText, repeatTime,"discuss_jack.png");
+		}
 	}
+
+	this.normalConvo = function(div, player1, player2){
+    		var player1Start = player1.chatHandleShort()+ ": "
+    		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+    		var r1 = player1.getRelationshipWith(player2);
+    		var r2 = player2.getRelationshipWith(player1);
+    		var chatText = "";
+
+    		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+    		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
+    		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.")
+
+    		return chatText;
+    	}
 
 	this.content = function(){
 
