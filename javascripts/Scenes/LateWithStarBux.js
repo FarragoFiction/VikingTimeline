@@ -8,6 +8,9 @@ function LateWithStarBux(session){
 
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
+
+        this.bulliedPlayer.timesBullied +=1  //this adds one bully to the bully counter (tm)
+
         this.bulliedPlayer.flipOutReason = "a weird paladin bullying them"
         if(Math.seededRandom() > 0.3){
           this.bulliedPlayer.land = "Realm of " + getRandomElementFromArray(this.bitchinLands) + " and " + getRandomElementFromArray(this.bitchinLands); //pick from this list pls
@@ -31,7 +34,7 @@ function LateWithStarBux(session){
 		for(var i = 0; i<this.playerList.length; i++){ //want to make sure the player is alive so they can be bullied
 		      var player = this.playerList[i];
 		      var rollValueLow = player.rollForLuck("minLuck") //be REAL BAD at avoiding bad shit
-		      if(rollValueLow > 85){
+		      if(rollValueLow < 85){
 		           this.bulliedPlayer = player;
 		           return true;
 		       }
@@ -41,9 +44,12 @@ function LateWithStarBux(session){
 
 	this.renderContent = function(div){
 		div.append("<br> <img src = 'images/sceneIcons/paladyn_icon.png'>"+this.content());
-        var player2 = getLeader(findLivingPlayers(	this.session.players));
-        if (player2 != this.bulliedPlayer){
+        var player2 = this.playerList[0];
+
+        if (player2 != this.bulliedPlayer && player2 != null && this.bulliedPlayer.timesBullied >= 3){
 		var repeatTime = 1000;
+		this.bulliedPlayer.minLuck += 85; //oh god nerf this later
+
 		var divID = (div.attr("id")) + "_" + this.bulliedPlayer.chatHandle;
         		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
         		div.append(canvasHTML);
@@ -51,6 +57,8 @@ function LateWithStarBux(session){
         		var canvasDiv = document.getElementById("canvas"+ divID);
         				chatText = this.normalConvo(div, this.bulliedPlayer, player2);
 		drawChat(canvasDiv, this.bulliedPlayer, player2, chatText, repeatTime,"discuss_jack.png");
+		}else if(this.bulliedPlayer.timesBullied >= 3){
+		this.bulliedPlayer.minLuck += 85
 		}
 	}
 
@@ -63,7 +71,10 @@ function LateWithStarBux(session){
 
     		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
     		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
-    		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.")
+    		chatText += chatLine(player1Start, player1,"This weird 'paladin' keeps 'helping' me.")
+    		chatText += chatLine(player2Start, player2,"What do you MEAN 'paladin'?")
+    		chatText += chatLine(player1Start, player1,"This guy in non-aspect colored armor keeps renaming my shit.")
+    		chatText += chatLine(player2Start, player2,"Sounds rough, buddy.")
 
     		return chatText;
     	}
