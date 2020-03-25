@@ -4,9 +4,11 @@ function LateWithStarBux(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.bulliedPlayer;
 	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches", "Paladins", "Sheep", "Feasts", "Boats", "Vessels", "Sigils","Powers","Rangers","Minerals","Refrances","Raiders","Empires","Conflicts","Berserkers","Slaughters","Heathens","Heretics","Tidings","Longships","Raids","Skalds","Elders","Voyagers","Mist","Wrestling","Giants","Elves","Dwarves","Norns","Axes","Tomahawks","Bows","Fleets","Ice","Icebergs","Snow","Pines"];
+	this.bitchinSprites = ["Viking","Prophet","Sheep","Moth","Son"]
 
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
+        this.bulliedPlayer.flipOutReason = "a weird paladin bullying them"
         if(Math.seededRandom() > 0.3){
           this.bulliedPlayer.land = "Realm of " + getRandomElementFromArray(this.bitchinLands) + " and " + getRandomElementFromArray(this.bitchinLands); //pick from this list pls
           return "A MIGHTY PALADYN has been watching by the sidelines, and he's decided he doesn't like " + this.bulliedPlayer.htmlTitle() + "'s groove. With a flick of his brush, their land is now "+ this.bulliedPlayer.land + ", or " + this.bulliedPlayer.shortLand() + " for short. This is definitely an improvement.";
@@ -15,7 +17,7 @@ function LateWithStarBux(session){
          return "A GREAT PALADYN has decided that " + this.bulliedPlayer.htmlTitle() + "'s chathandle is STUPID and also DUMB. With a flick of his brush, they now go by " + this.bulliedPlayer.chatHandleShort() + " instead.";
         }
         else{
-          this.bulliedPlayer.sprite.name = getRandomElementFromArray(this.bitchinLands) + "sprite"; //hook it up to an actual spritelist later you godless animal
+          this.bulliedPlayer.sprite.name = getRandomElementFromArray(this.bitchinSprites) + "sprite"; //hook it up to an actual spritelist later you godless animal
           return "A FANTASTIC PALADYN swoops in, deciding that " + this.bulliedPlayer.htmlTitle() + "'s sprite is not nearly cool enough. With a flick of his brush, the previous sprite explodes, and a poorly drawn " +this.bulliedPlayer.sprite + " descends from the sky."
         }
     }
