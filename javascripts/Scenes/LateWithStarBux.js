@@ -9,10 +9,10 @@ function LateWithStarBux(session){
     this.doshit = function(){
         if(Math.seededRandom() > .5){
           this.bulliedPlayer.land = "Realm of " + getRandomElementFromArray(this.bitchinLands) + " and " + getRandomElementFromArray(this.bitchinLands); //pick from this list pls
-          return "A PALADYN shows up and makes the " + this.bulliedPlayer.htmlTitle() + " have the land "+ this.bulliedPlayer.land + " or " + this.bulliedPlayer.shortLand() + ".";
+          return "A MIGHTY PALADYN has been watching by the sidelines, and he's decided he doesn't like " + this.bulliedPlayer.htmlTitle() + "'s groove. With a flick of his brush, their land is now "+ this.bulliedPlayer.land + ", or " + this.bulliedPlayer.shortLand() + " for short. This is definitely an improvement.";
         }else{
           this.bulliedPlayer.chatHandle = getRandomElementFromArray(this.bitchinLands).toLowerCase() + getRandomElementFromArray(this.bitchinLands); //pick from this list pls x2
-         return "A PALADYN shows up and makes the " + this.bulliedPlayer.htmlTitle() + " have the chathandle " + this.bulliedPlayer.chatHandleShort() + ".";
+         return "A GREAT PALADYN has decided that " + this.bulliedPlayer.htmlTitle() + "'s chathandle is STUPID and also DUMB. With a flick of his brush, they now go by " + this.bulliedPlayer.chatHandleShort() + " instead.";
         }
     }
 

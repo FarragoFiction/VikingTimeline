@@ -93,8 +93,8 @@ function SaveDoomedTimeLine(session){
 
 		if(this.reason == "Leader killed before ectobiology."){
 			//alert("ecto doom")
-			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
-			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
+			ret += " But... if the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
+			ret += " none of the Players will even be born in the first place. ";
 
 			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
@@ -103,21 +103,21 @@ function SaveDoomedTimeLine(session){
 			if(r && r.value != 0){
 					if(r.value > 0){
 						console.log(" fully restoring leader health from time shenanigans: " + this.session.session_id)
-						ret += " They make it so that never happened. Forget about it. ";
+						ret += " They're kind of dead so they... really... can't do that... but it's okay! The COOL PALADYN makes it so that never happened. Forget about it. ";
 						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
 					}else{
 						console.log(" barely restoring leader health from time shenanigans: " + this.session.session_id)
-						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
+						ret += " Their dead body isn't too good at solving the fuck out of this timeline loop. Instead, the PALADYN just YOINKS the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
 						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
 					}
 			}else{
 				console.log(" half restoring leader health from time shenanigans: " + this.session.session_id)
 				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
-				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+				ret += " The body just flies off, hitting the " + this.leaderPlayer.htmlTitleBasic() +  " in the face to interrupt them. Score! ";
 			}
 
 		}else if(this.reason == "Leader killed before all players in medium."){
-			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
+			ret += " But... if the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " the " +this.session.players[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
 			ret += " After all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			this.leaderPlayer.dead = false;
@@ -126,16 +126,16 @@ function SaveDoomedTimeLine(session){
 			if(r && r.value != 0){
 					if(r.value > 0){
 						console.log(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id)
-						ret += " They make it so that never happened. Forget about it. ";
+						ret += " Welp. PALADYN makes it so that never happened. Forget about it. ";
 						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
 					}else{
 						console.log(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id)
-						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
+						ret += " Their dead body isn't too good at solving the fuck out of this timeline loop. Instead, the PALADYN just YOINKS the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
 						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
 					}
 			}else{
 				console.log(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id)
-				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+				ret += " The body just flies off, hitting the " + this.leaderPlayer.htmlTitleBasic() +  " in the face to interrupt them. Score! ";
 				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
 			}
 			this.session.doomedTimelineReasons.push(this.reason)
@@ -149,7 +149,7 @@ function SaveDoomedTimeLine(session){
 			}else{
 				this.reason = "Shenanigans"
 				session.doomedTimelineReasons.push(this.reason)
-				ret += " It's too complicated to explain, but everyone has already screwed up beyond repair. Just trust them. ";
+				ret += " So, uh. Dead body aside. It's too complicated to explain, but everyone has already screwed up beyond repair. Really. ";
 			}
 		}
 
@@ -157,13 +157,13 @@ function SaveDoomedTimeLine(session){
 
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves(?) to change the timeline. ";
+			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed(?) themselves to change the timeline. ";
 			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it... this one is still dead as fuck. ";
 			ret += " You know, the plan was to time travel to where they can do the most good, but clones are disgusting and heretic, so that's the world we live in now. ";
 			ret += " After being dead and doing nothing, they vanish in a cloud of clocks and gears. ";
 		}else{
 			console.log("death's hand maid in: " + this.session.session_id)
-			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. "
+			ret += " Time really is the shittiest aspect. PALADYN kicks the their body to the side, makes sure everybody is dead in this timeline, as per inevitability's requirements, and then poofs out in a cloud of smoke. "
 		}
 		this.doomedTimeClone = makeDoomedSnapshot(this.timePlayer);
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
