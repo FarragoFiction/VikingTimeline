@@ -56,7 +56,7 @@ function LateWithStarBux(session){
         		//different format for canvas code
         		var canvasDiv = document.getElementById("canvas"+ divID);
         				chatText = this.normalConvo(div, this.bulliedPlayer, player2);
-		drawChat(canvasDiv, this.bulliedPlayer, player2, chatText, repeatTime,"discuss_jack.png");
+		drawChat(canvasDiv, this.bulliedPlayer, player2, chatText, repeatTime,"discuss_eye.png");
 		}else if(this.bulliedPlayer.timesBullied >= 3){
 		this.bulliedPlayer.minLuck += 85
 		}
