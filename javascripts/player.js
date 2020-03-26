@@ -52,6 +52,7 @@ function Player(session, class_name, aspect, object_to_prototype, moon, godDesti
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
 	this.baby_stuck = false;
+	this.timesBullied = 0;
 	this.influenceSymbol = null; //multiple aspects can influence/mind control.
 	this.influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
 	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
