@@ -59,6 +59,7 @@ function LateWithStarBux(session){
 		drawChat(canvasDiv, this.bulliedPlayer, player2, chatText, repeatTime,"discuss_eye.png");
 		}else if(this.bulliedPlayer.timesBullied >= 3){
 		this.bulliedPlayer.minLuck += 85
+		
 		}
 	}
 
