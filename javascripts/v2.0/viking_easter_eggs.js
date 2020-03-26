@@ -50,7 +50,9 @@ function processEggs(){
     var existing = localStorage.getItem(POSSIBLE_VIKING_EGG_KEY);
     var eggs = existing.split(",");
     for(var i = 0; i<eggs.length; i++){
-        checkExistanceOfPossibleEgg(eggs[i]);
+        if(!localStorage.getItem(FOUND_VIKING_PAGES_KEY).includes(eggs[i])){
+             checkExistanceOfPossibleEgg(eggs[i]);
+        }
     }
 }
 
