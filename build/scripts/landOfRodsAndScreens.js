@@ -34,6 +34,12 @@ window.onload = function() {
 	setTimeout(function(){
 		showMindButton();
 	}, (5*60000));
+
+	addPossibleEgg("analyst")
+
+	addPossibleEgg("yellowyard")
+
+	addPossibleEgg("restraint")
 }
 
 function showMindButton(){

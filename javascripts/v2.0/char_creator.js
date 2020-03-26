@@ -30,6 +30,8 @@ window.onload = function() {
 	initSession();
 	charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
 	//shareableURL();
+
+	addPossibleEgg("cockroach")
 }
 
 function allGods(){

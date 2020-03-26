@@ -31,6 +31,12 @@ window.onload = function() {
 	showMindButton(); //unlocked to beging with.
 	doTheMindyThing();
 
+	addPossibleEgg("hammerspace")
+
+	addPossibleEgg("heypastfuturekrgoodluckwithyoursurgery")
+
+	addPossibleEgg("blacksmith")
+
 }
 
 function showMindButton(){

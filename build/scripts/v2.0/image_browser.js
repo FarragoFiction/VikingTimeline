@@ -61,6 +61,11 @@ window.onload = function() {
 		renderFanArtMisc();
 		$("#header").html("FanArt Gallery");
 	}
+	addPossibleEgg("illusion")
+
+	addPossibleEgg("armor")
+
+	addPossibleEgg("validation")
 }
 function renderFirstPlayerFanArt(){
 //var folder = "images/misc/fanArt/ABFanArt/"

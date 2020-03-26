@@ -12,6 +12,11 @@ window.onload = function() {
 	}else{
 		debug("there are no ghosts in this afterlife, dunkass")
 	}
+	addPossibleEgg("valhalla")
+
+	addPossibleEgg("tailor")
+
+	addPossibleEgg("opreim")
 }
 
 function renderSingleGhost(session, ghost,i){

@@ -25,6 +25,11 @@ window.onload = function() {
 		rap(2,player2);
 		$("#score").html("Player1: " + player1Score + " Player2: " + player2Score)
 
+        addPossibleEgg("freshrhymes")
+
+        addPossibleEgg("flow")
+
+        addPossibleEgg("turnips")
 }
 
 function rap(playerNum, player){

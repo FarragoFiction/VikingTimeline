@@ -33,6 +33,8 @@ window.onload = function() {
 	setTimeout(function(){
 		showMindButton();
 	}, (5*60000));
+
+	addPossibleEgg("wasting")
 }
 
 function showMindButton(){

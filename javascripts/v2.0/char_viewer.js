@@ -11,6 +11,13 @@ window.onload = function() {
 	$("#character_creator").append("<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target='_blank' href = 'rare_session_finder.html?selfInsertOC=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
 	loadFuckingEverything(true);
 
+	addPossibleEgg("heretics")
+
+	addPossibleEgg("morgar")
+
+	addPossibleEgg("trinitus")
+
+
 
 
 }

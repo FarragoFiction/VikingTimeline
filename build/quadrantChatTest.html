@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="javascripts/scene_controller.js"></script>
 	<script type="text/javascript" src="javascripts/AfterLife.js"></script>
 	<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/viking_easter_eggs.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
 	<script type="text/javascript" src="javascripts/player.js"></script>
 	<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
@@ -40,6 +41,11 @@
 			var p2 = curSessionGlobalVar.players[1];
 			load([p1,p2], []); //in loading.js
 
+			addPossibleEgg("quadrants")
+
+			addPossibleEgg("soulmate")
+
+			addPossibleEgg("mysspeg")
 
 		}
 
