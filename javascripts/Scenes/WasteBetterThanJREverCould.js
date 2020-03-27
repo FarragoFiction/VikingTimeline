@@ -113,7 +113,7 @@ function WasteBetterThanJREverCould(session) {
             return $("#scene"+this.currentSceneNum);
         }
         //crash the game on purpose? rage quit? hack the thing that handles errors?
-        printCorruptionMessage = function() {
+        window.onerror = function() {
             var recomendedAction = enablingPlayer.chatHandleShort() +enablingPlayer.quirk.translate(": FUCK YOU FOR EXISTING. FUCK YOU FOR BEING AMUSED AT OUR TORMENT. FUCK YOU OBSERVERS.");
             var space = findAspectPlayer(curSessionGlobalVar.players, "Space")
             var time = findAspectPlayer(curSessionGlobalVar.players, "Time")
