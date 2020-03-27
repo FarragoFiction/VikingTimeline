@@ -104,6 +104,7 @@ function WasteBetterThanJREverCould(session) {
         }
     }
 
+        //impotent rage
     this.rageGnosis = function(enablingPlayer, session) {
         session.newScene = function() {
             this.currentSceneNum++;
@@ -112,8 +113,7 @@ function WasteBetterThanJREverCould(session) {
             $("#story").append(div);
             return $("#scene"+this.currentSceneNum);
         }
-        //crash the game on purpose? rage quit? hack the thing that handles errors?
-        window.onerror = function() {
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
             var recomendedAction = enablingPlayer.chatHandleShort() +enablingPlayer.quirk.translate(": FUCK YOU FOR EXISTING. FUCK YOU FOR BEING AMUSED AT OUR TORMENT. FUCK YOU OBSERVERS.");
             var space = findAspectPlayer(curSessionGlobalVar.players, "Space")
             var time = findAspectPlayer(curSessionGlobalVar.players, "Time")
