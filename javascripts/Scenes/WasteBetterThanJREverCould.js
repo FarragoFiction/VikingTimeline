@@ -94,8 +94,13 @@ function WasteBetterThanJREverCould(session) {
     }
 
     this.breathGnosis = function(enablingPlayer, session) {
-        //maybe hack escaping battle?
-        console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+        //eye of the storm. no connections means no emtions
+        for (var i = 0; i < session.availablePlayers.length; i++) {
+            var player = session.availablePlayers[i];
+            player.flipOut = function(reason){
+                console.log("It's okay. You don't need to care about " + reason.);
+            }
+        }
 
     }
 
@@ -189,8 +194,28 @@ function WasteBetterThanJREverCould(session) {
 }
 
 this.bloodGnosis = function(enablingPlayer, session) {
-    //hack findfriends or whatever to just return everyone?
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+    for (var i = 0; i < session.availablePlayers.length; i++) {
+           var player = session.availablePlayers[i];
+           player.getFriendsFromList = function (potentialFriends){
+                //shhhh its okay. we are all friends here
+               return potentialFriends;
+           }
+
+           player.getEnemiesFromList = function (potentialFriends){
+               //no one is fighting
+              return [];
+           }
+
+           player.getFriends = function (){
+              //everyone is friends
+             return [player.relationships];
+           }
+
+           player.getEnemies = function (){
+             //no one is fighting
+            return [];
+           }
+       }
 
 }
 
@@ -207,7 +232,17 @@ this.lightGnosis = function(enablingPlayer, session) {
 }
 
 this.heartGnosis = function(enablingPlayer, session) {
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+   //we all have SO much in common
+   for (var i = 0; i < session.availablePlayers.length; i++) {
+       var player = session.availablePlayers[i];
+       player.interestedIn = function (interestWord, interestNum){
+           return true;
+       }
+       //and we all love each other
+       player.getCrushes = function () {
+            return player.relationships;
+       }
+   }
 
 
 }
