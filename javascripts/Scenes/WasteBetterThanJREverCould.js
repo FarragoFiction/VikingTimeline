@@ -284,8 +284,13 @@ this.doomGnosis = function(enablingPlayer, session) {
 }
 
 this.spaceGnosis = function(enablingPlayer, session) {
-    //is there a function to determine frog or something?
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+    session.minFrogLevel = -999999;
+    session.goodFrogLevel = -1;
+
+    session.frogStatus = function(){
+        //It seems this will likely have consequences, but theres no telling wastes that.
+        return "Full Frog";
+    }
 
 }
 
