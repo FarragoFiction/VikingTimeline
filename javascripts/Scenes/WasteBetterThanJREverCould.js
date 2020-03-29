@@ -85,6 +85,8 @@ function WasteBetterThanJREverCould(session) {
         s.timePlayer = timePlayer;
         s.trigger();
         s.renderContent(session.newScene());
+        //add to front, top priority
+        session.scenes.unshift(s);
     }
 
     this.hopeGnosis = function(enablingPlayer, session) {
@@ -264,13 +266,15 @@ this.heartGnosis = function(enablingPlayer, session) {
 }
 
 this.doomGnosis = function(enablingPlayer, session) {
-    //our fates are set
+    //our fates are set the way I want them to be.
     for (var i = 0; i < session.availablePlayers.length; i++) {
            var player = session.availablePlayers[i];
            player.heroicDeath = function (){
+               console.log("No.");
                return false;
            }
            player.justDeath = function (){
+              console.log("No.");
               return false;
            }
     }
@@ -287,7 +291,26 @@ this.spaceGnosis = function(enablingPlayer, session) {
 
 this.timeGnosis = function(enablingPlayer, session) {
     //some kind of function for time clones? can hack scenes directly, it occurs to me, or at least instances
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+    var s = new SaveDoomedTimeline(this.session);
+    s.trigger = function(playerList){
+    		this.timePlayer = null;
+    		this.enablingPlayer = null;
+    		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+    		this.enablingPlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
+    		this.leaderPlayer = getLeader(session.players);
+    		this.playerList = playerList;
+
+    		if(this.enablingPlayer){
+    			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
+    				this.timePlayer = this.enablingPlayer;
+    			}else{  //somebody else can be voided.
+    				this.timePlayer = getRandomElementFromArray(this.session.players);  //passive time players make doomed clones of others.
+    			}
+    		}
+    		return (this.timePlayer);
+    	}
+    	//add to front, top priority
+    	session.scenes.unshift(s);
 
 }
 
