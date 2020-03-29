@@ -80,7 +80,11 @@ function WasteBetterThanJREverCould(session) {
 
     this.mindGnosis = function(enablingPlayer, session) {
         //what if we...hacked the yellow yard?
-        console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+        var timePlayer = findAspectPlayer(this.session.players, "Time") //NEED to have a time player here.
+        var s = new YellowYard(this.session);
+        s.timePlayer = timePlayer;
+        s.trigger();
+        s.renderContent(session.newScene());
     }
 
     this.hopeGnosis = function(enablingPlayer, session) {
