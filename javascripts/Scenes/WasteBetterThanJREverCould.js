@@ -195,8 +195,14 @@ this.bloodGnosis = function(enablingPlayer, session) {
 }
 
 this.lightGnosis = function(enablingPlayer, session) {
-    //hack find player by aspect etc
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+    //vriska mode
+    findAspectPlayer = function(playerList, aspect) {
+    	return enablingPlayer;
+    }
+
+    findAllAspectPlayers = function(playerList, aspect) {
+    	return [enablingPlayer]
+    }
 
 }
 

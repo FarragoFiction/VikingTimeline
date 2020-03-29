@@ -3345,7 +3345,7 @@ function randomTimePlayer(session) {
 	return randomPlayerWithClaspect(session, c, a);
 }
 
-function findAspectPlayer(playerList, aspect) {
+findAspectPlayer = function(playerList, aspect) {
 	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
 		if (p.aspect == aspect) {
@@ -3355,7 +3355,7 @@ function findAspectPlayer(playerList, aspect) {
 	}
 }
 
-function findAllAspectPlayers(playerList, aspect) {
+findAllAspectPlayers = function(playerList, aspect) {
 	var ret = [];
 	for (var i = 0; i < playerList.length; i++) {
 		var p = playerList[i];
