@@ -229,6 +229,13 @@ this.lightGnosis = function(enablingPlayer, session) {
     	return [enablingPlayer]
     }
 
+    for (var i = 0; i < session.availablePlayers.length; i++) {
+           var player = session.availablePlayers[i];
+           player.knowsAboutSburb = function (){
+               return true;
+           }
+       }
+
 }
 
 this.heartGnosis = function(enablingPlayer, session) {
@@ -242,13 +249,32 @@ this.heartGnosis = function(enablingPlayer, session) {
        player.getCrushes = function () {
             return player.relationships;
        }
+
+       //and our identity is that we all effect each other
+       player.hasInteractionEffect = function () {
+          return true;
+       }
+       //but are also active
+       player.isActive = function () {
+          return true;
+       }
    }
 
 
 }
 
 this.doomGnosis = function(enablingPlayer, session) {
-    console.log("TODO " + enablingPlayer.aspect + "GNOSIS");
+    //our fates are set
+    for (var i = 0; i < session.availablePlayers.length; i++) {
+           var player = session.availablePlayers[i];
+           player.heroicDeath = function (){
+               return false;
+           }
+           player.justDeath = function (){
+              return false;
+           }
+    }
+
 
 
 }
