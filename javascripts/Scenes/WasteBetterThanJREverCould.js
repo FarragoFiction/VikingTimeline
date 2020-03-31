@@ -11,17 +11,17 @@ function WasteBetterThanJREverCould(session) {
 
     this.aspectTextHash = {
         "Life": "Suffice it to say that you do not need to worry about any player dying ever again. Or being tired.",
-        "Void": "voidGnosis",
-        "Doom": "doomGnosis",
-        "Space": "spaceGnosis",
-        "Time": "timeGnosis",
-        "Heart": "heartGnosis",
-        "Mind": "mindGnosis",
-        "Rage": "rageGnosis",
-        "Hope": "hopeGnosis",
-        "Blood": "bloodGnosis",
-        "Breath": "breathGnosis",
-        "Light": "lightGnosis",
+        "Void": "You will not get to see things for long.",
+        "Doom": "Fate is what they will of it, now.",
+        "Space": "It seems space players have no idea what is actually needed for frog breeding.",
+        "Time": "It seems a time clone army is impending.",
+        "Heart": "It seems what makes classes different from each other will get a lot less important.",
+        "Mind": "...It seems that the wastes have gotten into JR's yard again.",
+        "Rage": "It seems you are hated.",
+        "Hope": "It seems Paladyn is refusing to share with the other hope players.",
+        "Blood": "It seems all the players are friends. How nice.",
+        "Breath": "It seems there is nothing going wrong at all in the session.",
+        "Light": "It seems the story was about this Light Player all along.",
     }
 
     this.trigger = function(playerList) {
@@ -117,6 +117,20 @@ function WasteBetterThanJREverCould(session) {
         	}
 
         }
+
+        for (var i = 0; i < session.availablePlayers.length; i++) {
+                   var player = session.availablePlayers[i];
+
+                   player.getEnemiesFromList = function (potentialFriends){
+                       //no one is fighting
+                      return [enablingPlayer];
+                   }
+
+                   player.getEnemies = function (){
+                     //no one is fighting
+                    return [enablingPlayer];
+                   }
+               }
     }
 
     this.breathGnosis = function(enablingPlayer, session) {
