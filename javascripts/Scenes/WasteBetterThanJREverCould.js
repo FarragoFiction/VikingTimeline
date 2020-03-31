@@ -30,6 +30,7 @@ function WasteBetterThanJREverCould(session) {
         for (var i = 0; i < this.session.availablePlayers.length; i++) {
             var player = this.session.availablePlayers[i];
             var rollValueHigh = player.rollForLuck("maxLuck");
+            //TODO make gnosis rarer
             if (rollValueHigh > -98897987 && (!player.gnosis || player.gnosis < 5)) {
                 this.enablingPlayers.push(player);
                 if (!player.gnosis) {
@@ -121,6 +122,7 @@ function WasteBetterThanJREverCould(session) {
                 }
                }
             }
+        }
     }
 
     this.breathGnosis = function(enablingPlayer, session) {
@@ -128,7 +130,7 @@ function WasteBetterThanJREverCould(session) {
         for (var i = 0; i < session.availablePlayers.length; i++) {
             var player = session.availablePlayers[i];
             player.flipOut = function(reason){
-                console.log("It's okay. You don't need to care about " + reason.);
+                console.log("It's okay. You don't need to care about " + reason+".");
             }
             player.murderMode = false;
             player.grimDark = 0;
@@ -325,7 +327,7 @@ this.spaceGnosis = function(enablingPlayer, session) {
 
 this.timeGnosis = function(enablingPlayer, session) {
     //some kind of function for time clones? can hack scenes directly, it occurs to me, or at least instances
-    var s = new SaveDoomedTimeline(this.session);
+    var s =  new SaveDoomedTimeLine(session);
     s.trigger = function(playerList){
     		this.timePlayer = null;
     		this.enablingPlayer = null;
