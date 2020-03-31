@@ -57,6 +57,7 @@ function WasteBetterThanJREverCould(session) {
         if (enablingPlayer.gnosis == 4) {
             enablingPlayer.gnosis++;
             //pass in session because apparently "this" changes if i call a function this way
+            session.gnosisBullshit = true;
             this.aspectHash[enablingPlayer.aspect](enablingPlayer, session);
 
             div.append("<br>" + this.content(enablingPlayer));
@@ -111,7 +112,19 @@ function WasteBetterThanJREverCould(session) {
         		if(curSessionGlobalVar.makeCombinedSession == true){
         			processCombinedSession();  //make sure everything is done rendering first
         		}else{
-        			renderAfterlifeURL();
+        			if(summarizeSession){
+                        if(needToScratch){
+                            scratchAB(curSessionGlobalVar);
+                            return null;
+                          }
+                        var living = findLivingPlayers(curSessionGlobalVar.players);
+                        if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
+                            //console.log("victory or utter defeat")
+                            summarizeSession(curSessionGlobalVar);
+                        }
+        			}else{
+                         renderAfterlifeURL();
+        			}
         		}
         	}
 

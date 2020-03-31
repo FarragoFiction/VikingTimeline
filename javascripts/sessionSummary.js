@@ -10,6 +10,8 @@ function SessionSummary(){
 	this.opossumVictory = null;
 	this.mayorEnding = null;
 	this.waywardVagabondEnding = null;
+	this.vikingBully = null;
+	this.gnosisBullshit = null;
 	this.badBreakDeath = null;
 	this.choseGodTier = null;
 	this.luckyGodTier = null;
@@ -433,6 +435,8 @@ function MultiSessionSummary(){
 	this.opossumVictory = 0;
 	this.averageNumScenes = 0;
 	this.waywardVagabondEnding = 0;
+	this.vikingBully = 0;
+	this.gnosisBullshit = 0;
 	this.mayorEnding = 0;
 	this.checkedCorpseBoxes = [];
 	this.classes = {};
@@ -614,7 +618,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" ||propertyName == "murderMode" || propertyName == "grimDark"  || propertyName == "denizenFought") return true
 		if(propertyName == "denizenBeat" || propertyName == "godTier" ||propertyName == "questBed" || propertyName == "sacrificialSlab"  || propertyName == "heroicDeath") return true
 		if(propertyName == "justDeath" || propertyName == "rapBattle" ||propertyName == "sickFires" || propertyName == "hasLuckyEvents"  || propertyName == "hasUnluckyEvents") return true
-		if(propertyName == "hasFreeWillEvents" ||propertyName == "jackRampage" || propertyName == "democracyStarted" ) return true;
+		if(propertyName == "gnosisBullshit" ||propertyName == "vikingBully" ||propertyName == "hasFreeWillEvents" ||propertyName == "jackRampage" || propertyName == "democracyStarted" ) return true;
 		return false;
 	}
 
@@ -624,7 +628,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
 		if(propertyName == "numberPurpleFrog" ||propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
-		if(propertyName == "blackKingDead" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
+		if(propertyName == "gnosisBullshit" || propertyName == "vikingBully" || propertyName == "blackKingDead" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
 		return false;
 	}
 
@@ -842,6 +846,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.badBreakDeath) mss.badBreakDeath ++;
 		if(ss.mayorEnding) mss.mayorEnding ++;
 		if(ss.waywardVagabondEnding) mss.waywardVagabondEnding ++;
+		if(ss.gnosisBullshit) mss.gnosisBullshit ++;
+		if(ss.vikingBully) mss.vikingBully ++;
 		if(ss.choseGodTier) mss.choseGodTier ++;
 		if(ss.luckyGodTier) mss.luckyGodTier ++;
 		if(ss.blackKingDead) mss.blackKingDead ++;

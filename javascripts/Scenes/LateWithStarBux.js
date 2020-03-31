@@ -9,6 +9,7 @@ function LateWithStarBux(session){
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
 
+        this.session.vikingBully = true;
         this.bulliedPlayer.timesBullied +=1  //this adds one bully to the bully counter (tm)
 
         this.bulliedPlayer.flipOutReason = "a weird paladin bullying them"

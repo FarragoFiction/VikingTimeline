@@ -19,6 +19,8 @@ function Session(session_id){
 	this.jackRampage = false;
 	this.jackScheme = false;
 	this.luckyGodTier = false;
+	this.vikingBully = false;
+	this.gnosisBullshit = false;
 	this.choseGodTier = false;
 	this.plannedToExileJack = false;
 	this.hasHearts = false;
@@ -469,6 +471,8 @@ function Session(session_id){
 		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <=0
 		summary.mayorEnding = this.mayorEnding;
 		summary.waywardVagabondEnding = this.waywardVagabondEnding;
+		summary.vikingBully = this.vikingBully;
+		summary.gnosisBullshit = this.gnosisBullshit;
 		summary.badBreakDeath = this.badBreakDeath;
 		summary.luckyGodTier = this.luckyGodTier;
 		summary.choseGodTier = this.choseGodTier;
