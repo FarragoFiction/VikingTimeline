@@ -130,6 +130,8 @@ function WasteBetterThanJREverCould(session) {
             player.flipOut = function(reason){
                 console.log("It's okay. You don't need to care about " + reason.);
             }
+            player.murderMode = false;
+            player.grimDark = 0;
         }
 
     }
