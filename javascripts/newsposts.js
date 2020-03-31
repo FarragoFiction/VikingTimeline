@@ -165,7 +165,7 @@ function processCombinedSession(){
 
 }
 
-function reckoningTick(){
+ reckoningTick = function(){
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 			curSessionGlobalVar.timeTillReckoning += -1;
 			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
