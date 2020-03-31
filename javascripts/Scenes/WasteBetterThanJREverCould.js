@@ -98,30 +98,24 @@ function WasteBetterThanJREverCould(session) {
 
         //Paladyn leaves a backdoor into hope gnosis to make it work the way he thinks it should.
         reckoningTick = function(){
-            for (var i = 0; i < session.availablePlayers.length; i++) {
-               var player = session.availablePlayers[i];
-                reckoningTick = function(){
-                if(curSessionGlobalVar.timeTillReckoning > -10){
-                        curSessionGlobalVar.timeTillReckoning += -1;
-                        processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
-                        reckoningTick();
-                }else{
-                    var s = new AftermathHax(curSessionGlobalVar);
-                    s.trigger(curSessionGlobalVar.players)
-                    s.renderContent(curSessionGlobalVar.newScene());
+        	console.log("Hacked Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning)
+        	if(curSessionGlobalVar.timeTillReckoning > -10){
+        		setTimeout(function(){
+        			curSessionGlobalVar.timeTillReckoning += -1;
+        			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
+        			reckoningTick();
+        		},repeatTime);
+        	}else{
+        		var s = new AftermathHax(curSessionGlobalVar);
+        		s.trigger(curSessionGlobalVar.players)
+        		s.renderContent(curSessionGlobalVar.newScene());
+        		if(curSessionGlobalVar.makeCombinedSession == true){
+        			processCombinedSession();  //make sure everything is done rendering first
+        		}else{
+        			renderAfterlifeURL();
+        		}
+        	}
 
-
-                    //summarizeSession(curSessionGlobalVar);
-                    //for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
-                    if(curSessionGlobalVar.makeCombinedSession == true){
-                        processCombinedSession();  //make sure everything is done rendering first
-                    }else{
-                        //console.log("reckoning over, not combo")
-                        summarizeSession(curSessionGlobalVar);
-                    }
-                }
-               }
-            }
         }
     }
 
@@ -347,7 +341,6 @@ this.timeGnosis = function(enablingPlayer, session) {
     	}
     	//add to front, top priority
     	session.scenes.unshift(s);
-
 }
 
 this.aspectHash = {
@@ -376,7 +369,7 @@ this.content = function(enablingPlayer) {
 
 
 
-function Aftermath(session){
+function AftermathHax(session){
 	this.session = session;
 	this.canRepeat = false;
 

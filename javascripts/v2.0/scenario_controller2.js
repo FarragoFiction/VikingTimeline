@@ -290,7 +290,7 @@ function reckoning(){
 }
 
 reckoningTick = function(){
-	//console.log("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning)
+	console.log("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;

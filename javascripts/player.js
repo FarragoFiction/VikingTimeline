@@ -2430,7 +2430,6 @@ function Player(session, class_name, aspect, object_to_prototype, moon, godDesti
 				}
 			}
 		}
-		console.log("initializing relationships")
 		if (this.robot || this.grimDark > 1) { //you can technically start grimDark
 			for (var k = 0; k < this.relationships.length; k++) {
 				var r = this.relationships[k];
