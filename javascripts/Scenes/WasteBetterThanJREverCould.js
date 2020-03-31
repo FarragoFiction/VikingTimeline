@@ -81,13 +81,13 @@ function WasteBetterThanJREverCould(session) {
 
     this.mindGnosis = function(enablingPlayer, session) {
         //what if we...hacked the yellow yard?
-        var timePlayer = findAspectPlayer(this.session.players, "Time") //NEED to have a time player here.
-        var s = new YellowYard(this.session);
+        var timePlayer = findAspectPlayer(session.players, "Time") //NEED to have a time player here.
+        var s = new YellowYard(session);
         s.timePlayer = timePlayer;
         s.trigger();
         s.renderContent(session.newScene());
         //add to front, top priority
-        session.scenes.unshift(s);
+        session.available_scenes.unshift(s);
     }
 
     this.hopeGnosis = function(enablingPlayer, session) {
@@ -323,24 +323,10 @@ this.timeGnosis = function(enablingPlayer, session) {
     //some kind of function for time clones? can hack scenes directly, it occurs to me, or at least instances
     var s =  new SaveDoomedTimeLine(session);
     s.trigger = function(playerList){
-    		this.timePlayer = null;
-    		this.enablingPlayer = null;
-    		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
-    		this.enablingPlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
-    		this.leaderPlayer = getLeader(session.players);
-    		this.playerList = playerList;
-
-    		if(this.enablingPlayer){
-    			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
-    				this.timePlayer = this.enablingPlayer;
-    			}else{  //somebody else can be voided.
-    				this.timePlayer = getRandomElementFromArray(this.session.players);  //passive time players make doomed clones of others.
-    			}
-    		}
-    		return (this.timePlayer);
+    		return true;
     	}
     	//add to front, top priority
-    	session.scenes.unshift(s);
+    	session.available_scenes.unshift(s);
 }
 
 this.aspectHash = {
@@ -488,8 +474,8 @@ function AftermathHax(session){
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
 		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
 
-			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the echidna isn't deployed now, it never will be. There is no time for mourning. "
-			this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the echidna in the skia hole.
+			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the ECHIDNA isn't deployed now, it never will be. There is no time for mourning. "
+			this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the ECHIDNA in the skia hole.
 			div.append(end);
 			end = "<br><br>"
 		}else if(living.length>0){
@@ -503,7 +489,7 @@ function AftermathHax(session){
 		}
 
 		if(living.length > 0){
-			//check for inverted echidna.
+			//check for inverted ECHIDNA.
 			return this.purpleFrogEnding(div, end);
 	}else{
 		div.append(end);
@@ -580,14 +566,14 @@ this.purpleFrog = function(){
 	tmpStatHolder.canAbscond = false;
 	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
 	console.log(purpleFrog)
-	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple echidna") + "</font>", null);
+	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple ECHIDNA") + "</font>", null);
 	purpleFrog.setStatsHash(tmpStatHolder);
 	console.log(purpleFrog)
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 
-	var f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
+	var f = new Fraymotif([], Zalgo.generate("SHOULD NOT BE"), 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
 	f.effects.push(new FraymotifEffect("mobility",3,true));
-	f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. "
+	f.flavorText = " OWNER uses a weaponized wave of pure disgust. You would be in awe if it weren't so painful. "
 	purpleFrog.fraymotifs.push(f);
 
 	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3)//DM, the owner of the purple frog website came up with this one.
@@ -597,9 +583,9 @@ this.purpleFrog = function(){
 
 	f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3)//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.
 	f.effects.push(new FraymotifEffect("sanity",3,false));
-	f.flavorText = " Did you know that some species of echidnas weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. "
+	f.flavorText = " Did you know that all species of ECHIDNAs have four dicks? Now you do. You can never unknow this. The entire party is disgusted. "
 	purpleFrog.fraymotifs.push(f);
-
+    //huh, this didn't need to change at all
 	f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3)//DM, the owner of the purple frog website came up with this one.
 	f.effects.push(new FraymotifEffect("mobility",2,false));
 	f.effects.push(new FraymotifEffect("mobility",2,true));
@@ -623,13 +609,13 @@ this.getGoodGuys = function(trollKidRock){
 //reference to rp at: http://forums.msparp.com/showthread.php?tid=16049
 //guest starring troll kid rock
 this.purpleFrogEnding = function(div, precedingText){
-	//alert("purple echidna incoming!!!" + this.session.session_id)
+	//alert("purple ECHIDNA incoming!!!" + this.session.session_id)
 	//maybe load kid rock first and have callback for when he's done.
-	//maybe kid rock only shows up for half purple echidnas??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
+	//maybe kid rock only shows up for half purple ECHIDNAs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
 	var trollKidRock = this.trollKidRock();
 	console.log(trollKidRock)
 	var purpleFrog = this.purpleFrog();
-	precedingText += "<img src = 'images/sceneicons/ballofsin.png'> What...what is going on? How...how can you have NEGATIVE 100% of a echidna??? This...this doesn't look right.   The vast echidna lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>"
+	precedingText += "<img src = 'images/sceneicons/ballofsin.png'> What...what is going on? How...how can you have NEGATIVE 100% of a ECHIDNA??? This...this doesn't look right.   The vast ECHIDNA lets out a SHUDDER, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>"
 	div.append(precedingText);
 
 	var purpleFighters = this.getGoodGuys(trollKidRock)
@@ -648,9 +634,9 @@ this.finishPurpleStrife = function(div, purpleFrog, fighters, trollKidRock){
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 		this.session.won = true;
-		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>"
+		ret += "With a final, deafening 'SHUDDER', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>"
 	}else{
-		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
+		ret += "With a final, deafening 'SHUDDER', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
 	}
 	div.append(ret);
 	this.lastRender(div);

@@ -35,6 +35,17 @@ function SaveDoomedTimeLine(session){
 
 
 	this.renderContent = function(div){
+	    if(!this.timePlayer){
+	    		this.timePlayer = findAspectPlayer(this.session.players, "Time"); //they don't have to be in the medium, though
+
+	    }
+	    if(!this.timePlayer){
+        	    		this.timePlayer = this.session.players[0]; //pick someone, dont crash
+
+        }
+        if(!this.enablingPlayer){
+            this.enablingPlayer = this.timePlayer;
+        }
 		console.log("time clone " + this.timePlayer + " " + this.session.session_id);
 		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.attr("id"))
