@@ -533,8 +533,10 @@ function reckoningTick(){
 //want a spoiler? I'll put the answer all the way on the bottom of the page.
 function checkPasswordAgainstQuip(summary){
 	var quip =  getQuipAboutSession(summary);
-	if(quip == "Something, something, glorious combat." || quip == "Seriously, I keep telling Paladyn that death in 'glorious combat' is not a life goal."){
+	if(quip.includes("glorious combat")){
 		alert("!!!")
+		addPossibleEgg("soulmate");
+	    addPossibleEgg("TIMEHOLE");
 		loadEasterEggs();
 	}else{
 		alert("AB: You have the right idea, but you're not getting it. This was: '" + quip + "', not 'glorious combat'.")
