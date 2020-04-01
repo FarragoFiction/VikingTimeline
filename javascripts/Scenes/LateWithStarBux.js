@@ -4,7 +4,7 @@ function LateWithStarBux(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.bulliedPlayer;
 	this.bitchinLands = ["Oars", "Vikings", "Gods", "Cockroaches", "Paladins", "Sheep", "Feasts", "Boats", "Vessels", "Sigils","Powers","Rangers","Minerals","Refrances","Raiders","Empires","Conflicts","Berserkers","Slaughters","Heathens","Heretics","Tidings","Longships","Raids","Skalds","Elders","Voyagers","Mist","Wrestling","Giants","Elves","Dwarves","Norns","Axes","Tomahawks","Bows","Fleets","Ice","Icebergs","Snow","Pines"];
-	this.bitchinSprites = ["Viking","Prophet","Sheep","Moth","Son"]
+	this.bitchinSprites = ["Viking","Prophet","Sheep","Moth","Son","Hammer","Rune","Gjallarhorn","Horn","Axe","Serpent","Fenrir","Raven","Crow","Sleipnir","Gungnir","Wolf","Horse","Svefnthorn","Mistletoe","Ring","Draupnir","Helm","Shield","Gleipnir","Skofnung","Angurvadal","Hofund","Dainsleif","Draugar","Thread","Squirrel","Valkyrie","Baldr","Sigurd","Brunhilde","Bragrarfull","Firmafeng","Mimir","GUllveig","Hel","Rock","Spear","Ranger","Null","Mineral"]
 
 //theoretically i can make a list of things to choose, and from then make it work?
     this.doshit = function(){
