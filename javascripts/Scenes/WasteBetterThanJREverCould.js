@@ -30,7 +30,7 @@ function WasteBetterThanJREverCould(session) {
         for (var i = 0; i < this.session.availablePlayers.length; i++) {
             var player = this.session.availablePlayers[i];
             var rollValueHigh = player.rollForLuck("maxLuck");
-            if (rollValueHigh > 85 && (!player.gnosis || player.gnosis < 5)) {
+            if (rollValueHigh > 55 && (!player.gnosis || player.gnosis < 5)) {
                 this.enablingPlayers.push(player);
                 if (!player.gnosis) {
                     player.gnosis = 0;
