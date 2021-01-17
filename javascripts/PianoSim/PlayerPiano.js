@@ -1,9 +1,18 @@
 
 function PlayerPiano(notes){
+    const audioShit = new AudioShit();
 
-    this.play = async () => {
-        for(let i = 0; i< notes.length; i++){
-            await this.playNote(notes[i]);
+
+    this.play =  () => {
+         audioShit.init(this.beginPlaying);
+    }
+
+    //it can be all at once cuz its using AudioShit
+    this.beginPlaying = () => {
+        let time = 0;
+         for(let i = 0; i< notes.length; i++){
+            this.playNote(notes[i], time);
+            time += notes[i].millisecondsBefore;
         }
     }
 
@@ -11,11 +20,8 @@ function PlayerPiano(notes){
              return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    this.playNote = async (note) => {
-        console.log("before" + new Date().getTime());
-        await this.timeout(note.millisecondsBefore);
-        console.log("after" + new Date().getTime());
-        note.debug();
+    this.playNote =  (note, time) => {
+        note.play(audioShit, time);
     }
 
 }
