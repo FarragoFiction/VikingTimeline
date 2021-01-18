@@ -1,5 +1,8 @@
 window.onload = function() {
-    const notes = [ new Note("D", 100), new Note("E", 1000), new Note("A", 2000), new Note("E", 3000), new Note("D", 50)];
+    const notes = [];
+    for(let i = 0; i< 11; i++){
+        notes.push(new Note(i, 30));
+    }
     const piano =  new PlayerPiano(notes);
 
     var button = document.createElement("BUTTON");

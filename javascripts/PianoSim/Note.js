@@ -1,16 +1,15 @@
 //I promised AB a piano sim back when she went on strike, and by god, i'm doing it
-function Note(letter, millisecondsBefore){
-    this.letter = letter;
+function Note(noteIndex, millisecondsBefore){
+    this.noteIndex = noteIndex;
     this.millisecondsBefore = millisecondsBefore;
 
     this.debug = () =>{
-        console.log(`${letter}: ${millisecondsBefore}`);
+        console.log(`${this.noteIndex}: ${millisecondsBefore}`);
     }
 
     this.play = (audioShit, relativeTime) => {
-        //TODO map letter to index
-        console.log("want to play sound at" + relativeTime, "plus ", millisecondsBefore);
-        audioShit.playIndex(0, (relativeTime + this.millisecondsBefore)/1000);
+        console.log("want to play sound at" + relativeTime, "plus ", this.millisecondsBefore);
+        audioShit.playIndex(this.noteIndex, (relativeTime + this.millisecondsBefore)/1000);
     }
 
 }

@@ -27,7 +27,18 @@ this.bufferLIst;
   bufferLoader = new BufferLoader(
     context,
     [
-      'javascripts/PianoSim/C.mp3'
+      'javascripts/PianoSim/Audio/piano_middle_C.mp3',
+      'javascripts/PianoSim/Audio/piano_C_sharp.mp3',
+      'javascripts/PianoSim/Audio/piano_D.mp3',
+      'javascripts/PianoSim/Audio/piano_D_sharp.mp3',
+      'javascripts/PianoSim/Audio/piano_E.mp3',
+      'javascripts/PianoSim/Audio/piano_F.mp3',
+      'javascripts/PianoSim/Audio/piano_F_sharp.mp3',
+      'javascripts/PianoSim/Audio/piano_G.mp3',
+      'javascripts/PianoSim/Audio/piano_G_sharp.mp3',
+      'javascripts/PianoSim/Audio/piano_A.mp3',
+      'javascripts/PianoSim/Audio/piano_A_sharp.mp3',
+
     ],
     this.finishedLoading
     );
