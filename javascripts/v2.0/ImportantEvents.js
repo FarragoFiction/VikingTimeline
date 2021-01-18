@@ -25,6 +25,9 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
 	//console.log("Created GodTier opportunity, for: " + this.player.title());
+    if(Note){
+        this.session.notes.push(new Note(0,session.numScenes));
+    }
 
 	this.humanLabel = function(){
 		var ret  = "";
@@ -94,6 +97,9 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	this.player =  makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
 	this.timesCalled = 0;
+    if(Note){
+        this.session.notes.push(new Note(1,session.numScenes));
+    }
 	this.humanLabel = function(){
 		var ret  = "Make the " + this.player.htmlTitle() + " not permanently dead.";
 		return ret;
@@ -152,7 +158,9 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(2,session.numScenes));
+	}
 	this.humanLabel = function(){
 		var ret  = "Prevent the " + this.player.htmlTitle() + " from going Grimdark."
 		return ret;
@@ -212,7 +220,9 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(3,session.numScenes));
+	}
 	this.humanLabel = function(){
 		var ret  = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
 		return ret;
@@ -267,7 +277,9 @@ function JackNotDeadlyEnough(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(4,session.numScenes));
+	}
 	this.humanLabel = function(){
 		var ret  = "Turn Jack into a WAY COOLER FIGHT, thus creating honorable battle. ";
 		return ret;
@@ -310,7 +322,9 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(5,session.numScenes));
+	}
 	this.humanLabel = function(){
 		var ret  = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
@@ -356,6 +370,9 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
+    if(Note){
+        this.session.notes.push(new Note(6,session.numScenes));
+    }
   //console.log("creating frog needs help event, seed is: " + Math.seed)
 	this.humanLabel = function(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
@@ -417,7 +434,9 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 	this.importanceRating = 5;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(7,session.numScenes));
+	}
 	this.humanLabel = function(){
 		var ret  = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
 		return ret;
@@ -474,7 +493,9 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 	this.importanceRating = 10;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+	if(Note){
+	    this.session.notes.push(new Note(8,session.numScenes));
+	}
 	//this is so illegal.
 	this.humanLabel = function(){
 		var ret  = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";

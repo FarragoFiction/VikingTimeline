@@ -42,7 +42,6 @@ function StartDemocracy(session){
 			return false;
 		}
 		this.findSympatheticPlayer();
-		console.log("king strength is: " + this.session.king.getStat("power") + " compared to hard strength of: " + this.session.hardStrength)
 		return (this.session.democracyStrength <= 0 ) && this.session.king.getStat("power") >  this.session.hardStrength && (this.friend != null);
 	}
 

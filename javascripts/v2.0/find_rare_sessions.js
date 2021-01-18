@@ -46,6 +46,7 @@ var displayAverages = true;
 var displayClasses = false;
 var displayAspects = false;
 var tournamentMode = false;
+var piano;
 
 
 
@@ -210,6 +211,7 @@ function checkSessionsJunior(){
 
 //tournament will pass a callback here. after each session, callback should be called.
 function checkSessions(){
+    piano =  new PlayerPiano([]);
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -616,8 +618,15 @@ function summarizeSession(session){
 	sessionSummariesDisplayed.push(sum);
 	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
 	var str = sum.generateHTML();
-	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font> <span id ='piano" +sum.session_id + "'><Br>" );
 	debug(str);
+     var button = document.createElement("BUTTON");
+      var t = document.createTextNode("Piano Sim");
+      button.appendChild(t);
+        document.querySelector("#piano"+sum.session_id).appendChild(button);
+        button.onclick = function(){
+            piano.play(sum.notes);
+        }
 	printStats();
 	numSimulationsDone ++;
 	initial_seed = Math.seed; //child session

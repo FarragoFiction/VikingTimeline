@@ -1,18 +1,18 @@
 
-function PlayerPiano(notes){
-    const audioShit = new AudioShit();
+function PlayerPiano(){
+    this.audioShit = new AudioShit();
+    this.notes;
 
 
-    this.play =  () => {
-         audioShit.init(this.beginPlaying);
+    this.play =  (notes) => {
+        this.notes = notes;
+         this.audioShit.init(this.beginPlaying);
     }
 
     //it can be all at once cuz its using AudioShit
     this.beginPlaying = () => {
-        let time = 0;
-         for(let i = 0; i< notes.length; i++){
-            this.playNote(notes[i], time);
-            time += notes[i].millisecondsBefore;
+         for(let i = 0; i< this.notes.length; i++){
+            this.playNote(this.notes[i]);
         }
     }
 
@@ -21,7 +21,7 @@ function PlayerPiano(notes){
     }
 
     this.playNote =  (note, time) => {
-        note.play(audioShit, time);
+        note.play(this.audioShit);
     }
 
 }

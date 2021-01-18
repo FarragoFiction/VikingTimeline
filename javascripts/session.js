@@ -8,6 +8,7 @@ function Session(session_id){
 	this.sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.opossumVictory = false;
+	this.notes = []; //for PianoSim
 	this.hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
 	this.replayers = []; //used for fan oc easter eggs.
 	this.afterLife = new AfterLife();
@@ -526,6 +527,7 @@ function Session(session_id){
 		summary.democracyStarted =  this.democraticArmy.power > 0;
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
+		summary.notes = this.notes;
 
 		var spacePlayer = this.findBestSpace();
 		var corruptedSpacePlayer = this.findMostCorruptedSpace();

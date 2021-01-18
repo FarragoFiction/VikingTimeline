@@ -7,9 +7,12 @@ function Note(noteIndex, millisecondsBefore){
         console.log(`${this.noteIndex}: ${millisecondsBefore}`);
     }
 
-    this.play = (audioShit, relativeTime) => {
-        console.log("want to play sound at" + relativeTime, "plus ", this.millisecondsBefore);
-        audioShit.playIndex(this.noteIndex, (relativeTime + this.millisecondsBefore)/1000);
+    this.toString =() => {
+       return `(${this.noteIndex}: ${millisecondsBefore})`;
+    }
+
+    this.play = (audioShit) => {
+        audioShit.playIndex(this.noteIndex, (this.millisecondsBefore)/10);
     }
 
 }
