@@ -25,7 +25,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
 	//console.log("Created GodTier opportunity, for: " + this.player.title());
-    if(Note){
+    if(typeof Note !== 'undefined'){
         this.session.notes.push(new Note(0,session.numScenes));
     }
 
@@ -97,7 +97,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	this.player =  makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
 	this.timesCalled = 0;
-    if(Note){
+    if(typeof Note !== 'undefined'){
         this.session.notes.push(new Note(1,session.numScenes));
     }
 	this.humanLabel = function(){
@@ -158,7 +158,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(2,session.numScenes));
 	}
 	this.humanLabel = function(){
@@ -220,7 +220,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(3,session.numScenes));
 	}
 	this.humanLabel = function(){
@@ -277,7 +277,7 @@ function JackNotDeadlyEnough(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(4,session.numScenes));
 	}
 	this.humanLabel = function(){
@@ -322,7 +322,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(5,session.numScenes));
 	}
 	this.humanLabel = function(){
@@ -370,7 +370,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-    if(Note){
+    if(typeof Note !== 'undefined'){
         this.session.notes.push(new Note(6,session.numScenes));
     }
   //console.log("creating frog needs help event, seed is: " + Math.seed)
@@ -434,7 +434,7 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 	this.importanceRating = 5;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(7,session.numScenes));
 	}
 	this.humanLabel = function(){
@@ -493,7 +493,7 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 	this.importanceRating = 10;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	if(Note){
+	if(typeof Note !== 'undefined'){
 	    this.session.notes.push(new Note(8,session.numScenes));
 	}
 	//this is so illegal.

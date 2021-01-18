@@ -749,7 +749,7 @@ function RelationshipDrama(session){
 	}
 
 	this.renderContent = function(div){
-	    if(Note){
+	    if(typeof Note !== 'undefined'){
             this.session.notes.push(new Note(11,session.numScenes));
         }
 		//div.append(this.content());

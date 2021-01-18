@@ -27,7 +27,7 @@ function CorpseSmooch(session){
 	}
 
 	this.renderContent = function(div){
-	    if(Note){
+	    if(typeof Note !== 'undefined'){
             this.session.notes.push(new Note(9,session.numScenes));
         }
 		this.dreamersToRevive;

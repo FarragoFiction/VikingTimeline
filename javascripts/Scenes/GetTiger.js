@@ -25,7 +25,7 @@ function GetTiger(session){
 	}
 
 	this.renderContent = function(div){
-	    if(Note){
+	    if(typeof Note !== 'undefined'){
             this.session.notes.push(new Note(10,session.numScenes));
         }
 		var text = this.content()
