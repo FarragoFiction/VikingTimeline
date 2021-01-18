@@ -749,6 +749,9 @@ function RelationshipDrama(session){
 	}
 
 	this.renderContent = function(div){
+	    if(Note){
+            this.session.notes.push(new Note(11,session.numScenes));
+        }
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];

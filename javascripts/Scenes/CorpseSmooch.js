@@ -27,6 +27,9 @@ function CorpseSmooch(session){
 	}
 
 	this.renderContent = function(div){
+	    if(Note){
+            this.session.notes.push(new Note(9,session.numScenes));
+        }
 		this.dreamersToRevive;
 		////console.log(this.dreamersToRevive)
 		this.combo = 0;
